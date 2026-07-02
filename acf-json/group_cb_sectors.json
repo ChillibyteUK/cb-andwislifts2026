@@ -1,0 +1,55 @@
+{
+    "key": "group_cb_sectors",
+    "title": "CB Sectors",
+    "fields": [
+        {
+            "key": "field_cb_sectors_message",
+            "label": "CB Sectors",
+            "name": "",
+            "type": "message",
+            "message": ""
+        },
+        {
+            "key": "field_cb_sectors_heading",
+            "label": "Heading",
+            "name": "heading",
+            "type": "text"
+        },
+        {
+            "key": "field_cb_sectors_body",
+            "label": "Body",
+            "name": "body",
+            "type": "wysiwyg",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0
+        },
+        {
+            "key": "field_cb_sectors_sectors",
+            "label": "Sectors",
+            "name": "sectors",
+            "type": "repeater",
+            "layout": "table",
+            "button_label": "Add sector",
+            "sub_fields": [
+                {
+                    "key": "field_cb_sectors_sector_label",
+                    "label": "Label",
+                    "name": "label",
+                    "type": "text"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/cb-sectors"
+            }
+        ]
+    ],
+    "active": 1,
+    "description": ""
+}

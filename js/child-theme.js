@@ -6877,6 +6877,21 @@
 	  var navbar = document.getElementById("primary-navbar");
 	  var navWrapper = document.getElementById("wrapper-navbar");
 	  var collapse = null;
+	  var logoSlidersVisible = true;
+	  document.addEventListener("visibilitychange", function () {
+	    logoSlidersVisible = !document.hidden;
+	  });
+	  function updateHeaderState() {
+	    if (!navWrapper) {
+	      return;
+	    }
+	    navWrapper.classList.toggle("scrolled", window.scrollY > 20);
+	  }
+	  window.addEventListener("scroll", updateHeaderState, {
+	    passive: true
+	  });
+	  window.addEventListener("resize", updateHeaderState);
+	  updateHeaderState();
 	  if (navbar && typeof bootstrap !== "undefined") {
 	    collapse = bootstrap.Collapse.getOrCreateInstance(navbar, {
 	      toggle: false
@@ -6951,6 +6966,29 @@
 	      scrollToHash(window.location.hash);
 	    }, 50);
 	  }
+	  document.querySelectorAll(".cb-customer-grid.logo-slider-block").forEach(function (block) {
+	    if (typeof Flickity === "undefined") {
+	      return;
+	    }
+	    block.querySelectorAll(".logo-slider").forEach(function (slider, index) {
+	      var flickity = new Flickity(slider, {
+	        cellAlign: "left",
+	        pageDots: false,
+	        prevNextButtons: false,
+	        imagesLoaded: true,
+	        wrapAround: true,
+	        selectedAttraction: 0.01,
+	        friction: 0.15
+	      });
+	      window.setTimeout(function () {
+	        window.setInterval(function () {
+	          if (logoSlidersVisible) {
+	            flickity.next();
+	          }
+	        }, 4000);
+	      }, 750 * index);
+	    });
+	  });
 	});
 
 	exports.Alert = Alert;

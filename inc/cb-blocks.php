@@ -17,6 +17,204 @@ function acf_blocks() {
 
 		// INSERT NEW BLOCKS HERE.
 
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_pill_strip',
+				'title'           => __( 'CB Pill Strip' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-pill-strip.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_contact_cards',
+				'title'           => __( 'CB Contact Cards' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-contact-cards.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_customer_grid',
+				'title'           => __( 'CB Customer Grid' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-customer-grid.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_sectors',
+				'title'           => __( 'CB Sectors' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-sectors.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_stats',
+				'title'           => __( 'CB Stats' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-stats.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_logo_flow',
+				'title'           => __( 'CB Logo Flow' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-logo-flow.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_compliance',
+				'title'           => __( 'CB Compliance' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-compliance.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_feature_accordion',
+				'title'           => __( 'CB Feature Accordion' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-feature-accordion.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_service_cards',
+				'title'           => __( 'CB Service Cards' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-service-cards.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_image_text_checklist',
+				'title'           => __( 'CB Image Text Checklist' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-image-text-checklist.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_hero',
+				'title'           => __( 'CB Hero' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-hero.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
     }
 }
 add_action( 'acf/init', 'acf_blocks' );

@@ -12,8 +12,8 @@ defined( 'ABSPATH' ) || exit;
 
 require_once CB_THEME_DIR . '/inc/cb-utility.php';
 require_once CB_THEME_DIR . '/inc/cb-acf-theme-palette.php';
-require_once CB_THEME_DIR . '/inc/cb-posttypes.php';
-require_once CB_THEME_DIR . '/inc/cb-taxonomies.php';
+// Disabled until custom post types are needed: require_once CB_THEME_DIR . '/inc/cb-posttypes.php'.
+// Disabled until custom taxonomies are needed: require_once CB_THEME_DIR . '/inc/cb-taxonomies.php'.
 
 require_once CB_THEME_DIR . '/inc/cb-blocks.php';
 
@@ -99,12 +99,11 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 function widgets_init() {
 
     register_nav_menus(
-        array(
-            'primary_nav'              => 'Primary Nav',
-            'footer_menu_products'     => 'Footer Products',
-            'footer_menu_applications' => 'Footer Applications',
-        )
-    );
+		array(
+			'primary_nav' => 'Primary Nav',
+			'footer_menu' => 'Footer Nav',
+		)
+	);
 
     unregister_sidebar( 'hero' );
     unregister_sidebar( 'herocanvas' );
@@ -134,17 +133,19 @@ function hub_theme_enqueue() {
     // wp_enqueue_script( 'splide-scripts', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js', array(), null, true );
     // wp_enqueue_style('lightbox-stylesheet', get_stylesheet_directory_uri() . '/css/lightbox.min.css', array(), $the_theme->get('Version'));
     // wp_enqueue_script('lightbox-scripts', get_stylesheet_directory_uri() . '/js/lightbox.min.js', array(), $the_theme->get('Version'), true);
-    wp_enqueue_style( 'glightbox-style', 'https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/css/glightbox.min.css', array(), $the_theme->get( 'Version' ) );
-    wp_enqueue_script( 'glightbox', 'https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/js/glightbox.min.js', array(), $the_theme->get( 'Version' ), true );
+    // wp_enqueue_style( 'glightbox-style', 'https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/css/glightbox.min.css', array(), $the_theme->get( 'Version' ) );
+    // wp_enqueue_script( 'glightbox', 'https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/js/glightbox.min.js', array(), $the_theme->get( 'Version' ), true );
 	// wp_enqueue_style( 'tom-select', 'https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.min.css', array(), '2.3.1' );
     // wp_enqueue_script( 'tom-select', 'https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js', array(), '2.3.1', true );
-    wp_enqueue_style( 'aos-style', 'https://unpkg.com/aos@2.3.1/dist/aos.css', array() ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
-    wp_enqueue_script( 'aos', 'https://unpkg.com/aos@2.3.1/dist/aos.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+    // wp_enqueue_style( 'aos-style', 'https://unpkg.com/aos@2.3.1/dist/aos.css', array() ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+    // wp_enqueue_script( 'aos', 'https://unpkg.com/aos@2.3.1/dist/aos.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
     // wp_deregister_script( 'jquery' ); // needed by gravity forms
     // phpcs:enable
 
     wp_enqueue_style( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css', array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
     wp_enqueue_script( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+	wp_enqueue_style( 'flickity', 'https://cdn.jsdelivr.net/npm/flickity@3/dist/flickity.min.css', array(), '3.0.0' );
+	wp_enqueue_script( 'flickity', 'https://cdn.jsdelivr.net/npm/flickity@3/dist/flickity.pkgd.min.js', array(), '3.0.0', true );
 	wp_enqueue_script( 'lenis', 'https://unpkg.com/lenis@1.3.11/dist/lenis.min.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 	wp_enqueue_style( 'lenis-style', 'https://unpkg.com/lenis@1.3.11/dist/lenis.css', array() ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 	wp_enqueue_script( 'gsap', 'https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js', array(), '3.12.7', true );
