@@ -1,0 +1,5 @@
+{
+  "phpSniffer.executablesFolder": "/home/vboxuser/.config/composer/vendor/bin/",
+  "phpSniffer.standard": "/home/vboxuser/.phpcs.xml.dist",
+  "phpSniffer.run": "onType"
+}

@@ -1,0 +1,116 @@
+$col-primary: #27383a;
+$col-dark: #222222;
+$col-darkest: #4a4a4a;
+$col-light: #f2f2f2;
+
+:root {
+  /* ========
+     COLOURS
+     ======== */
+
+  /* HTS Brand Palette */
+  --col-navy:#003C82;
+  --col-navy-deep:#002558;
+  --col-navy-80:#1A4D94;
+  --col-navy-60:#416E94;
+  --col-navy-25:#8296AA;
+  --col-navy-10:#C2D0D9;
+  --col-navy-5:#EEF2F6;
+  --col-dark-grey:#3C3C3C;
+  --col-orange:#E86820;
+  --col-orange-bright:#FF7A2A;
+  --col-orange-15:#FADED0;
+  --col-ink:#0B1220;
+  --col-body:#374151;
+  --col-muted:#6B7280;
+  --col-rule:#D1D5DB;
+  --col-light-border:#E5E7EB;
+  --col-paper:#F4F1EC;
+  --col-section-bg:#EEF2F6;
+  --col-white:#FFFFFF;
+
+  /* =========================
+     TYPOGRAPHY (families/weights)
+     ========================= */
+    
+  /* ─── Font Family ─── */
+  --ff-base:
+    "Inter", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+
+  /* ─── Font Weights ─── */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-heavy: 800;
+
+  /* ─── Font Sizes ─── */
+  /* Display / Headings (fluid via clamp: min @ ~375px, max @ ~1280px) */
+  --fs-hero:       clamp(48px, 4.2vw + 32px, 80px);   /* hero h1 (80 → 72 → 48) */
+  --fs-h1:         clamp(40px, 3.2vw + 24px, 64px);   /* apps headline (64) */
+  --fs-h2:         clamp(36px, 2.6vw + 22px, 54px);   /* section h2s — unified 52/56 → 54 */
+  --fs-h3:         clamp(32px, 1.6vw + 22px, 42px);   /* parent h2 (42) */
+  --fs-h4:         28px;                              /* form-title */
+  --fs-h5:         24px;                              /* marquee num, proj-card wide title */
+  --fs-h6:         22px;                              /* product / reason title */
+  --fs-card-title: 20px;                              /* app-card, step, proj-card */
+
+  /* Numeric / Stat display */
+  --fs-stat-xl:    clamp(36px, 2.2vw + 24px, 48px);   /* split-stat, parent-stat */
+  --fs-stat-lg:    34px;                              /* hero-badge num, proj hero title */
+  --fs-stat-md:    32px;                              /* config-img-tag num */
+
+  /* Body / Prose */
+  --fs-lede:       20px;                              /* intro first paragraph */
+  --fs-body-lg:    18px;                              /* hero lede, marquee, client name, step title */
+  --fs-body:       17px;                              /* section body */
+  --fs-body-md:    16px;                              /* base body, parent body */
+  --fs-body-sm:    15px;                              /* hero bullets, reason body, table cells */
+  --fs-body-xs:    14px;                              /* small body, links, inputs */
+  --fs-meta:       13px;                              /* btn text, intro signature, form subtitle */
+  --fs-caption:    12px;                              /* utility bar, nav links, stat labels */
+  --fs-micro:      11px;                              /* eyebrows, tags, step nums, labels */
+  --fs-nano:       10px;                              /* footer bottom, tiny tags */
+
+  /* Decorative (background watermarks) */
+  --fs-decor-lg:   120px;                             /* intro decorative label */
+  --fs-decor-xl:   280px;                             /* split ::before "WHY" */
+
+  /* ─── Line Heights ─── */
+  --lh-flat:       1;        /* badge nums, stats */
+  --lh-display:    0.96;     /* hero h1 */
+  --lh-headline:   1.05;     /* large section h2s */
+  --lh-snug:       1.1;      /* parent h2 */
+  --lh-title:      1.2;      /* card titles */
+  --lh-label:      1.4;      /* small label blocks */
+  --lh-snug-prose: 1.55;     /* intro lede, hero bullets */
+  --lh-body:       1.6;      /* step body, table cells */
+  --lh-relaxed:    1.65;     /* most body copy */
+  --lh-loose:      1.7;      /* base body */
+
+
+  /* ─── Letter Spacing ─── */
+  --ls-display:    -0.035em; /* hero h1 */
+  --ls-headline:   -0.03em;  /* unified -0.025/-0.03 hero/apps */
+  --ls-tight:      -0.02em;  /* large nums, proj hero title */
+  --ls-snug:       -0.01em;  /* card titles */
+  --ls-normal:     0;
+  --ls-wide:       0.04em;   /* btn, marquee, step num */
+  --ls-wider:      0.06em;   /* nav links, utility pill */
+  --ls-widest:    0.1em;     /* product card link */
+  --ls-label:      0.12em;   /* detail labels, stat labels */
+  --ls-tag:        0.14em;   /* product tags, table labels */
+  --ls-eyebrow:    0.16em;   /* contact detail num, footer label */
+  --ls-caps:       0.18em;   /* eyebrow, hero meta, step num */
+
+  --tt-upper: uppercase;
+
+  /* === Utilities === */
+  --transition: 250ms ease-out;
+  --shadow-active: 0 0 0 3px var(--col-accent-400);
+
+  --h-top: 62px;
+  --h-top-desktop: 62px;
+
+}

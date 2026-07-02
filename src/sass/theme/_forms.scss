@@ -1,0 +1,36 @@
+// Gravity Forms checkbox spacing
+.gform-field-label--type-inline {
+  margin-left: 0.5rem;
+}
+
+.gform_heading .gform_required_legend {
+    font-size: var(--fs-nano);
+}
+
+.gform_wrapper.gravity-theme .gfield_label.gform-field-label {
+    text-transform: var(--tt-upper);
+    font-size: var(--fs-micro);
+    letter-spacing: var(--ls-widest);
+    color: var(--col-body);
+}
+
+input, select, textarea {
+    background: var(--col-white);
+    border: 1px solid var(--col-rule);
+    border-radius: 0;
+    font-size: var(--fs-body-xs);
+    color: var(--col-ink);
+    outline: none;
+    transition: border-color .2s;
+}
+
+.gform-field-label.gform-field-label--type-inline.gfield_consent_label {
+    font-size: var(--fs-body-xs);
+    a {
+        color: var(--col-orange);
+        text-decoration: underline;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

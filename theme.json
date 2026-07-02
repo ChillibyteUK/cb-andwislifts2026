@@ -1,0 +1,264 @@
+{
+  "version": 2,
+  "settings": {
+    "layout": {
+      "contentSize": "1360px",
+      "wideSize": "1600px"
+    },
+    "spacing": {
+      "blockGap": true,
+      "margin": true,
+      "padding": true,
+      "units": [
+        "px",
+        "em",
+        "rem",
+        "vh",
+        "vw",
+        "%"
+      ]
+    },
+    "color": {
+      "palette": [
+        {
+          "name": "navy",
+          "slug": "navy",
+          "color": "#003C82",
+          "origin": "theme"
+        },
+        {
+          "name": "navy-deep",
+          "slug": "navy-deep",
+          "color": "#002558",
+          "origin": "theme"
+        },
+        {
+          "name": "navy-80",
+          "slug": "navy-80",
+          "color": "#1A4D94",
+          "origin": "theme"
+        },
+        {
+          "name": "navy-60",
+          "slug": "navy-60",
+          "color": "#416E94",
+          "origin": "theme"
+        },
+        {
+          "name": "navy-25",
+          "slug": "navy-25",
+          "color": "#8296AA",
+          "origin": "theme"
+        },
+        {
+          "name": "navy-10",
+          "slug": "navy-10",
+          "color": "#C2D0D9",
+          "origin": "theme"
+        },
+        {
+          "name": "navy-5",
+          "slug": "navy-5",
+          "color": "#EEF2F6",
+          "origin": "theme"
+        },
+        {
+          "name": "dark-grey",
+          "slug": "dark-grey",
+          "color": "#3C3C3C",
+          "origin": "theme"
+        },
+        {
+          "name": "orange",
+          "slug": "orange",
+          "color": "#E86820",
+          "origin": "theme"
+        },
+        {
+          "name": "orange-bright",
+          "slug": "orange-bright",
+          "color": "#FF7A2A",
+          "origin": "theme"
+        },
+        {
+          "name": "orange-15",
+          "slug": "orange-15",
+          "color": "#FADED0",
+          "origin": "theme"
+        },
+        {
+          "name": "ink",
+          "slug": "ink",
+          "color": "#0B1220",
+          "origin": "theme"
+        },
+        {
+          "name": "body",
+          "slug": "body",
+          "color": "#374151",
+          "origin": "theme"
+        },
+        {
+          "name": "muted",
+          "slug": "muted",
+          "color": "#6B7280",
+          "origin": "theme"
+        },
+        {
+          "name": "rule",
+          "slug": "rule",
+          "color": "#D1D5DB",
+          "origin": "theme"
+        },
+        {
+          "name": "light-border",
+          "slug": "light-border",
+          "color": "#E5E7EB",
+          "origin": "theme"
+        },
+        {
+          "name": "paper",
+          "slug": "paper",
+          "color": "#F4F1EC",
+          "origin": "theme"
+        },
+        {
+          "name": "section-bg",
+          "slug": "section-bg",
+          "color": "#EEF2F6",
+          "origin": "theme"
+        },
+        {
+          "name": "white",
+          "slug": "white",
+          "color": "#FFFFFF",
+          "origin": "theme"
+        }
+      ]
+    },
+    "typography": {
+      "fontSizes": [
+        {
+          "name": "hero",
+          "slug": "hero",
+          "size": "clamp(48px, 4.2vw + 32px, 80px)"
+        },
+        {
+          "name": "h1",
+          "slug": "h1",
+          "size": "clamp(40px, 3.2vw + 24px, 64px)"
+        },
+        {
+          "name": "h2",
+          "slug": "h2",
+          "size": "clamp(36px, 2.6vw + 22px, 54px)"
+        },
+        {
+          "name": "h3",
+          "slug": "h3",
+          "size": "clamp(32px, 1.6vw + 22px, 42px)"
+        },
+        {
+          "name": "h4",
+          "slug": "h4",
+          "size": "28px"
+        },
+        {
+          "name": "h5",
+          "slug": "h5",
+          "size": "24px"
+        },
+        {
+          "name": "h6",
+          "slug": "h6",
+          "size": "22px"
+        },
+        {
+          "name": "card-title",
+          "slug": "card-title",
+          "size": "20px"
+        },
+        {
+          "name": "stat-xl",
+          "slug": "stat-xl",
+          "size": "clamp(36px, 2.2vw + 24px, 48px)"
+        },
+        {
+          "name": "stat-lg",
+          "slug": "stat-lg",
+          "size": "34px"
+        },
+        {
+          "name": "stat-md",
+          "slug": "stat-md",
+          "size": "32px"
+        },
+        {
+          "name": "lede",
+          "slug": "lede",
+          "size": "20px"
+        },
+        {
+          "name": "body-lg",
+          "slug": "body-lg",
+          "size": "18px"
+        },
+        {
+          "name": "body",
+          "slug": "body",
+          "size": "17px"
+        },
+        {
+          "name": "body-md",
+          "slug": "body-md",
+          "size": "16px"
+        },
+        {
+          "name": "body-sm",
+          "slug": "body-sm",
+          "size": "15px"
+        },
+        {
+          "name": "body-xs",
+          "slug": "body-xs",
+          "size": "14px"
+        },
+        {
+          "name": "meta",
+          "slug": "meta",
+          "size": "13px"
+        },
+        {
+          "name": "caption",
+          "slug": "caption",
+          "size": "12px"
+        },
+        {
+          "name": "micro",
+          "slug": "micro",
+          "size": "11px"
+        },
+        {
+          "name": "nano",
+          "slug": "nano",
+          "size": "10px"
+        },
+        {
+          "name": "decor-lg",
+          "slug": "decor-lg",
+          "size": "120px"
+        },
+        {
+          "name": "decor-xl",
+          "slug": "decor-xl",
+          "size": "280px"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "spacing": {
+      "blockGap": "28px"
+    }
+  }
+}

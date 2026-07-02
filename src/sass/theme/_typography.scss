@@ -1,0 +1,361 @@
+/* inter-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/inter-v20-latin-regular.woff2") format("woff2");
+}
+/* inter-500 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/inter-v20-latin-500.woff2") format("woff2");
+}
+/* inter-600 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../fonts/inter-v20-latin-600.woff2") format("woff2");
+}
+/* inter-700 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/inter-v20-latin-700.woff2") format("woff2");
+}
+/* inter-800 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  src: url("../fonts/inter-v20-latin-800.woff2") format("woff2");
+}
+
+// :root {
+//   font-variant-ligatures: none;
+// }
+
+/* =========================
+   TYPOGRAPHY
+   ========================= */
+
+body,
+.body {
+  font-family: var(--ff-base);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-body-md);
+  line-height: var(--lh-loose);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Eyebrows & Labels ─── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  line-height: var(--lh-flat);
+  color: var(--col-orange);
+  margin-bottom: 1.125rem;
+
+  &::before {
+    content: "";
+    inline-size: 2rem;
+    block-size: 1px;
+    background: currentColor;
+    flex: none;
+  }
+
+  &--plain {
+    &::before {
+      display: none;
+    }
+  }
+}
+
+.label-meta {
+  /* hero-meta, step-num */
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+}
+
+.label-stat {
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  line-height: var(--lh-label);
+}
+
+.tag {
+  /* product-card-tag, config-tag */
+  font-size: var(--fs-nano);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tag);
+  text-transform: uppercase;
+}
+
+/* ─── Headings ─── */
+.h-hero {
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-hero);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+}
+
+.h1 {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-headline);
+  letter-spacing: var(--ls-headline);
+}
+
+.h2 {
+  /* unified section h2 (intro/split/products/projects/config/contact/process/mid-cta) */
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-headline);
+  letter-spacing: var(--ls-headline);
+}
+
+.h3 {
+  /* parent-h2 */
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-tight);
+}
+
+.h4 {
+  /* form-title */
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h4);
+  letter-spacing: var(--ls-tight);
+}
+
+.h5 {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h5);
+  line-height: var(--lh-title);
+  letter-spacing: var(--ls-tight);
+}
+
+.h6 {
+  /* product / reason title */
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h6);
+  line-height: var(--lh-title);
+  letter-spacing: var(--ls-snug);
+}
+
+.h-card {
+  /* app-card / step / proj-card */
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-card-title);
+  line-height: var(--lh-title);
+  letter-spacing: var(--ls-snug);
+}
+
+/* ─── Stats / Numerics ─── */
+.stat-xl {
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-stat-xl);
+  line-height: var(--lh-flat);
+  letter-spacing: var(--ls-headline);
+}
+
+.stat-lg {
+  /* hero-badge num */
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-stat-lg);
+  line-height: var(--lh-flat);
+  letter-spacing: var(--ls-headline);
+}
+
+/* ─── Body / Prose ─── */
+.prose-lede {
+  font-size: var(--fs-lede);
+  line-height: var(--lh-snug-prose);
+  font-weight: var(--fw-medium);
+}
+
+.prose-lg {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-relaxed);
+}
+
+.prose-md {
+  font-size: var(--fs-body);
+  line-height: var(--lh-relaxed);
+}
+
+.prose-base {
+  font-size: var(--fs-body-md);
+  line-height: var(--lh-loose);
+}
+
+.prose-sm {
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-relaxed);
+}
+
+.prose-xs {
+  font-size: var(--fs-body-xs);
+  line-height: var(--lh-relaxed);
+}
+
+/* ─── UI ─── */
+.btn-text {
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  line-height: var(--lh-flat);
+}
+
+.nav-link {
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+}
+
+.utility-pill {
+  font-size: var(--fs-nano);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+}
+
+// Helper classes for standalone typography variables
+$font-weights: (regular, medium, semibold, bold, extrabold);
+$font-sizes: (
+  hero,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  card-title,
+  stat-xl,
+  stat-lg,
+  stat-md,
+  lede,
+  body-lg,
+  body,
+  body-md,
+  body-sm,
+  body-xs,
+  meta,
+  caption,
+  micro,
+  nano,
+  decor-lg,
+  decor-xl
+);
+$line-heights: (
+  flat,
+  display,
+  headline,
+  snug,
+  title,
+  label,
+  snug-prose,
+  body,
+  relaxed,
+  loose
+);
+$tracking: (
+  display,
+  headline,
+  tight,
+  snug,
+  normal,
+  wide,
+  wider,
+  widest,
+  label,
+  tag,
+  eyebrow,
+  caps
+);
+
+@each $w in $font-weights {
+  .fw-#{$w} {
+    font-weight: var(--fw-#{$w});
+  }
+}
+@each $s in $font-sizes {
+  .fs-#{$s} {
+    font-size: var(--fs-#{$s});
+  }
+}
+@each $l in $line-heights {
+  .lh-#{$l} {
+    line-height: var(--lh-#{$l});
+  }
+}
+@each $t in $tracking {
+  .ls-#{$t} {
+    letter-spacing: var(--ls-#{$t});
+  }
+}
+
+// Links
+a {
+  color: var(--col-accent-400);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--col-accent-400);
+  outline-offset: 2px;
+}
+
+// Media rhythm
+p,
+ul,
+ol,
+blockquote,
+figure {
+  margin-block: 0.75em;
+}
+
+.w-constrained-md {
+  max-width: 72ch;
+  text-wrap: pretty;
+}
+
+.w-constrained-40 {
+  max-width: 40ch;
+  text-wrap: pretty;
+}
+
+.w-constrained {
+  max-width: var(--width, 60ch);
+  text-wrap: pretty;
+}
+
+strong {
+  font-weight: var(--fw-semibold);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
