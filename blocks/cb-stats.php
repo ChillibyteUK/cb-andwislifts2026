@@ -37,18 +37,20 @@ $stats      = get_field( 'stats' );
             foreach ( $stats as $stat ) {
 				?>
 			<div class="cb-stats__stat col-md-6 cb-col-lg-5">
+                <div class="cb-stats__card">
                 <?php
-				if ( ! empty( $stat['value'] ) ) {
-					?>
-                <span class="cb-stats__value"><?= esc_html( $stat['value'] ); ?></span>
-                	<?php
-				}
 				if ( ! empty( $stat['description'] ) ) {
 					?>
-    			<span class="cb-stats__description"><?= esc_html( $stat['description'] ); ?></span>
-                	<?php
+					<span class="cb-stats__description"><?= esc_html( $stat['description'] ); ?></span>
+					<?php
+				}
+				if ( ! empty( $stat['value'] ) ) {
+					?>
+					<span class="cb-stats__value"><?= esc_html( $stat['value'] ); ?></span>
+                  	<?php
 				}
 				?>
+				</div>
 			</div>
 				<?php
 			}
