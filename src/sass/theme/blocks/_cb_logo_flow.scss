@@ -19,14 +19,14 @@
   }
 
   &__legacy {
-    width: 168px;
-    padding: 22px 26px;
+    width: 230px;
+    padding: 0 0.5rem;
     border: 1px solid var(--cb-sage);
     background: var(--cb-paper);
   }
 
   &__result {
-    padding: 22px 30px;
+    padding: 0 0.5rem;
     background: var(--cb-forest);
 
     img {
@@ -34,15 +34,9 @@
     }
   }
 
-  &__plus {
-    color: var(--cb-ink-soft);
-    font-size: 22px;
-    font-weight: 300;
-  }
-
   &__arrow {
     color: var(--cb-emerald);
-    font-size: 26px;
+    font-size: 2rem;
   }
 }
 

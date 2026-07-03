@@ -17,28 +17,45 @@ $stats      = get_field( 'stats' );
 	<div class="container">
 		<div class="cb-section-head pb-4">
 			<?php
-            if ( $heading ) :
+            if ( $heading ) {
 				?>
-                <h2><?= esc_html( $heading ); ?></h2><?php endif; ?>
-			<?php
-            if ( $intro ) :
+			<h2><?= esc_html( $heading ); ?></h2>
+            	<?php
+			}
+			if ( $intro ) {
 				?>
-                <p><?= esc_html( $intro ); ?></p><?php endif; ?>
+			<p><?= esc_html( $intro ); ?></p>
+            	<?php
+			}
+			?>
 		</div>
-		<?php if ( $stats ) : ?>
-			<div class="cb-stats__grid">
+		<?php
+		if ( $stats ) {
+			?>
+		<div class="cb-stats__grid justify-content-center row g-4">
             <?php
-            foreach ( $stats as $stat ) :
+            foreach ( $stats as $stat ) {
 				?>
-                <div class="cb-stats__stat">
+			<div class="cb-stats__stat col-md-6 cb-col-lg-5">
                 <?php
-				if ( ! empty( $stat['value'] ) ) :
+				if ( ! empty( $stat['value'] ) ) {
 					?>
-                <span class="cb-stats__value"><?= esc_html( $stat['value'] ); ?></span><?php endif; ?>
-                <?php
-				if ( ! empty( $stat['description'] ) ) :
+                <span class="cb-stats__value"><?= esc_html( $stat['value'] ); ?></span>
+                	<?php
+				}
+				if ( ! empty( $stat['description'] ) ) {
 					?>
-    <span class="cb-stats__description"><?= esc_html( $stat['description'] ); ?></span><?php endif; ?></div><?php endforeach; ?></div>
-		<?php endif; ?>
+    			<span class="cb-stats__description"><?= esc_html( $stat['description'] ); ?></span>
+                	<?php
+				}
+				?>
+			</div>
+				<?php
+			}
+			?>
+		</div>
+			<?php
+		}
+		?>
 	</div>
 </section>

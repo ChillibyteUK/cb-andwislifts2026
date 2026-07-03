@@ -475,6 +475,40 @@ section[id] {
   }
 }
 
+/* ─── 5-column grid (20% columns) ─── */
+.cb-col-5 {
+  flex: 0 0 auto;
+  width: 20%;
+}
+
+@include media-breakpoint-up(sm) {
+  .cb-col-sm-5 {
+    flex: 0 0 auto;
+    width: 20%;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .cb-col-md-5 {
+    flex: 0 0 auto;
+    width: 20%;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .cb-col-lg-5 {
+    flex: 0 0 auto;
+    width: 20%;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .cb-col-xl-5 {
+    flex: 0 0 auto;
+    width: 20%;
+  }
+}
+
 // show stuff that overflows horizontally
 // * {
 //     outline: 1px solid #f00 !important;

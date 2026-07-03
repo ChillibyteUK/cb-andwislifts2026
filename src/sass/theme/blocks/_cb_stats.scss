@@ -11,12 +11,6 @@
     color: rgba(255, 255, 255, 0.72);
   }
 
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-  }
-
   &__stat {
     padding-inline: 6px;
     text-align: center;
@@ -26,25 +20,14 @@
     display: block;
     margin-bottom: 8px;
     color: var(--cb-forest);
-    font-size: clamp(26px, 3vw, 36px);
+    font-size: var(--fs-stat-lg);
     font-weight: var(--fw-bold);
   }
 
   &__description {
     color: var(--cb-ink-soft);
-    font-size: 13px;
-    line-height: 1.5;
-  }
-}
-
-@media (max-width: 900px) {
-  .cb-stats__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 560px) {
-  .cb-stats__grid {
-    grid-template-columns: repeat(2, 1fr);
+    font-size: var(--fs-caption);
+    line-height: var(--lh-snug);
+    letter-spacing: var(--ls-wide)
   }
 }
