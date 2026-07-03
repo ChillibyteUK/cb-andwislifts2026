@@ -13,7 +13,7 @@
 .cb-contact-card {
   display: block;
   padding: 32px 26px;
-  border: 1px solid var(--cb-sage-line);
+  border: 1px solid var(--cb-sage);
   border-radius: var(--cb-radius-md);
   background: var(--cb-paper);
   color: inherit;
@@ -40,8 +40,8 @@
     height: 50px;
     margin: 0 auto 18px;
     border-radius: 14px;
-    background: var(--cb-sage-tint);
-    color: var(--cb-emerald-dark);
+    background: var(--cb-sage);
+    color: var(--cb-emerald);
   }
 
   h3 {
@@ -59,7 +59,7 @@
   }
 
   &__value {
-    color: var(--cb-emerald-dark);
+    color: var(--cb-emerald);
     font-size: 14.5px;
     font-weight: var(--fw-semibold);
   }

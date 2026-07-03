@@ -4,14 +4,14 @@
 
 .cb-service-card {
   padding: 26px 22px;
-  border: 1px solid var(--cb-sage-line);
+  border: 1px solid var(--cb-sage);
   border-radius: var(--cb-radius-md);
   background: var(--cb-sage);
   height: 100%;
 
   &__num {
     margin-bottom: 14px;
-    color: var(--cb-emerald-dark);
+    color: var(--cb-emerald);
     font-size: var(--cb-fs-kicker);
     font-weight: var(--fw-bold);
     letter-spacing: 0.08em;

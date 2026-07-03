@@ -1,5 +1,5 @@
 .cb-feature-accordion {
-  background: var(--cb-emerald-light);
+  background: var(--cb-sage);
 
   &__media-col {
     display: flex;
@@ -23,7 +23,7 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(to top,
-          var(--cb-emerald-light) 0%,
+          var(--cb-sage) 0%,
           transparent 50%);
       pointer-events: none;
     }
@@ -56,7 +56,7 @@
 
   &__item {
     overflow: hidden;
-    border: 1px solid var(--cb-sage-line);
+    border: 1px solid var(--cb-sage);
     border-radius: var(--cb-radius-sm);
     background: var(--cb-paper);
   }
@@ -88,8 +88,8 @@
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: var(--cb-sage-tint);
-    color: var(--cb-emerald-dark);
+    background: var(--cb-forest);
+    color: var(--cb-paper);
     font-size: 16px;
     line-height: 1;
     transition: transform 0.2s ease;

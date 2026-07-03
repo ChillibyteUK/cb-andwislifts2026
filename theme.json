@@ -23,7 +23,7 @@
         {
           "name": "navy",
           "slug": "navy",
-          "color": "#003C82",
+          "color": "#003c82",
           "origin": "theme"
         },
         {
@@ -35,61 +35,61 @@
         {
           "name": "navy-80",
           "slug": "navy-80",
-          "color": "#1A4D94",
+          "color": "#1a4d94",
           "origin": "theme"
         },
         {
           "name": "navy-60",
           "slug": "navy-60",
-          "color": "#416E94",
+          "color": "#416e94",
           "origin": "theme"
         },
         {
           "name": "navy-25",
           "slug": "navy-25",
-          "color": "#8296AA",
+          "color": "#8296aa",
           "origin": "theme"
         },
         {
           "name": "navy-10",
           "slug": "navy-10",
-          "color": "#C2D0D9",
+          "color": "#c2d0d9",
           "origin": "theme"
         },
         {
           "name": "navy-5",
           "slug": "navy-5",
-          "color": "#EEF2F6",
+          "color": "#eef2f6",
           "origin": "theme"
         },
         {
           "name": "dark-grey",
           "slug": "dark-grey",
-          "color": "#3C3C3C",
+          "color": "#3c3c3c",
           "origin": "theme"
         },
         {
           "name": "orange",
           "slug": "orange",
-          "color": "#E86820",
+          "color": "#e86820",
           "origin": "theme"
         },
         {
           "name": "orange-bright",
           "slug": "orange-bright",
-          "color": "#FF7A2A",
+          "color": "#ff7a2a",
           "origin": "theme"
         },
         {
           "name": "orange-15",
           "slug": "orange-15",
-          "color": "#FADED0",
+          "color": "#faded0",
           "origin": "theme"
         },
         {
           "name": "ink",
           "slug": "ink",
-          "color": "#0B1220",
+          "color": "#0b1220",
           "origin": "theme"
         },
         {
@@ -101,37 +101,37 @@
         {
           "name": "muted",
           "slug": "muted",
-          "color": "#6B7280",
+          "color": "#6b7280",
           "origin": "theme"
         },
         {
           "name": "rule",
           "slug": "rule",
-          "color": "#D1D5DB",
+          "color": "#d1d5db",
           "origin": "theme"
         },
         {
           "name": "light-border",
           "slug": "light-border",
-          "color": "#E5E7EB",
+          "color": "#e5e7eb",
           "origin": "theme"
         },
         {
           "name": "paper",
           "slug": "paper",
-          "color": "#F4F1EC",
+          "color": "#f4f1ec",
           "origin": "theme"
         },
         {
           "name": "section-bg",
           "slug": "section-bg",
-          "color": "#EEF2F6",
+          "color": "#eef2f6",
           "origin": "theme"
         },
         {
           "name": "white",
           "slug": "white",
-          "color": "#FFFFFF",
+          "color": "#ffffff",
           "origin": "theme"
         }
       ]

@@ -8,19 +8,17 @@ $col-light: #f2f2f2;
      COLOURS
      ======== */
 
-  /* andwis lifts holding-page palette */
-  --cb-forest: #10421f;
-  --cb-pine: #1c4220;
-  --cb-emerald-light: #addfb3;
-  --cb-emerald-tint: #b2dfb3;
-  --cb-emerald: #00ae81;
-  --cb-emerald-dark: #00976f;
-  --cb-sage-tint: #eef6f1;
-  --cb-sage-line: #d7e7dd;
+  /* andwis lifts brand palette */
+  --cb-forest: #1c4220;
   --cb-sage: #addfb3;
+  --cb-emerald: #00af66;
+  --cb-mint: #00ff99;
+  --cb-lime: #dbe442;
+  --cb-marine: #8ce2d0;
+
   --cb-ink: #132018;
-  --cb-ink-soft: #4b5b52;
   --cb-paper: #ffffff;
+  --cb-ink-soft: #4b5b52;
   --cb-muted: #8a978f;
 
   --cb-radius-lg: 28px;
@@ -33,11 +31,10 @@ $col-light: #f2f2f2;
 
   /* Backwards-compatible aliases for design-specific block styles. */
   --forest: var(--cb-forest);
-  --pine: var(--cb-pine);
   --emerald: var(--cb-emerald);
-  --emerald-dark: var(--cb-emerald-dark);
-  --sage-tint: var(--cb-sage-tint);
-  --sage-line: var(--cb-sage-line);
+  --emerald-dark: var(--cb-emerald);
+  --sage-tint: var(--cb-sage);
+  --sage-line: var(--cb-sage);
   --ink: var(--cb-ink);
   --ink-soft: var(--cb-ink-soft);
   --paper: var(--cb-paper);
@@ -48,25 +45,25 @@ $col-light: #f2f2f2;
   --shadow-soft: var(--cb-shadow-soft);
 
   /* Legacy palette */
-  --col-navy: #003C82;
+  --col-navy: #003c82;
   --col-navy-deep: #002558;
-  --col-navy-80: #1A4D94;
-  --col-navy-60: #416E94;
-  --col-navy-25: #8296AA;
-  --col-navy-10: #C2D0D9;
-  --col-navy-5: #EEF2F6;
-  --col-dark-grey: #3C3C3C;
-  --col-orange: #E86820;
-  --col-orange-bright: #FF7A2A;
-  --col-orange-15: #FADED0;
-  --col-ink: #0B1220;
+  --col-navy-80: #1a4d94;
+  --col-navy-60: #416e94;
+  --col-navy-25: #8296aa;
+  --col-navy-10: #c2d0d9;
+  --col-navy-5: #eef2f6;
+  --col-dark-grey: #3c3c3c;
+  --col-orange: #e86820;
+  --col-orange-bright: #ff7a2a;
+  --col-orange-15: #faded0;
+  --col-ink: #0b1220;
   --col-body: #374151;
-  --col-muted: #6B7280;
-  --col-rule: #D1D5DB;
-  --col-light-border: #E5E7EB;
-  --col-paper: #F4F1EC;
-  --col-section-bg: #EEF2F6;
-  --col-white: #FFFFFF;
+  --col-muted: #6b7280;
+  --col-rule: #d1d5db;
+  --col-light-border: #e5e7eb;
+  --col-paper: #f4f1ec;
+  --col-section-bg: #eef2f6;
+  --col-white: #ffffff;
 
   /* =========================
      TYPOGRAPHY (families/weights)
@@ -173,7 +170,6 @@ $col-light: #f2f2f2;
   --lh-loose: 1.7;
   /* base body */
 
-
   /* ─── Letter Spacing ─── */
   --ls-display: -0.035em;
   /* hero h1 */
@@ -207,5 +203,4 @@ $col-light: #f2f2f2;
 
   --h-top: 62px;
   --h-top-desktop: 62px;
-
 }

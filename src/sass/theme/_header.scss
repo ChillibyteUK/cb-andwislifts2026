@@ -44,10 +44,12 @@
 }
 
 @keyframes pulse {
+
   0%,
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.4;
   }
@@ -213,7 +215,7 @@
       padding-block: 1rem 1.25rem;
       padding-inline: var(--cb-gutter);
       background: rgba(255, 255, 255, 0.98);
-      border-block-start: 1px solid var(--cb-sage-line);
+      border-block-start: 1px solid var(--cb-sage);
       box-shadow: 0 1.25rem 2.5rem rgba(16, 66, 31, 0.12);
       backdrop-filter: saturate(160%) blur(10px);
     }

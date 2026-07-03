@@ -171,29 +171,6 @@
             "allow_null": 0,
             "return_format": "value",
             "layout": "horizontal"
-        },
-        {
-            "key": "field_cb_itc_background_style",
-            "label": "Background Style",
-            "name": "background_style",
-            "aria-label": "",
-            "type": "button_group",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "white": "White",
-                "tint": "Tint"
-            },
-            "default_value": "white",
-            "allow_null": 0,
-            "return_format": "value",
-            "layout": "horizontal"
         }
     ],
     "location": [
@@ -214,5 +191,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1783010969
+    "modified": 1783067071
 }

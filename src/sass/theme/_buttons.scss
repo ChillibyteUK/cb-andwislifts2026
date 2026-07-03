@@ -48,11 +48,9 @@
 .button--primary {
   isolation: isolate;
   position: relative;
-  background: linear-gradient(
-    to right,
-    var(--col-blue-400),
-    var(--col-blue-700)
-  );
+  background: linear-gradient(to right,
+      var(--col-blue-400),
+      var(--col-blue-700));
   color: var(--col-white);
   border-color: var(--col-blue-600);
 
@@ -121,8 +119,8 @@
 }
 
 /* Icon affordance (SVG or <i>) */
-.btn > svg,
-.btn > i {
+.btn>svg,
+.btn>i {
   inline-size: 1em;
   block-size: 1em;
 }
@@ -221,7 +219,7 @@
     transform 0.15s ease;
 
   &:hover {
-    background: var(--cb-emerald-dark);
+    background: var(--cb-emerald);
     color: var(--cb-paper);
     transform: translateY(-2px);
   }

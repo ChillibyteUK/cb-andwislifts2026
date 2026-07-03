@@ -7,17 +7,16 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$section_id       = $block['anchor'] ?? '';
-$extra            = $block['className'] ?? '';
-$heading          = get_field( 'heading' );
-$body             = get_field( 'body' );
-$list_label       = get_field( 'list_label' );
-$items            = get_field( 'checklist' );
-$image            = get_field( 'image' );
-$image_position   = get_field( 'image_position' ) ? get_field( 'image_position' ) : 'right';
-$background_style = get_field( 'background_style' ) ? get_field( 'background_style' ) : 'white';
+$section_id     = $block['anchor'] ?? '';
+$extra          = $block['className'] ?? '';
+$heading        = get_field( 'heading' );
+$body           = get_field( 'body' );
+$list_label     = get_field( 'list_label' );
+$items          = get_field( 'checklist' );
+$image          = get_field( 'image' );
+$image_position = get_field( 'image_position' ) ? get_field( 'image_position' ) : 'right';
 ?>
-<section class="cb-image-text-checklist cb-image-text-checklist--<?= esc_attr( $background_style ); ?> <?= esc_attr( $extra ); ?>"<?= $section_id ? ' id="' . esc_attr( $section_id ) . '"' : ''; ?>>
+<section class="cb-image-text-checklist cb-image-text-checklist--white <?= esc_attr( $extra ); ?>"<?= $section_id ? ' id="' . esc_attr( $section_id ) . '"' : ''; ?>>
 	<div class="container">
 		<div class="row gy-5 align-items-center">
 			<div class="col-lg-6 <?= 'left' === $image_position ? 'order-lg-last' : ''; ?>">
