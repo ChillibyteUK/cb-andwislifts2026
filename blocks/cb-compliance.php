@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$section_id     = $block['anchor'] ?? '';
+$section_id     = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-compliance-' );
 $extra          = $block['className'] ?? '';
 $heading        = get_field( 'heading' );
 $body           = get_field( 'body' );
@@ -16,18 +16,25 @@ $logos          = get_field( 'logos' );
 $image_position = get_field( 'image_position' ) ? get_field( 'image_position' ) : 'left';
 ?>
 <section class="cb-compliance cb-compliance--image-<?= esc_attr( $image_position ); ?> <?= esc_attr( $extra ); ?>"<?= $section_id ? ' id="' . esc_attr( $section_id ) . '"' : ''; ?>>
+	<?php
+	if ( ! empty( $image['ID'] ) ) {
+		?>
+	<div class="cb-compliance__bg" style="background-image:url('<?= esc_url( wp_get_attachment_image_url( $image['ID'], 'full' ) ); ?>');" aria-hidden="true"></div>
+		<?php
+	}
+	?>
 	<div class="container">
 		<div class="row align-items-center">
-			<?php
-			if ( ! empty( $image['ID'] ) ) {
-				?>
-			<div class="col-lg-6 cb-compliance__media-col <?= 'right' === $image_position ? 'order-lg-last' : ''; ?>">
-				<div class="cb-compliance__media"><?= wp_get_attachment_image( $image['ID'], 'large' ); ?></div>
-			</div>
-				<?php
-			}
-			?>
-			<div class="<?= ! empty( $image['ID'] ) ? 'col-lg-6' : 'col-lg-8 mx-auto'; ?> <?= 'right' === $image_position ? 'order-lg-first' : ''; ?>">
+			<div class="<?= ! empty( $image['ID'] ) ? 'col-lg-6 cb-compliance__copy-col' : 'col-lg-8 mx-auto'; ?>">
+				<?php if ( ! empty( $image['ID'] ) ) { ?>
+					<div class="cb-compliance__curve" aria-hidden="true">
+						<svg viewBox="0 0 66 1440" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+							<g transform="translate(0 1440) rotate(-90)">
+								<path d="M1440 66C1283.48 26.17 1019.4 0 720 0S156.52 26.17 0 66h1440z" fill="currentColor"/>
+							</g>
+						</svg>
+					</div>
+				<?php } ?>
 				<div class="cb-compliance__copy">
 					<?php
 					if ( $heading ) {

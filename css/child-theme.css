@@ -23637,33 +23637,46 @@ input, select, textarea {
 }
 
 .cb-feature-accordion {
-  background: var(--cb-sage);
-}
-.cb-feature-accordion__media-col {
-  display: flex;
-  align-self: stretch;
-}
-.cb-feature-accordion__media {
   position: relative;
   overflow: hidden;
-  height: 100%;
-  width: 100%;
+  background: var(--cb-sage);
 }
-.cb-feature-accordion__media img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-}
-.cb-feature-accordion__media::after {
-  content: "";
+.cb-feature-accordion__bg {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, var(--cb-sage) 0%, transparent 50%);
+  inset: 0 auto 0 0;
+  z-index: 0;
+  width: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.cb-feature-accordion .container, .cb-feature-accordion .wp-block-group:not(.alignfull) {
+  position: relative;
+  z-index: 1;
+}
+.cb-feature-accordion__copy-col {
+  position: relative;
+  z-index: 2;
+}
+.cb-feature-accordion__curve {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  transform: translateX(-98%);
+  color: var(--cb-sage);
   pointer-events: none;
 }
+.cb-feature-accordion__curve svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .cb-feature-accordion__copy {
-  padding-block: calc(var(--cb-section-y) * 2);
+  position: relative;
+  z-index: 1;
+  padding-block: calc(var(--cb-section-y) * 1.6);
 }
 .cb-feature-accordion__copy h2, .cb-feature-accordion__copy .h2 {
   color: var(--cb-forest);
@@ -23698,7 +23711,7 @@ input, select, textarea {
   background: none;
   color: var(--cb-forest);
   cursor: pointer;
-  font-size: 15px;
+  font-size: var(--fs-body-md);
   font-weight: var(--fw-semibold);
   text-align: left;
 }
@@ -23745,9 +23758,38 @@ input, select, textarea {
   border-radius: 50%;
   background: var(--cb-emerald);
 }
+@media (max-width: 991.98px) {
+  .cb-feature-accordion__bg {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 280px;
+  }
+  .cb-feature-accordion__curve {
+    display: none;
+  }
+  .cb-feature-accordion__copy {
+    padding-block: var(--cb-section-y);
+  }
+}
 
 .cb-compliance {
+  position: relative;
+  overflow: hidden;
   background: var(--cb-forest);
+}
+.cb-compliance__bg {
+  position: absolute;
+  inset: 0 0 0 auto;
+  z-index: 0;
+  width: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.cb-compliance .container, .cb-compliance .wp-block-group:not(.alignfull) {
+  position: relative;
+  z-index: 1;
 }
 .cb-compliance h2, .cb-compliance .h2 {
   margin: 0 0 18px;
@@ -23757,26 +23799,30 @@ input, select, textarea {
   margin-bottom: 28px;
   color: var(--cb-sage);
 }
-.cb-compliance__copy {
-  padding-block: calc(var(--cb-section-y) * 2);
-}
-.cb-compliance__media {
+.cb-compliance__copy-col {
   position: relative;
-  overflow: hidden;
-  height: 100%;
+  z-index: 2;
 }
-.cb-compliance__media img {
+.cb-compliance__curve {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  transform: translateX(98%);
+  color: var(--cb-forest);
+  pointer-events: none;
+}
+.cb-compliance__curve svg {
+  display: block;
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
+  transform: rotate(180deg);
 }
-.cb-compliance__media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, var(--cb-forest) 5%, transparent 75%);
-  pointer-events: none;
+.cb-compliance__copy {
+  position: relative;
+  z-index: 1;
+  padding-block: calc(var(--cb-section-y) * 2);
 }
 .cb-compliance__logos {
   display: flex;
@@ -23793,10 +23839,16 @@ input, select, textarea {
   font-size: var(--cb-fs-small);
   text-align: center;
 }
-
-.cb-compliance__media-col {
-  display: flex;
-  align-self: stretch;
+@media (max-width: 991.98px) {
+  .cb-compliance__bg {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 280px;
+  }
+  .cb-compliance__curve {
+    display: none;
+  }
 }
 
 .cb-logo-flow {

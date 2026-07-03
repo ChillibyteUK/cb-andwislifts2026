@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$section_id = $block['anchor'] ?? '';
+$section_id = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-feature-accordion-' );
 $extra      = $block['className'] ?? '';
 $image      = get_field( 'image' );
 $heading    = get_field( 'heading' );
@@ -15,18 +15,24 @@ $intro      = get_field( 'intro' );
 $items      = get_field( 'accordion_items' );
 ?>
 <section class="cb-feature-accordion <?= esc_attr( $extra ); ?>"<?= $section_id ? ' id="' . esc_attr( $section_id ) . '"' : ''; ?>>
+	<?php
+	if ( ! empty( $image['ID'] ) ) {
+		?>
+	<div class="cb-feature-accordion__bg" style="background-image:url('<?= esc_url( wp_get_attachment_image_url( $image['ID'], 'full' ) ); ?>');" aria-hidden="true"></div>
+		<?php
+	}
+	?>
 	<div class="container">
 		<div class="row gx-5 align-items-start">
-			<div class="col-lg-5 cb-feature-accordion__media-col">
-				<?php
-				if ( ! empty( $image['ID'] ) ) {
-					?>
-				<div class="cb-feature-accordion__media"><?= wp_get_attachment_image( $image['ID'], 'large' ); ?></div>
-					<?php
-				}
-				?>
-			</div>
-			<div class="col-lg cb-feature-accordion__copy">
+			<div class="col-lg-6 offset-lg-6 cb-feature-accordion__copy-col">
+				<div class="cb-feature-accordion__curve" aria-hidden="true">
+					<svg viewBox="0 0 66 1440" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+						<g transform="translate(0 1440) rotate(-90)">
+							<path d="M1440 66C1283.48 26.17 1019.4 0 720 0S156.52 26.17 0 66h1440z" fill="currentColor"/>
+						</g>
+					</svg>
+				</div>
+				<div class="cb-feature-accordion__copy">
 				<?php
 				if ( $heading ) {
 					?>
@@ -41,7 +47,7 @@ $items      = get_field( 'accordion_items' );
 				if ( $items ) {
 					$acc_idx = 0;
 					?>
-				<div class="cb-feature-accordion__items">
+				<div class="cb-feature-accordion__items" id="<?= esc_attr( $section_id ); ?>-items">
 					<?php
 					foreach ( $items as $item ) {
 						++$acc_idx;
@@ -53,7 +59,7 @@ $items      = get_field( 'accordion_items' );
 							<?= esc_html( $item['title'] ?? '' ); ?>
 							<span class="cb-feature-accordion__icon">+</span>
 						</button>
-						<div id="<?= esc_attr( $item_id ); ?>" class="collapse<?= $expanded ? ' show' : ''; ?>">
+						<div id="<?= esc_attr( $item_id ); ?>" class="collapse<?= $expanded ? ' show' : ''; ?>" data-bs-parent="#<?= esc_attr( $section_id ); ?>-items">
 							<div class="cb-feature-accordion__body">
 								<?= wp_kses_post( wpautop( $item['body'] ?? '' ) ); ?>
 								<?php
@@ -83,6 +89,7 @@ $items      = get_field( 'accordion_items' );
 					<?php
 				}
 				?>
+				</div>
 			</div>
 			</div>
 	</div>
