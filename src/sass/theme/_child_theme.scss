@@ -88,6 +88,22 @@ section[id] {
   padding-inline: 0;
 }
 
+.cb-gsap-fade {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, 20px, 0);
+  will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cb-gsap-fade {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    will-change: auto;
+  }
+}
+
 // main {
 //   margin-top: var(--h-top);
 // }

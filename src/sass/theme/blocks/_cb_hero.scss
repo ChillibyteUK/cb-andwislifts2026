@@ -22,19 +22,17 @@
   &__scrim {
     inset: 0;
     z-index: 1;
-    background: linear-gradient(
-      180deg,
-      rgba(9, 26, 16, 0.72) 0%,
-      rgba(10, 30, 19, 0.55) 38%,
-      rgba(11, 35, 21, 0.88) 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(9, 26, 16, 0.72) 0%,
+        rgba(10, 30, 19, 0.55) 38%,
+        rgba(11, 35, 21, 0.88) 100%);
   }
 
   &__inner {
     position: relative;
     z-index: 2;
-    max-width: 760px;
-    padding: 150px 32px 210px;
+    // max-width: 760px;
+    padding: 250px 32px 310px;
     margin-inline: auto;
     text-align: center;
   }

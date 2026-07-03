@@ -24,7 +24,7 @@ $has_any_image = ! empty( $image['ID'] ) || ! empty( $image_2['ID'] ) || ! empty
 	<div class="container">
 		<div class="row gy-5 align-items-center">
 			<div class="col-lg-6 <?= 'left' === $image_position ? 'order-lg-last' : ''; ?>">
-				<div class="cb-image-text-checklist__copy">
+				<div class="cb-image-text-checklist__copy  cb-gsap-fade">
 					<?php
 					if ( $heading ) {
 						?>

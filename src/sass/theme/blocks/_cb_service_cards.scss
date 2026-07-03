@@ -3,30 +3,33 @@
 }
 
 .cb-service-card {
-  padding: 26px 22px;
-  border: 1px solid var(--cb-sage);
+  padding: 0.75rem;
+  border: 1px solid var(--cb-forest);
   border-radius: var(--cb-radius-md);
-  background: var(--cb-sage);
+  background: var(--cb-forest);
   height: 100%;
 
-  &__num {
-    margin-bottom: 14px;
-    color: var(--cb-emerald);
-    font-size: var(--cb-fs-kicker);
-    font-weight: var(--fw-bold);
-    letter-spacing: 0.08em;
+  &__icon {
+    margin-bottom: 0.5rem;
+
+    img {
+      display: block;
+      width: 2.5rem;
+      height: 2.5rem;
+      object-fit: contain;
+    }
   }
 
   h3 {
     margin: 0 0 8px;
-    color: var(--cb-forest);
-    font-size: 16.5px;
+    color: var(--cb-mint);
+    font-size: var(--fs-card-title);
     font-weight: var(--fw-semibold);
   }
 
   p {
     margin: 0;
-    color: var(--cb-ink-soft);
+    color: var(--cb-paper);
     font-size: var(--cb-fs-card);
     line-height: 1.55;
   }

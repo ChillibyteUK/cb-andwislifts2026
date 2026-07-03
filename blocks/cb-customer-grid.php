@@ -15,7 +15,7 @@ $logos      = get_field( 'logos' ) ? get_field( 'logos' ) : array();
 ?>
 <section class="cb-customer-grid <?= esc_attr( $extra ); ?>"<?= $section_id ? ' id="' . esc_attr( $section_id ) . '"' : ''; ?>>
 	<div class="container">
-		<div class="cb-section-head text-center">
+		<div class="cb-section-head text-center cb-gsap-fade">
 			<?php
             if ( $heading ) {
                 ?>

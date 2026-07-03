@@ -6989,6 +6989,34 @@
 	      }, 750 * index);
 	    });
 	  });
+	  if (window.gsap && window.ScrollTrigger) {
+	    window.gsap.registerPlugin(window.ScrollTrigger);
+	  }
+	  document.querySelectorAll(".cb-gsap-fade").forEach(function (element) {
+	    if (!window.gsap || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+	      element.style.opacity = "1";
+	      element.style.visibility = "visible";
+	      element.style.transform = "none";
+	      element.style.willChange = "auto";
+	      return;
+	    }
+	    var animationOptions = {
+	      opacity: 1,
+	      visibility: "visible",
+	      y: 0,
+	      duration: 0.7,
+	      ease: "power2.out",
+	      clearProps: "will-change"
+	    };
+	    if (window.ScrollTrigger) {
+	      animationOptions.scrollTrigger = {
+	        trigger: element,
+	        start: "top 85%",
+	        once: true
+	      };
+	    }
+	    window.gsap.to(element, animationOptions);
+	  });
 	});
 
 	exports.Alert = Alert;

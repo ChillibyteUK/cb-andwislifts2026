@@ -7,15 +7,15 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$section_id = $block['anchor'] ?? '';
+$section_id = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-service-cards-' );
 $extra      = $block['className'] ?? '';
 $heading    = get_field( 'heading' );
 $intro      = get_field( 'intro' );
 $cards      = get_field( 'cards' );
 ?>
-<section class="cb-service-cards <?= esc_attr( $extra ); ?>"<?= $section_id ? ' id="' . esc_attr( $section_id ) . '"' : ''; ?>>
+<section class="cb-service-cards <?= esc_attr( $extra ); ?>" id="<?= esc_attr( $section_id ); ?>">
 	<div class="container">
-		<div class="cb-section-head pb-5">
+		<div class="cb-section-head pb-5 cb-gsap-fade">
 			<?php if ( $heading ) { ?>
 				<h2><?= esc_html( $heading ); ?></h2>
 			<?php } ?>
@@ -27,10 +27,11 @@ $cards      = get_field( 'cards' );
 			<div class="row g-3">
 				<?php foreach ( $cards as $card ) { ?>
 					<?php $card_link = $card['link'] ?? null; ?>
+					<?php $card_icon = $card['icon'] ?? null; ?>
 					<div class="col-lg-3 col-md-6">
-						<div class="cb-service-card">
-							<?php if ( ! empty( $card['number'] ) ) { ?>
-								<div class="cb-service-card__num"><?= esc_html( $card['number'] ); ?></div>
+						<div class="cb-service-card" style="opacity:0;visibility:hidden;transform:translate3d(0,20px,0);">
+							<?php if ( ! empty( $card_icon['ID'] ) ) { ?>
+								<div class="cb-service-card__icon"><?= wp_get_attachment_image( $card_icon['ID'], 'thumbnail' ); ?></div>
 							<?php } ?>
 							<?php if ( ! empty( $card['title'] ) ) { ?>
 								<h3><?= esc_html( $card['title'] ); ?></h3>
@@ -52,3 +53,70 @@ $cards      = get_field( 'cards' );
 		<?php } ?>
 	</div>
 </section>
+<?php
+if ( $cards ) {
+	add_action(
+		'wp_footer',
+		function () use ( $section_id ) {
+			?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	var block = document.getElementById(<?= wp_json_encode( $section_id ); ?>);
+	if (!block) return;
+
+	var cards = block.querySelectorAll('.cb-service-card');
+	if (!cards.length) return;
+
+	if (!window.gsap) {
+		cards.forEach(function (card) {
+			card.style.opacity = '1';
+			card.style.visibility = 'visible';
+			card.style.transform = 'none';
+		});
+		return;
+	}
+
+	if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		cards.forEach(function (card) {
+			card.style.opacity = '1';
+			card.style.visibility = 'visible';
+			card.style.transform = 'none';
+		});
+		return;
+	}
+
+	if (window.ScrollTrigger) {
+		window.gsap.registerPlugin(window.ScrollTrigger);
+	}
+
+	var timelineOptions = {
+		defaults: {
+			ease: 'power2.out'
+		}
+	};
+
+	if (window.ScrollTrigger) {
+		timelineOptions.scrollTrigger = {
+			trigger: block,
+			start: 'top 75%',
+			once: true
+		};
+	}
+
+	var timeline = window.gsap.timeline(timelineOptions);
+
+	timeline.to(cards, {
+		opacity: 1,
+		visibility: 'visible',
+		y: 0,
+		duration: 0.55,
+		stagger: 0.55,
+		clearProps: 'opacity,visibility,transform'
+	});
+});
+</script>
+			<?php
+		},
+		9999
+	);
+}
