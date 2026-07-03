@@ -416,3 +416,37 @@ for (; i < all.length; i++) {
   padding-top: 120px;
   padding-bottom: 60px;
 }
+
+/* ─── CB Block Shared ─── */
+.cb-check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    gap: 14px;
+    color: var(--cb-ink-soft);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+.cb-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  border: 1px solid var(--cb-sage-line);
+  border-radius: 50%;
+  background: var(--cb-sage-tint);
+  color: var(--cb-emerald-dark);
+  font-size: 12px;
+  font-weight: var(--fw-bold);
+}

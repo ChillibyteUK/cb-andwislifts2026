@@ -1,1 +1,111 @@
-{"key":"group_cb_customer_grid","title":"CB Customer Grid","fields":[{"key":"field_cb_customer_message","label":"CB Customer Grid","name":"cb_customer_grid_message","type":"message","message":"CB Customer Grid","new_lines":"wpautop","esc_html":0},{"key":"field_cb_customer_kicker","label":"Kicker","name":"kicker","type":"text"},{"key":"field_cb_customer_heading","label":"Heading","name":"heading","type":"text"},{"key":"field_cb_customer_intro","label":"Intro","name":"intro","type":"textarea","rows":3,"new_lines":"br"},{"key":"field_cb_customer_logos","label":"Logos","name":"logos","type":"gallery","return_format":"id","preview_size":"thumbnail","library":"all","min":0,"max":0,"min_width":0,"min_height":0,"min_size":0,"max_width":0,"max_height":0,"max_size":0,"mime_types":""},{"key":"field_cb_customer_note","label":"Note","name":"note","type":"textarea","rows":2,"new_lines":"br"}],"location":[[{"param":"block","operator":"==","value":"acf/cb-customer-grid"}]],"active":1,"description":""}
+{
+    "key": "group_cb_customer_grid",
+    "title": "CB Customer Grid",
+    "fields": [
+        {
+            "key": "field_cb_customer_message",
+            "label": "CB Customer Grid",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_cb_customer_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_customer_intro",
+            "label": "Intro",
+            "name": "intro",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "br",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_cb_customer_logos",
+            "label": "Logos",
+            "name": "logos",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min": 0,
+            "max": 0,
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": "",
+            "insert": "append"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/cb-customer-grid"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1783011156
+}

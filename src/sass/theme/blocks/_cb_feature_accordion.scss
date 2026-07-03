@@ -1,0 +1,127 @@
+.cb-feature-accordion {
+  background: var(--cb-emerald-light);
+
+  &__media-col {
+    display: flex;
+    align-self: stretch;
+  }
+
+  &__media {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+          var(--cb-emerald-light) 0%,
+          transparent 50%);
+      pointer-events: none;
+    }
+  }
+
+  &__copy {
+    padding-block: calc(var(--cb-section-y) * 2);
+
+    h2 {
+      color: var(--cb-forest);
+    }
+  }
+
+  h3 {
+    margin: 0 0 14px;
+    color: var(--cb-forest);
+    font-size: 22px;
+    font-weight: var(--fw-bold);
+  }
+
+  .cb-prose {
+    margin-bottom: 26px;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__item {
+    overflow: hidden;
+    border: 1px solid var(--cb-sage-line);
+    border-radius: var(--cb-radius-sm);
+    background: var(--cb-paper);
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 22px;
+    border: none;
+    background: none;
+    color: var(--cb-forest);
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: var(--fw-semibold);
+    text-align: left;
+
+    &.collapsed .cb-feature-accordion__icon {
+      transform: rotate(0deg);
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--cb-sage-tint);
+    color: var(--cb-emerald-dark);
+    font-size: 16px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+    transform: rotate(45deg);
+  }
+
+  &__body {
+    padding: 0 22px 20px;
+    color: var(--cb-ink-soft);
+    font-size: 14px;
+    line-height: 1.65;
+
+    ul {
+      padding: 0;
+      margin: 12px 0 0;
+      list-style: none;
+    }
+
+    li {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+
+      &::before {
+        content: "";
+        flex: 0 0 auto;
+        width: 6px;
+        height: 6px;
+        margin-top: 7px;
+        border-radius: 50%;
+        background: var(--cb-emerald);
+      }
+    }
+  }
+}

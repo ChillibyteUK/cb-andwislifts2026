@@ -21,27 +21,41 @@ if ( null === $show_wave ) {
 
 ?>
 <section class="cb-hero<?= $show_wave ? ' cb-hero--bottom-curve' : ''; ?> <?= esc_attr( $extra ); ?>" id="<?= esc_attr( $section_id ); ?>">
-	<?php if ( ! empty( $background_image['ID'] ) ) : ?>
-		<div class="cb-hero__bg" style="background-image:url('<?= esc_url( wp_get_attachment_image_url( $background_image['ID'], 'full' ) ); ?>');"></div>
-	<?php endif; ?>
+	<?php
+	if ( ! empty( $background_image['ID'] ) ) {
+		?>
+	<div class="cb-hero__bg" style="background-image:url('<?= esc_url( wp_get_attachment_image_url( $background_image['ID'], 'full' ) ); ?>');"></div>
+		<?php
+	}
+	?>
 	<div class="cb-hero__scrim"></div>
 	<div class="cb-hero__inner">
 		<?php
-		if ( $heading ) :
+		if ( $heading ) {
 			?>
-            <h1><?= wp_kses_post( $heading ); ?></h1><?php endif; ?>
-		<?php
-        if ( $subline ) :
+		<h1><?= wp_kses_post( $heading ); ?></h1>
+			<?php
+		}
+		if ( $subline ) {
 			?>
-            <p class="cb-hero__subline"><?= esc_html( $subline ); ?></p><?php endif; ?>
-		<?php
-        if ( $intro ) :
+		<p class="cb-hero__subline"><?= esc_html( $subline ); ?></p>
+			<?php
+		}
+		if ( $intro ) {
 			?>
-            <p class="cb-hero__intro"><?= esc_html( $intro ); ?></p><?php endif; ?>
+		<p class="cb-hero__intro"><?= esc_html( $intro ); ?></p>
+			<?php
+		}
+		?>
 	</div>
 </section>
 
-<?php if ( ! empty( $background_image['ID'] ) ) : ?>
+<?php
+if ( ! empty( $background_image['ID'] ) ) {
+	add_action(
+		'wp_footer',
+		function () use ( $section_id ) {
+			?>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 	var section = document.getElementById(<?= wp_json_encode( $section_id ); ?>);
@@ -75,4 +89,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	onScroll();
 });
 </script>
-<?php endif; ?>
+			<?php
+		},
+		9999
+	);
+}

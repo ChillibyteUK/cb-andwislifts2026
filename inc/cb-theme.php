@@ -123,7 +123,7 @@ add_action( 'widgets_init', 'widgets_init', 11 );
  * This function deregisters jQuery and disables certain styles and scripts
  * that are commented out for potential use in the theme.
  */
-function hub_theme_enqueue() {
+function cb_theme_enqueue() {
     $the_theme = wp_get_theme();
 
 	// phpcs:disable
@@ -144,14 +144,12 @@ function hub_theme_enqueue() {
 
     wp_enqueue_style( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css', array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
     wp_enqueue_script( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
-	wp_enqueue_style( 'flickity', 'https://cdn.jsdelivr.net/npm/flickity@3/dist/flickity.min.css', array(), '3.0.0' );
-	wp_enqueue_script( 'flickity', 'https://cdn.jsdelivr.net/npm/flickity@3/dist/flickity.pkgd.min.js', array(), '3.0.0', true );
 	wp_enqueue_script( 'lenis', 'https://unpkg.com/lenis@1.3.11/dist/lenis.min.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 	wp_enqueue_style( 'lenis-style', 'https://unpkg.com/lenis@1.3.11/dist/lenis.css', array() ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 	wp_enqueue_script( 'gsap', 'https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js', array(), '3.12.7', true );
     wp_enqueue_script( 'gsap-scrolltrigger', 'https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js', array( 'gsap' ), '3.12.7', true );
 }
-add_action( 'wp_enqueue_scripts', 'hub_theme_enqueue' );
+add_action( 'wp_enqueue_scripts', 'cb_theme_enqueue' );
 
 // Performance: Remove WordPress global styles and SVG filters (WP 6.0+).
 // This prevents FOUC by removing unnecessary inline styles in the head.

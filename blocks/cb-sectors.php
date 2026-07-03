@@ -64,27 +64,32 @@ while ( $display_label_count < 10 ) {
 $display_labels = array_slice( $display_labels, 0, 10 );
 ?>
 <section class="cb-sectors <?= esc_attr( $extra ); ?>" id="<?= esc_attr( $section_id ); ?>">
-	<div class="cb-wrap cb-sectors__grid">
-		<div class="cb-sectors__copy">
-			<?php if ( $heading ) : ?>
-				<h2><?= esc_html( $heading ); ?></h2>
-			<?php endif; ?>
-			<?php if ( $body ) : ?>
-				<div class="cb-sectors__body"><?= wp_kses_post( wpautop( $body ) ); ?></div>
-			<?php endif; ?>
-		</div>
-
-		<div class="cb-sectors__highlight highlight-text rellax" style="--x:180px;--y:350px;--cb-sector-count:<?= esc_attr( count( $sector_labels ) ); ?>;" data-rellax-speed="2" data-rellax-xs-speed="0" data-rellax-mobile-speed="0">
-			<ul class="base-text" aria-hidden="true">
-				<?php foreach ( $display_labels as $label ) : ?>
-					<li><?= esc_html( $label ); ?></li>
-				<?php endforeach; ?>
-			</ul>
-			<ul class="hover-text">
-				<?php foreach ( $display_labels as $label ) : ?>
-					<li><?= esc_html( $label ); ?></li>
-				<?php endforeach; ?>
-			</ul>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="cb-sectors__copy">
+					<?php if ( $heading ) { ?>
+						<h2><?= esc_html( $heading ); ?></h2>
+					<?php } ?>
+					<?php if ( $body ) { ?>
+						<div class="cb-sectors__body"><?= wp_kses_post( wpautop( $body ) ); ?></div>
+					<?php } ?>
+				</div>
+			</div>
+			<div class="col-lg-6 ps-lg-5">
+				<div class="cb-sectors__highlight highlight-text rellax" style="--x:180px;--y:350px;--cb-sector-count:<?= esc_attr( count( $sector_labels ) ); ?>;" data-rellax-speed="2" data-rellax-xs-speed="0" data-rellax-mobile-speed="0">
+					<ul class="base-text" aria-hidden="true">
+						<?php foreach ( $display_labels as $label ) { ?>
+							<li><?= esc_html( $label ); ?></li>
+						<?php } ?>
+					</ul>
+					<ul class="hover-text">
+						<?php foreach ( $display_labels as $label ) { ?>
+							<li><?= esc_html( $label ); ?></li>
+						<?php } ?>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>

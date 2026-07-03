@@ -1,6 +1,6 @@
 .site-footer {
   position: relative;
-  padding-block: clamp(4.5rem, 10vw, 8rem) 0;
+  padding-block-start: 4rem;
   margin-top: clamp(4rem, 8vw, 7rem);
   background: var(--cb-forest);
   color: var(--cb-paper);
@@ -31,13 +31,17 @@
     height: 2rem;
   }
 
-  &__inner {
+  &__main {
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-columns: minmax(14rem, 0.8fr) minmax(0, 2fr) auto;
-    gap: 2.5rem;
-    align-items: start;
+  }
+
+  &__brand {
+    margin-bottom: 2rem;
+
+    @media (min-width: 992px) {
+      margin-bottom: 0;
+    }
   }
 
   &__logo {
@@ -66,26 +70,17 @@
   }
 
   &__nav {
-    .site-footer__menu,
-    .sub-menu {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
+    margin-bottom: 2rem;
 
-    > nav > .site-footer__menu {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1.5rem 2rem;
+    @media (min-width: 992px) {
+      margin-bottom: 0;
     }
+  }
 
-    .site-footer__menu > li > a {
-      display: inline-block;
-      margin-bottom: 0.4rem;
-      color: var(--cb-paper);
-      font-size: 0.81818rem;
-      font-weight: var(--fw-semibold);
-    }
+  &__menu {
+    padding: 0;
+    margin: 0;
+    list-style: none;
 
     li {
       padding: 0.2rem 0;
@@ -107,7 +102,10 @@
   &__social {
     display: flex;
     gap: 1rem;
-    justify-content: flex-end;
+
+    @media (min-width: 992px) {
+      justify-content: flex-end;
+    }
 
     a {
       display: inline-flex;
@@ -133,9 +131,6 @@
   &__legal {
     position: relative;
     z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
     padding-block: 2.5rem 1rem;
     color: rgba(255, 255, 255, 0.8);
     font-size: 0.636363rem;
@@ -159,22 +154,13 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 991.98px) {
   .site-footer {
-    &__inner {
-      grid-template-columns: 1fr;
-    }
-
-    &__nav > nav > .site-footer__menu {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    &__social {
-      justify-content: flex-start;
-    }
-
     &__legal {
-      flex-direction: column;
+      .row {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
     }
 
     &__legal-links {

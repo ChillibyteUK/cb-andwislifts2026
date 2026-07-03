@@ -1,0 +1,29 @@
+.cb-pill-strip {
+  padding: 40px 0 70px;
+  text-align: center;
+
+  &__label {
+    margin-bottom: 16px;
+    color: var(--cb-muted);
+    font-size: var(--cb-fs-kicker);
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  &__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+
+    span {
+      padding: 8px 16px;
+      border: 1px dashed var(--cb-sage-line);
+      border-radius: 999px;
+      background: var(--cb-sage-tint);
+      color: var(--cb-ink-soft);
+      font-size: 13px;
+    }
+  }
+}

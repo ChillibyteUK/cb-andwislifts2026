@@ -1,1 +1,239 @@
-{"key":"group_cb_feature_accordion","title":"CB Feature Accordion","fields":[{"key":"field_cb_feature_image","label":"Image","name":"image","type":"image","return_format":"array","preview_size":"medium","library":"all"},{"key":"field_cb_feature_heading","label":"Heading","name":"heading","type":"text"},{"key":"field_cb_feature_intro","label":"Intro","name":"intro","type":"wysiwyg","tabs":"all","toolbar":"basic","media_upload":0},{"key":"field_cb_feature_items","label":"Accordion Items","name":"accordion_items","type":"repeater","layout":"block","button_label":"Add item","sub_fields":[{"key":"field_cb_feature_item_title","label":"Title","name":"title","type":"text"},{"key":"field_cb_feature_item_body","label":"Body","name":"body","type":"wysiwyg","tabs":"all","toolbar":"basic","media_upload":0},{"key":"field_cb_feature_item_included","label":"Included Items","name":"included_items","type":"repeater","layout":"table","button_label":"Add included item","sub_fields":[{"key":"field_cb_feature_item_included_text","label":"Text","name":"text","type":"text"}]},{"key":"field_cb_feature_item_open","label":"Open By Default","name":"open_by_default","type":"true_false","ui":1}]},{"key":"field_cb_feature_background","label":"Background Style","name":"background_style","type":"button_group","choices":{"white":"White","tint":"Tint"},"default_value":"tint"}],"location":[[{"param":"block","operator":"==","value":"acf/cb-feature-accordion"}]],"active":1,"description":""}
+{
+  "key": "group_cb_feature_accordion",
+  "title": "CB Feature Accordion",
+  "fields": [
+    {
+      "key": "field_6a46963bf7a21",
+      "label": "CB Feature Accordion",
+      "name": "",
+      "aria-label": "",
+      "type": "message",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "message": "",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    },
+    {
+      "key": "field_cb_feature_image",
+      "label": "Image",
+      "name": "image",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "min_width": 0,
+      "min_height": 0,
+      "min_size": 0,
+      "max_width": 0,
+      "max_height": 0,
+      "max_size": 0,
+      "mime_types": ""
+    },
+    {
+      "key": "field_cb_feature_heading",
+      "label": "Heading",
+      "name": "heading",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_feature_intro",
+      "label": "Intro",
+      "name": "intro",
+      "aria-label": "",
+      "type": "wysiwyg",
+      "instructions": "",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "tabs": "all",
+      "toolbar": "basic",
+      "media_upload": 0,
+      "default_value": "",
+      "delay": 0
+    },
+    {
+      "key": "field_cb_feature_items",
+      "label": "Accordion Items",
+      "name": "accordion_items",
+      "aria-label": "",
+      "type": "repeater",
+      "instructions": "",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layout": "block",
+      "button_label": "Add item",
+      "min": 0,
+      "max": 0,
+      "rows_per_page": 20,
+      "collapsed": "",
+      "sub_fields": [
+        {
+          "key": "field_cb_feature_item_title",
+          "label": "Title",
+          "name": "title",
+          "aria-label": "",
+          "type": "text",
+          "instructions": "",
+          "required": false,
+          "conditional_logic": false,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "parent_repeater": "field_cb_feature_items"
+        },
+        {
+          "key": "field_cb_feature_item_body",
+          "label": "Body",
+          "name": "body",
+          "aria-label": "",
+          "type": "wysiwyg",
+          "instructions": "",
+          "required": false,
+          "conditional_logic": false,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "tabs": "all",
+          "toolbar": "basic",
+          "media_upload": 0,
+          "default_value": "",
+          "delay": 0,
+          "parent_repeater": "field_cb_feature_items"
+        },
+        {
+          "key": "field_cb_feature_item_included",
+          "label": "Included Items",
+          "name": "included_items",
+          "aria-label": "",
+          "type": "repeater",
+          "instructions": "",
+          "required": false,
+          "conditional_logic": false,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "layout": "table",
+          "button_label": "Add included item",
+          "min": 0,
+          "max": 0,
+          "rows_per_page": 20,
+          "collapsed": "",
+          "sub_fields": [
+            {
+              "key": "field_cb_feature_item_included_text",
+              "label": "Text",
+              "name": "text",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "",
+              "required": false,
+              "conditional_logic": false,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "",
+              "maxlength": "",
+              "placeholder": "",
+              "prepend": "",
+              "append": "",
+              "parent_repeater": "field_cb_feature_item_included"
+            }
+          ],
+          "parent_repeater": "field_cb_feature_items"
+        },
+        {
+          "key": "field_cb_feature_item_open",
+          "label": "Open By Default",
+          "name": "open_by_default",
+          "aria-label": "",
+          "type": "true_false",
+          "instructions": "",
+          "required": false,
+          "conditional_logic": false,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "ui": 1,
+          "default_value": 0,
+          "message": "",
+          "ui_on_text": "",
+          "ui_off_text": "",
+          "parent_repeater": "field_cb_feature_items"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf\/cb-feature-accordion"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1783010888
+}

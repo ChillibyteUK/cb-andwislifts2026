@@ -14,8 +14,8 @@ $intro      = get_field( 'intro' );
 $stats      = get_field( 'stats' );
 ?>
 <section class="cb-stats <?= esc_attr( $extra ); ?>"<?= $section_id ? ' id="' . esc_attr( $section_id ) . '"' : ''; ?>>
-	<div class="cb-wrap">
-		<div class="cb-section-head">
+	<div class="container">
+		<div class="cb-section-head pb-4">
 			<?php
             if ( $heading ) :
 				?>

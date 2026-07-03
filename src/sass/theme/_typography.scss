@@ -6,6 +6,7 @@
   font-weight: 400;
   src: url("../fonts/poppins-400-latin.woff2") format("woff2");
 }
+
 /* poppins-500 - latin */
 @font-face {
   font-display: swap;
@@ -14,6 +15,7 @@
   font-weight: 500;
   src: url("../fonts/poppins-500-latin.woff2") format("woff2");
 }
+
 /* poppins-600 - latin */
 @font-face {
   font-display: swap;
@@ -22,6 +24,7 @@
   font-weight: 600;
   src: url("../fonts/poppins-600-latin.woff2") format("woff2");
 }
+
 /* poppins-700 - latin */
 @font-face {
   font-display: swap;
@@ -30,6 +33,7 @@
   font-weight: 700;
   src: url("../fonts/poppins-700-latin.woff2") format("woff2");
 }
+
 /* poppins-800 - latin */
 @font-face {
   font-display: swap;
@@ -55,34 +59,7 @@ body,
   line-height: var(--lh-loose);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* ─── Eyebrows & Labels ─── */
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.625rem;
-  font-size: var(--fs-micro);
-  font-weight: var(--fw-semibold);
-  letter-spacing: var(--ls-caps);
-  text-transform: uppercase;
-  line-height: var(--lh-flat);
-  color: var(--col-orange);
-  margin-bottom: 1.125rem;
-
-  &::before {
-    content: "";
-    inline-size: 2rem;
-    block-size: 1px;
-    background: currentColor;
-    flex: none;
-  }
-
-  &--plain {
-    &::before {
-      display: none;
-    }
-  }
+  text-wrap: pretty;
 }
 
 .label-meta {
@@ -124,12 +101,13 @@ body,
   letter-spacing: var(--ls-headline);
 }
 
+h2,
 .h2 {
-  /* unified section h2 (intro/split/products/projects/config/contact/process/mid-cta) */
   font-weight: var(--fw-bold);
   font-size: var(--fs-h2);
-  line-height: var(--lh-headline);
+  line-height: var(--cb-lh-heading);
   letter-spacing: var(--ls-headline);
+  text-wrap: balance;
 }
 
 .h3 {
@@ -138,6 +116,7 @@ body,
   font-size: var(--fs-h3);
   line-height: var(--lh-snug);
   letter-spacing: var(--ls-tight);
+  text-wrap: balance;
 }
 
 .h4 {
@@ -145,6 +124,7 @@ body,
   font-weight: var(--fw-bold);
   font-size: var(--fs-h4);
   letter-spacing: var(--ls-tight);
+  text-wrap: balance;
 }
 
 .h5 {
@@ -242,7 +222,13 @@ body,
 }
 
 // Helper classes for standalone typography variables
-$font-weights: (regular, medium, semibold, bold, extrabold);
+$font-weights: (
+  regular,
+  medium,
+  semibold,
+  bold,
+  extrabold
+);
 $font-sizes: (
   hero,
   h1,
@@ -300,16 +286,19 @@ $tracking: (
     font-weight: var(--fw-#{$w});
   }
 }
+
 @each $s in $font-sizes {
   .fs-#{$s} {
     font-size: var(--fs-#{$s});
   }
 }
+
 @each $l in $line-heights {
   .lh-#{$l} {
     line-height: var(--lh-#{$l});
   }
 }
+
 @each $t in $tracking {
   .ls-#{$t} {
     letter-spacing: var(--ls-#{$t});
@@ -358,4 +347,41 @@ strong {
 
 .text-balance {
   text-wrap: balance;
+}
+
+/* ─── CB Block Shared ─── */
+.cb-section-head {
+  margin: 0 auto;
+  text-align: center;
+
+  h2 {
+    margin: 0 0 14px;
+    color: var(--cb-forest);
+  }
+
+  p {
+    margin: 0;
+    color: var(--cb-ink-soft);
+    font-size: var(--cb-fs-body);
+    line-height: var(--cb-lh-body);
+  }
+}
+
+.cb-prose {
+  color: var(--cb-ink-soft);
+  font-size: var(--cb-fs-body);
+  line-height: var(--cb-lh-body);
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.cb-small-label {
+  margin: 0 0 14px;
+  color: var(--cb-muted);
+  font-size: var(--cb-fs-kicker);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }

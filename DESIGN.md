@@ -3,12 +3,109 @@
 ## Implementation Decisions
 
 - The page will be built manually in WordPress using modular ACF blocks.
-- Header and footer are global theme templates, not blocks, and will be created later based on another theme.
+- Header and footer are global theme templates, not blocks.
 - Contact data should come from Site-Wide Settings where practical.
 - Images should be optional and render gracefully when empty.
-- Image fields should still be present in ACF for all image-led sections.
-- The sector chip layout should support exactly six fixed positions, matching the supplied HTML.
-- Poppins should be self-hosted, downloaded from Google Fonts, and wired into the theme Sass/header in place of the current Inter setup.
+- Poppins is self-hosted and wired into the theme.
+- Kicker fields have been removed from all blocks.
+- Every block ACF field group must start with a message field whose label is the block name (message content blank). Added by `add_block.sh` — do not remove it.
+- Use Bootstrap `.container` / `.row` / `.col` grid classes, not custom CSS grids. Stats is the exception (5-col layout).
+- Full-bleed backgrounds go on the `<section>`, never on a child `.container` wrapper. No border-radius on full-bleed sections.
+
+## PHP Coding Standards
+
+### Indentation
+
+- **Tabs only**, one tab per nesting level. Never spaces.
+- Variables aligned by padding with spaces after the longest varname:
+
+```php
+$section_id = $block['anchor'] ?? '';
+$extra      = $block['className'] ?? '';
+$heading    = get_field( 'heading' );
+```
+
+### Control structures
+
+- **Braces on same line**: `if () {` not `{` on its own line.
+- **No colon syntax**: never `if:` / `endif;` / `foreach:` / `endforeach;`.
+
+### PHP/HTML interleaving (block templates)
+
+`<?php` and `if` go on separate lines. Do not cuddle them (`<?php if ( ... ) { ?>` is wrong).
+
+HTML is indented to its DOM nesting level (where it sits in the markup), independent of PHP indentation. PHP tags and control structures sit at the HTML level. Only `?>` / `<?php` delimiters go one deeper (inside the braces).
+
+```php
+<div class="container">
+    <div class="cb-section-head">
+        <?php
+        if ( $heading ) {
+            ?>
+        <h2><?= esc_html( $heading ); ?></h2>
+            <?php
+        }
+        ?>
+    </div>
+</div>
+```
+
+No redundant `?>` / `<?php` pairs — every time you exit PHP with `?>`, there must be meaningful HTML before re-entering with `<?php`. If there's nothing to output, don't exit PHP.
+
+````
+
+### Output
+
+- Use short-tag syntax: `<?= esc_html( $var ); ?>` or `<?= esc_url( $url ); ?>`. Never `<?php echo`.
+
+### Section IDs
+
+```php
+$section_id = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-blockname-' );
+````
+
+Always output the ID unconditionally:
+
+```php
+<section class="..." id="<?= esc_attr( $section_id ); ?>">
+```
+
+### Block structure
+
+- Wrapping element is `<section>` (or `<div>` for non-semantic wrappers like cb-pill-strip).
+- No unnecessary wrapper divs. Background lives on the `<section>`, grid lives on Bootstrap `.row` / `.col-*` directly.
+- BEM naming: `.cb-blockname__element`
+
+### Never edit compiled files
+
+- `css/child-theme.css` / `css/child-theme.min.css` — edit `src/sass/` instead
+- `js/child-theme.js` / `js/child-theme.min.js` — edit `src/js/` instead
+
+## Enqueued Assets
+
+All enqueued via `cb_theme_enqueue()` in `inc/cb-theme.php` and `cb_enqueue_*()` in `functions.php`.
+
+### Stylesheets
+
+| Handle        | Source                     | Note                                         |
+| ------------- | -------------------------- | -------------------------------------------- |
+| `cb-theme`    | `/css/child-theme.min.css` | Main compiled theme CSS (Bootstrap + custom) |
+| `swiper`      | CDN (swiper@10)            | Sliders/carousels                            |
+| `lenis-style` | CDN (lenis@1.3.11)         | Smooth scrolling CSS                         |
+
+### Scripts
+
+| Handle               | Source                   | Dependencies | Note                                   |
+| -------------------- | ------------------------ | ------------ | -------------------------------------- |
+| `cb-theme-js`        | `/js/child-theme.min.js` | —            | Understrap bootstrap bundle + theme JS |
+| `swiper`             | CDN (swiper@10)          | —            | Sliders                                |
+| `lenis`              | CDN (lenis@1.3.11)       | —            | Smooth scrolling                       |
+| `gsap`               | CDN (gsap@3.12.7)        | —            | Animations                             |
+| `gsap-scrolltrigger` | CDN (gsap@3.12.7)        | `gsap`       | Scroll-triggered animations            |
+
+### Commented-out / available
+
+Splide, GLightbox, Tom Select, AOS, lightbox — commented out in `cb_theme_enqueue()`. Uncomment when needed.
 
 ## Global Theme Components
 
@@ -52,7 +149,6 @@ Source HTML: `.hero`
 Fields:
 
 - Background image
-- Eyebrow text
 - Eyebrow pulse toggle
 - Heading
 - Highlighted heading text
@@ -66,7 +162,6 @@ Source HTML: `.reassure`
 
 Fields:
 
-- Kicker
 - Heading
 - Body copy
 - Small list label
@@ -82,7 +177,6 @@ Source HTML: `.services .section-head` and `.service-cols`
 
 Fields:
 
-- Kicker
 - Heading
 - Intro text
 - Cards repeater:
@@ -113,7 +207,6 @@ Source HTML: `.compliance`
 
 Fields:
 
-- Kicker
 - Heading
 - Body copy
 - Image
@@ -128,7 +221,6 @@ Source HTML: `.merger`
 
 Fields:
 
-- Kicker
 - Heading
 - Intro text
 - Legacy brand logo repeater
@@ -153,7 +245,6 @@ Source HTML: `.sectors`
 
 Fields:
 
-- Kicker
 - Heading
 - Body copy
 - CTA label
@@ -173,7 +264,6 @@ Source HTML: `.customers`
 
 Fields:
 
-- Kicker
 - Heading
 - Customer repeater:
   - Name
@@ -186,7 +276,6 @@ Source HTML: `.contact`
 
 Fields:
 
-- Kicker
 - Heading
 - Intro text
 - Contact card repeater:

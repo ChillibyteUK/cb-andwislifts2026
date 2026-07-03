@@ -1,0 +1,43 @@
+.cb-customer-grid {
+  padding-block-start: 80px;
+  background: var(--cb-sage-tint);
+
+  &__marquee {
+    margin-top: 18px;
+    padding-block: 24px;
+  }
+
+  [data-marquee-track] {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+  }
+
+  .logo-cell {
+    flex: 0 0 auto;
+    width: 180px;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    figure {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  &__note {
+    margin: 24px 0 0;
+    color: var(--cb-muted);
+    font-size: var(--cb-fs-small);
+    text-align: center;
+  }
+}
