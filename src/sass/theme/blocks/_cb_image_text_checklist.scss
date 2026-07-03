@@ -13,26 +13,63 @@
 
   &__media {
     position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 500px;
+    margin-inline: auto;
+  }
+
+  &__dots {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--cb-emerald);
+    animation: cb-dots-spin 40s linear infinite;
+    transform-origin: center;
+  }
+
+  &__fig {
+    position: absolute;
+    border-radius: 50%;
     overflow: hidden;
-    border-radius: 100vw;
     box-shadow: var(--cb-shadow-soft);
+    aspect-ratio: 1 / 1;
 
     img {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      height: 100%;
       object-fit: cover;
+      display: block;
+    }
+
+    &--1 {
+      top: 1rem;
+      right: 0;
+      width: 18rem;
+      height: 18rem;
+      z-index: 3;
+    }
+
+    &--2 {
+      top: 14rem;
+      left: 0;
+      width: 8rem;
+      height: 8rem;
+      z-index: 2;
+    }
+
+    &--3 {
+      top: 4rem;
+      left: 1rem;
+      width: 12rem;
+      height: 12rem;
+      z-index: 1;
     }
   }
+}
 
-  &__tag {
-    position: absolute;
-    left: 18px;
-    bottom: 18px;
-    padding: 9px 16px;
-    border-radius: 999px;
-    background: rgba(16, 66, 31, 0.88);
-    color: var(--cb-paper);
-    font-size: var(--cb-fs-small);
-    font-weight: var(--fw-medium);
+@keyframes cb-dots-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
