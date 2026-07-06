@@ -23397,6 +23397,10 @@ input, select, textarea {
   font-size: clamp(16px, 2vw, 19px);
   line-height: 1.6;
 }
+.cb-hero__cta {
+  margin-top: 32px;
+  text-align: center;
+}
 .cb-hero--bottom-curve::after {
   content: "";
   position: absolute;

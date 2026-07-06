@@ -124,6 +124,22 @@
             "message": "",
             "ui_on_text": "",
             "ui_off_text": ""
+        },
+        {
+            "key": "field_cb_hero_cta_button",
+            "label": "CTA Button",
+            "name": "cta_button",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
         }
     ],
     "location": [

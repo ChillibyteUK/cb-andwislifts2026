@@ -14,6 +14,7 @@ $heading          = get_field( 'heading' );
 $subline          = get_field( 'subline' );
 $intro            = get_field( 'intro' );
 $show_wave        = get_field( 'show_wave' );
+$cta              = get_field( 'cta_button' );
 
 if ( null === $show_wave ) {
 	$show_wave = true;
@@ -44,6 +45,13 @@ if ( null === $show_wave ) {
 		if ( $intro ) {
 			?>
 		<p class="cb-hero__intro"><?= esc_html( $intro ); ?></p>
+			<?php
+		}
+		if ( $cta ) {
+			?>
+		<div class="cb-hero__cta">
+			<a href="<?= esc_url( $cta['url'] ); ?>" class="btn btn-primary"<?= ! empty( $cta['target'] ) ? ' target="' . esc_attr( $cta['target'] ) . '"' : ''; ?>><?= esc_html( $cta['title'] ); ?></a>
+		</div>
 			<?php
 		}
 		?>
