@@ -28,13 +28,10 @@
         rgba(11, 35, 21, 0.88) 100%);
   }
 
-  &__inner {
+  .container {
     position: relative;
     z-index: 2;
-    // max-width: 760px;
     padding: 250px 32px 310px;
-    margin-inline: auto;
-    text-align: center;
   }
 
   h1 {
@@ -59,7 +56,6 @@
 
   &__intro {
     max-width: 560px;
-    margin: 0 auto;
     color: rgba(255, 255, 255, 0.88);
     font-size: clamp(16px, 2vw, 19px);
     line-height: 1.6;
@@ -67,7 +63,6 @@
 
   &__cta {
     margin-top: 32px;
-    text-align: center;
   }
 
   &--bottom-curve::after {

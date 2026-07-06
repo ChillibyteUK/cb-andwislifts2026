@@ -30,7 +30,7 @@ if ( null === $show_wave ) {
 	}
 	?>
 	<div class="cb-hero__scrim"></div>
-	<div class="cb-hero__inner">
+	<div class="container">
 		<?php
 		if ( $heading ) {
 			?>
@@ -50,7 +50,7 @@ if ( null === $show_wave ) {
 		if ( $cta ) {
 			?>
 		<div class="cb-hero__cta">
-			<a href="<?= esc_url( $cta['url'] ); ?>" class="btn btn-primary"<?= ! empty( $cta['target'] ) ? ' target="' . esc_attr( $cta['target'] ) . '"' : ''; ?>><?= esc_html( $cta['title'] ); ?></a>
+			<a href="<?= esc_url( $cta['url'] ); ?>" class="btn-outline"<?= ! empty( $cta['target'] ) ? ' target="' . esc_attr( $cta['target'] ) . '"' : ''; ?>><?= esc_html( $cta['title'] ); ?></a>
 		</div>
 			<?php
 		}

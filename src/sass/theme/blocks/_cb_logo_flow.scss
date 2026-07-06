@@ -24,14 +24,11 @@
     border: 1px solid var(--cb-sage);
     background: var(--cb-paper);
   }
-
+  
   &__result {
     padding: 0 0.5rem;
-    background: var(--cb-forest);
-
-    img {
-      filter: brightness(0) invert(1);
-    }
+    border: 1px solid var(--cb-sage);
+    background: var(--cb-paper);
   }
 
   &__arrow {
