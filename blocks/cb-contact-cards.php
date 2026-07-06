@@ -37,13 +37,14 @@ if ( ! $section_id && $heading ) {
 		</div>
 		<?php
 		if ( $cards ) {
+			$col_class = count( $cards ) % 2 === 0 ? 'col-lg-3' : 'col-lg-4';
 			?>
 		<div class="row g-3">
 			<?php
 			foreach ( $cards as $card ) {
 				$url = $card['link_url'] ?? '#';
 				?>
-			<div class="col-lg-4">
+			<div class="<?= esc_attr( $col_class ); ?>">
 				<a class="cb-contact-card" href="<?= esc_url( $url ); ?>">
 					<div class="cb-contact-card__icon">
 						<?php
