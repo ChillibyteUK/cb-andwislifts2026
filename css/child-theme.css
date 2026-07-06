@@ -22210,6 +22210,7 @@ strong {
 .btn.btn-primary {
   font-family: var(--ff-base);
   font-weight: var(--fw-semibold);
+  font-size: var(--fs-caption);
   background-color: var(--cb-mint);
   color: var(--cb-ink);
   text-decoration: none;
@@ -22266,12 +22267,13 @@ strong {
 .btn-outline {
   font-family: var(--ff-base);
   font-weight: var(--fw-semibold);
+  font-size: var(--fs-caption);
   background: transparent;
   border: 2px solid var(--cb-mint);
   color: var(--cb-paper);
   text-decoration: none;
   min-width: 8rem;
-  padding: calc(0.8rem + 2px) calc(1.5rem + 2px);
+  padding: calc(0.7rem + 2px) calc(1.5rem + 2px);
   border-radius: 9999px;
   background-image: linear-gradient(90deg, var(--cb-mint) 50%, transparent 75%, transparent 100%);
   background-size: 400%;
