@@ -22229,7 +22229,7 @@ strong {
 
 .wp-block-button__link:not(.has-background),
 .btn.btn-primary {
-  background-image: linear-gradient(90deg, var(--cb-pine) 50%, transparent 75%, transparent 100%);
+  background-image: linear-gradient(90deg, var(--cb-forest) 50%, transparent 75%, transparent 100%);
   background-size: 400%;
   background-position: 100%;
   transition: background-position 0.5s ease-in-out, color 0.5s ease-in-out;
