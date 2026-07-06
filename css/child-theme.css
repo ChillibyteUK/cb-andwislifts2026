@@ -348,8 +348,10 @@ p {
 }
 
 abbr[title] {
+  -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
   cursor: help;
+  -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
 }
 
@@ -2181,6 +2183,8 @@ progress {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   border-radius: 0.375rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2205,6 +2209,10 @@ progress {
 }
 .form-control::-webkit-date-and-time-value {
   height: 1.5em;
+}
+.form-control::-moz-placeholder {
+  color: #6c757d;
+  opacity: 1;
 }
 .form-control::placeholder {
   color: #6c757d;
@@ -2329,6 +2337,8 @@ textarea.form-control-lg {
   border: 1px solid #ced4da;
   border-radius: 0.375rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2401,7 +2411,10 @@ textarea.form-control-lg {
   background-position: center;
   background-size: contain;
   border: 1px solid rgba(0, 0, 0, 0.25);
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
+  -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
 .form-check-input[type=checkbox] {
@@ -2496,6 +2509,8 @@ textarea.form-control-lg {
   height: 1.5rem;
   padding: 0;
   background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 }
 .form-range:focus {
@@ -2517,11 +2532,14 @@ textarea.form-control-lg {
   background-color: #27383a;
   border: 0;
   border-radius: 1rem;
+  -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
   appearance: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .form-range::-webkit-slider-thumb {
+    -webkit-transition: none;
     transition: none;
   }
 }
@@ -2543,11 +2561,14 @@ textarea.form-control-lg {
   background-color: #27383a;
   border: 0;
   border-radius: 1rem;
+  -moz-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -moz-appearance: none;
   appearance: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .form-range::-moz-range-thumb {
+    -moz-transition: none;
     transition: none;
   }
 }
@@ -2607,9 +2628,16 @@ textarea.form-control-lg {
 .form-floating > .form-control-plaintext {
   padding: 1rem 0.75rem;
 }
+.form-floating > .form-control::-moz-placeholder, .form-floating > .form-control-plaintext::-moz-placeholder {
+  color: transparent;
+}
 .form-floating > .form-control::placeholder,
 .form-floating > .form-control-plaintext::placeholder {
   color: transparent;
+}
+.form-floating > .form-control:not(:-moz-placeholder), .form-floating > .form-control-plaintext:not(:-moz-placeholder) {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
 }
 .form-floating > .form-control:focus, .form-floating > .form-control:not(:placeholder-shown),
 .form-floating > .form-control-plaintext:focus,
@@ -2625,6 +2653,10 @@ textarea.form-control-lg {
 .form-floating > .form-select {
   padding-top: 1.625rem;
   padding-bottom: 0.625rem;
+}
+.form-floating > .form-control:not(:-moz-placeholder) ~ label {
+  opacity: 0.65;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
 }
 .form-floating > .form-control:focus ~ label,
 .form-floating > .form-control:not(:placeholder-shown) ~ label,
@@ -2940,6 +2972,8 @@ textarea.form-control-lg {
   text-decoration: none;
   vertical-align: middle;
   cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
   user-select: none;
   border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
   border-radius: var(--bs-btn-border-radius);
@@ -5300,6 +5334,8 @@ textarea.form-control-lg {
 }
 .btn-close:disabled, .btn-close.disabled {
   pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
   user-select: none;
   opacity: 0.25;
 }
@@ -5346,6 +5382,7 @@ textarea.form-control-lg {
   --bs-toast-zindex: 1090;
   position: absolute;
   z-index: var(--bs-toast-zindex);
+  width: -moz-max-content;
   width: max-content;
   max-width: 100%;
   pointer-events: none;
@@ -6727,13 +6764,16 @@ textarea.form-control-lg {
   }
 }
 .placeholder-wave {
+  -webkit-mask-image: linear-gradient(130deg, #000 55%, rgba(0, 0, 0, 0.8) 75%, #000 95%);
   mask-image: linear-gradient(130deg, #000 55%, rgba(0, 0, 0, 0.8) 75%, #000 95%);
+  -webkit-mask-size: 200% 100%;
   mask-size: 200% 100%;
   animation: placeholder-wave 2s linear infinite;
 }
 
 @keyframes placeholder-wave {
   100% {
+    -webkit-mask-position: -200% 0%;
     mask-position: -200% 0%;
   }
 }
@@ -8298,14 +8338,20 @@ textarea.form-control-lg {
 }
 
 .user-select-all {
+  -webkit-user-select: all !important;
+  -moz-user-select: all !important;
   user-select: all !important;
 }
 
 .user-select-auto {
+  -webkit-user-select: auto !important;
+  -moz-user-select: auto !important;
   user-select: auto !important;
 }
 
 .user-select-none {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
   user-select: none !important;
 }
 
@@ -11056,6 +11102,8 @@ body {
   border: 1px solid #ced4da;
   border-radius: 0.375rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -22160,12 +22208,17 @@ strong {
 }
 .wp-block-button__link,
 .btn.btn-primary {
-  background-color: var(--cb-emerald);
   font-family: var(--ff-base);
   font-weight: var(--fw-semibold);
+  background-color: var(--cb-mint);
   color: var(--cb-ink);
   text-decoration: none;
   min-width: 8rem;
+  border: none;
+  background-image: linear-gradient(90deg, var(--cb-forest) 50%, transparent 75%, transparent 100%);
+  background-size: 400%;
+  background-position: 100%;
+  transition: background-position 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
 :where(.wp-block-button__link) {
@@ -22176,15 +22229,6 @@ strong {
 .btn.btn-primary {
   padding: calc(0.8rem + 2px) calc(1.5rem + 2px);
   border-radius: 9999px;
-  border: none;
-}
-
-.wp-block-button__link:not(.has-background),
-.btn.btn-primary {
-  background-image: linear-gradient(90deg, var(--cb-forest) 50%, transparent 75%, transparent 100%);
-  background-size: 400%;
-  background-position: 100%;
-  transition: background-position 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
 .wp-block-button__link:not(.has-background):hover,
@@ -22206,17 +22250,42 @@ strong {
   gap: 10px;
   padding: 14px 26px;
   border-radius: 999px;
-  background: var(--cb-forest);
-  color: var(--cb-paper);
+  background: var(--cb-mint);
+  color: var(--cb-ink);
   font-size: 14.5px;
   font-weight: var(--fw-semibold);
   text-decoration: none;
   transition: background 0.15s ease, transform 0.15s ease;
 }
 .cb-btn-primary:hover {
-  background: var(--cb-emerald);
+  background: var(--cb-forest);
   color: var(--cb-paper);
   transform: translateY(-2px);
+}
+
+#wrapper-navbar .navbar-nav .nav-item.btn.btn-primary {
+  min-width: 0;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+#wrapper-navbar .navbar-nav .nav-item.btn.btn-primary > .nav-link {
+  display: inline-block;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  padding: calc(0.25rem + 2px) calc(1.2rem + 2px) !important;
+  border-radius: 9999px;
+  color: var(--cb-ink);
+  text-decoration: none;
+  background-color: var(--cb-mint);
+  background-image: linear-gradient(90deg, var(--cb-forest) 50%, transparent 75%, transparent 100%);
+  background-size: 400%;
+  background-position: 100%;
+  transition: background-position 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+#wrapper-navbar .navbar-nav .nav-item.btn.btn-primary > .nav-link:hover, #wrapper-navbar .navbar-nav .nav-item.btn.btn-primary > .nav-link:focus-visible {
+  background-position: 0%;
+  color: var(--cb-paper) !important;
 }
 
 /* =========================
@@ -22277,10 +22346,13 @@ strong {
   width: 100%;
   background: transparent;
   border-bottom: 1px solid transparent;
+  transition: background-color 500ms ease-in, border-color 500ms ease-in, -webkit-backdrop-filter 500ms ease-in;
   transition: background-color 500ms ease-in, border-color 500ms ease-in, backdrop-filter 500ms ease-in;
+  transition: background-color 500ms ease-in, border-color 500ms ease-in, backdrop-filter 500ms ease-in, -webkit-backdrop-filter 500ms ease-in;
 }
 #wrapper-navbar.scrolled, #wrapper-navbar:focus-within {
   background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
   backdrop-filter: saturate(160%) blur(10px);
   border-bottom-color: rgba(16, 66, 31, 0.08);
 }
@@ -22392,6 +22464,7 @@ strong {
     background: rgba(255, 255, 255, 0.98);
     border-block-start: 1px solid var(--cb-sage);
     box-shadow: 0 1.25rem 2.5rem rgba(16, 66, 31, 0.12);
+    -webkit-backdrop-filter: saturate(160%) blur(10px);
     backdrop-filter: saturate(160%) blur(10px);
   }
   #wrapper-navbar .navbar-nav {
@@ -22615,6 +22688,7 @@ strong {
 .cb-post-card__image {
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
   object-fit: cover;
   display: block;
   transition: transform var(--transition);
@@ -22682,6 +22756,7 @@ strong {
 .cb-post__hero-img {
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
   object-fit: cover;
   display: block;
 }
@@ -22763,6 +22838,7 @@ strong {
 .cb-post-sidebar__image {
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
   object-fit: cover;
   display: block;
   transition: transform var(--transition);
@@ -23405,6 +23481,7 @@ input, select, textarea {
 .cb-image-text-checklist__fig img {
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
   object-fit: cover;
   display: block;
 }
@@ -23453,6 +23530,7 @@ input, select, textarea {
   display: block;
   width: 2.5rem;
   height: 2.5rem;
+  -o-object-fit: contain;
   object-fit: contain;
 }
 .cb-service-card h3, .cb-service-card .h3 {
@@ -23873,6 +23951,7 @@ input, select, textarea {
 .cb-customer-grid [data-marquee-track] {
   display: flex;
   gap: 24px;
+  width: -moz-max-content;
   width: max-content;
 }
 .cb-customer-grid .logo-cell {
@@ -23891,6 +23970,7 @@ input, select, textarea {
 .cb-customer-grid .logo-cell figure img {
   width: 100%;
   height: 100%;
+  -o-object-fit: contain;
   object-fit: contain;
 }
 .cb-customer-grid__note {
@@ -23996,9 +24076,11 @@ body {
 
 @media (min-width: 992px) {
   .cols-lg-2 {
+    -moz-columns: 2;
     columns: 2;
   }
   .cols-lg-3 {
+    -moz-columns: 3;
     columns: 3;
   }
 }

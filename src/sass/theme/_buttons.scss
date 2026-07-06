@@ -28,27 +28,13 @@
 
 .wp-block-button__link,
 .btn.btn-primary {
-  background-color: var(--cb-emerald);
   font-family: var(--ff-base);
   font-weight: var(--fw-semibold);
+  background-color: var(--cb-mint);
   color: var(--cb-ink);
   text-decoration: none;
   min-width: 8rem;
-}
-
-:where(.wp-block-button__link) {
-  padding: calc(0.8rem + 2px) calc(1.5rem + 2px) !important;
-  border-radius: 9999px;
-}
-
-.btn.btn-primary {
-  padding: calc(0.8rem + 2px) calc(1.5rem + 2px);
-  border-radius: 9999px;
   border: none;
-}
-
-.wp-block-button__link:not(.has-background),
-.btn.btn-primary {
   background-image: linear-gradient(
     90deg,
     var(--cb-forest) 50%,
@@ -60,6 +46,16 @@
   transition:
     background-position 0.5s ease-in-out,
     color 0.5s ease-in-out;
+}
+
+:where(.wp-block-button__link) {
+  padding: calc(0.8rem + 2px) calc(1.5rem + 2px) !important;
+  border-radius: 9999px;
+}
+
+.btn.btn-primary {
+  padding: calc(0.8rem + 2px) calc(1.5rem + 2px);
+  border-radius: 9999px;
 }
 
 .wp-block-button__link:not(.has-background):hover,
@@ -81,8 +77,8 @@
   gap: 10px;
   padding: 14px 26px;
   border-radius: 999px;
-  background: var(--cb-forest);
-  color: var(--cb-paper);
+  background: var(--cb-mint);
+  color: var(--cb-ink);
   font-size: 14.5px;
   font-weight: var(--fw-semibold);
   text-decoration: none;
@@ -91,8 +87,46 @@
     transform 0.15s ease;
 
   &:hover {
-    background: var(--cb-emerald);
+    background: var(--cb-forest);
     color: var(--cb-paper);
     transform: translateY(-2px);
+  }
+}
+
+// --- Nav item button -------------------------------------------
+// WordPress puts btn.btn-primary on the <li>, <a> gets nav-link.
+#wrapper-navbar .navbar-nav .nav-item.btn.btn-primary {
+  // Reset button styles on the <li> itself.
+  min-width: 0;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+
+  > .nav-link {
+    display: inline-block;
+    font-size: 0.75rem;
+    line-height: 1.35;
+    padding: calc(0.25rem + 2px) calc(1.2rem + 2px) !important;
+    border-radius: 9999px;
+    color: var(--cb-ink);
+    text-decoration: none;
+    background-color: var(--cb-mint);
+    background-image: linear-gradient(
+      90deg,
+      var(--cb-forest) 50%,
+      transparent 75%,
+      transparent 100%
+    );
+    background-size: 400%;
+    background-position: 100%;
+    transition:
+      background-position 0.5s ease-in-out,
+      color 0.5s ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      background-position: 0%;
+      color: var(--cb-paper) !important;
+    }
   }
 }
