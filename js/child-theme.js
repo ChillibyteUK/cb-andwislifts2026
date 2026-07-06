@@ -6910,41 +6910,60 @@
 	  }
 
 	  /**
-	   * Scroll to a hash target using Lenis when available, or native smooth scroll.
+	   * Scroll to a hash target — delegates to Lenis when available.
 	   */
 	  function scrollToHash(hash) {
-	    if (!hash || hash === "#") {
+	    var target;
+	    try {
+	      target = document.querySelector(decodeURI(hash));
+	    } catch (e) {
 	      return;
 	    }
-	    var target = document.querySelector(decodeURI(hash));
 	    if (!target) {
 	      return;
 	    }
-	    var top = target.getBoundingClientRect().top + window.pageYOffset - getScrollOffset();
+	    var offset = getScrollOffset();
 	    if (window.lenis && typeof window.lenis.scrollTo === "function") {
-	      window.lenis.scrollTo(top, {
+	      window.lenis.scrollTo(target, {
+	        offset: -offset,
 	        duration: 1
 	      });
 	      return;
 	    }
+	    var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
 	    window.scrollTo({
 	      top: top,
 	      behavior: "smooth"
 	    });
 	  }
+
+	  /**
+	   * Intercept same-page anchor clicks, letting the browser handle unknown
+	   * targets naturally.
+	   */
 	  document.querySelectorAll('a[href*="#"]').forEach(function (link) {
 	    link.addEventListener("click", function (event) {
 	      var href = link.getAttribute("href");
 	      if (!href || href === "#") {
 	        return;
 	      }
-	      var url = new URL(href, window.location.href);
+	      var url;
+	      try {
+	        url = new URL(href, window.location.href);
+	      } catch (e) {
+	        return;
+	      }
 
 	      // Only intercept in-page anchor links that resolve on the current URL.
 	      if (url.origin !== window.location.origin || url.pathname !== window.location.pathname || !url.hash) {
 	        return;
 	      }
-	      var target = document.querySelector(decodeURI(url.hash));
+	      var target;
+	      try {
+	        target = document.querySelector(decodeURI(url.hash));
+	      } catch (e) {
+	        return;
+	      }
 	      if (!target) {
 	        return;
 	      }
@@ -6952,7 +6971,6 @@
 	      window.history.pushState(null, "", url.hash);
 	      if (collapse && window.innerWidth < 992 && navbar.contains(link) && navbar.classList.contains("show")) {
 	        collapse.hide();
-	        // Wait for the mobile nav to finish collapsing before measuring scroll.
 	        window.setTimeout(function () {
 	          scrollToHash(url.hash);
 	        }, 250);
