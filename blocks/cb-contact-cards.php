@@ -13,6 +13,11 @@ $heading    = get_field( 'heading' );
 $intro      = get_field( 'intro' );
 $note       = get_field( 'note' );
 $cards      = get_field( 'contact_cards', 'option' );
+
+// Auto-generate anchor from heading when none is set manually.
+if ( ! $section_id && $heading ) {
+	$section_id = sanitize_title( $heading );
+}
 ?>
 <section class="cb-contact-cards <?= esc_attr( $extra ); ?>"<?= $section_id ? ' id="' . esc_attr( $section_id ) . '"' : ''; ?>>
 	<div class="container">

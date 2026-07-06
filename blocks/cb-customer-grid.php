@@ -10,6 +10,10 @@ defined( 'ABSPATH' ) || exit;
 $section_id = $block['anchor'] ?? '';
 $extra      = $block['className'] ?? '';
 $heading    = get_field( 'heading' );
+
+if ( ! $section_id && $heading ) {
+	$section_id = sanitize_title( $heading );
+}
 $intro      = get_field( 'intro' );
 $logos      = get_field( 'logos' ) ? get_field( 'logos' ) : array();
 ?>

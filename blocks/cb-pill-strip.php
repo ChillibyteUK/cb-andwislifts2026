@@ -7,9 +7,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$section_id = $block['anchor'] ?? '';
-$extra      = $block['className'] ?? '';
-$label      = get_field( 'label' );
+$section_id       = $block['anchor'] ?? $block['id'] ?? '';
+$extra            = $block['className'] ?? '';
+$label            = get_field( 'label' );
 $pills      = get_field( 'pills' );
 ?>
 <div class="cb-pill-strip <?= esc_attr( $extra ); ?>"<?= $section_id ? ' id="' . esc_attr( $section_id ) . '"' : ''; ?>>
