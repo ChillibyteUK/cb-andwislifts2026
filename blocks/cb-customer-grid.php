@@ -95,13 +95,6 @@ document.addEventListener('DOMContentLoaded', function () {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(start, 150);
         });
-
-        el.addEventListener('mouseenter', function () {
-            if (tween) gsap.to(tween, { timeScale: 0, duration: 0.3 });
-        });
-        el.addEventListener('mouseleave', function () {
-            if (tween) gsap.to(tween, { timeScale: 1, duration: 0.3 });
-        });
     });
 });
 </script>
