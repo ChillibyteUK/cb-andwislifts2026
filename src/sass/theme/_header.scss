@@ -168,6 +168,39 @@
   //   color: var(--col-orange);
   // }
 
+  // Dropdowns. The navbar renders at depth 2, so parent items get a submenu.
+  // .dropdown-item is not .nav-link, so it does not inherit the white nav colour
+  // above - these rules set the panel explicitly for both header states.
+  .dropdown-menu {
+    --bs-dropdown-min-width: 13rem;
+    --bs-dropdown-padding-y: 0.5rem;
+    --bs-dropdown-border-radius: var(--cb-radius-md);
+    --bs-dropdown-border-color: rgba(16, 66, 31, 0.1);
+    --bs-dropdown-bg: var(--cb-paper);
+    --bs-dropdown-link-color: var(--cb-forest);
+    --bs-dropdown-link-hover-color: var(--cb-forest);
+    --bs-dropdown-link-hover-bg: var(--cb-sage);
+    --bs-dropdown-link-active-color: var(--cb-ink);
+    --bs-dropdown-link-active-bg: var(--cb-mint);
+
+    box-shadow: var(--cb-shadow-soft);
+  }
+
+  .dropdown-item {
+    padding-block: 0.5rem;
+    font-size: 14px;
+    font-weight: var(--fw-medium);
+  }
+
+  // Bootstrap's caret is a bare border triangle; size it to the 14px nav type.
+  .dropdown-toggle::after {
+    margin-left: 0.4em;
+    vertical-align: 0.15em;
+    border-top-width: 0.35em;
+    border-right-width: 0.35em;
+    border-left-width: 0.35em;
+  }
+
   // Compact CTA buttons in the navbar context
   .nav-cta .btn {
     padding: 13px 22px;

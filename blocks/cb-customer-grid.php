@@ -57,7 +57,16 @@ $logos      = get_field( 'logos' ) ? get_field( 'logos' ) : array();
     ?>
 </section>
 
-<?php if ( $logos ) : ?>
+<?php
+// Emitted on wp_footer rather than inline. An inline <script> inside an ACF
+// block's output breaks its preview in the editor ("This block has encountered
+// an error and cannot be previewed") - the other blocks in this theme already
+// use this pattern.
+if ( $logos ) {
+	add_action(
+	'wp_footer',
+	function () {
+		?>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     if (typeof gsap === 'undefined') return;
@@ -98,5 +107,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<?php endif; ?>
-<?php
+		<?php
+	},
+	9999
+);
+}

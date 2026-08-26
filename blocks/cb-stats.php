@@ -30,7 +30,9 @@ $stats      = get_field( 'stats' );
 			?>
 		</div>
 		<?php
-		if ( $stats ) {
+		// get_field() returns the raw row count (an int) when the block's stored
+		// _stats field key does not resolve, so check the type, not truthiness.
+		if ( is_array( $stats ) && $stats ) {
 			?>
 		<div class="cb-stats__grid justify-content-center row g-4">
             <?php

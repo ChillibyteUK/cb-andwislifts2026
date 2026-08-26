@@ -12,10 +12,41 @@ defined( 'ABSPATH' ) || exit;
 
 require_once CB_THEME_DIR . '/inc/cb-utility.php';
 require_once CB_THEME_DIR . '/inc/cb-acf-theme-palette.php';
-// Disabled until custom post types are needed: require_once CB_THEME_DIR . '/inc/cb-posttypes.php'.
+require_once CB_THEME_DIR . '/inc/cb-posttypes.php';
 // Disabled until custom taxonomies are needed: require_once CB_THEME_DIR . '/inc/cb-taxonomies.php'.
 
 require_once CB_THEME_DIR . '/inc/cb-blocks.php';
+require_once CB_THEME_DIR . '/inc/cb-faq-schema.php';
+
+/**
+ * House style: plain hyphens, never em or en dashes.
+ *
+ * WordPress runs wptexturize() on titles and content at priority 10, which
+ * rewrites a spaced hyphen ( - ) into an en dash and a double hyphen into an
+ * em dash. That silently reintroduces dashes even when the stored copy is
+ * clean, so this runs afterwards and converts them back.
+ *
+ * Smart quotes and apostrophes are left alone - only the dashes are reverted.
+ *
+ * @param string $text Text being filtered.
+ * @return string
+ */
+function cb_plain_hyphens( $text ) {
+	if ( ! is_string( $text ) || '' === $text ) {
+		return $text;
+	}
+
+	return str_replace(
+		array( "\xE2\x80\x93", "\xE2\x80\x94", '&#8211;', '&#8212;', '&ndash;', '&mdash;' ),
+		'-',
+		$text
+	);
+}
+
+foreach ( array( 'the_content', 'the_title', 'the_excerpt', 'widget_text_content' ) as $cb_dash_hook ) {
+	add_filter( $cb_dash_hook, 'cb_plain_hyphens', 20 );
+}
+unset( $cb_dash_hook );
 
 /**
  * Editor styles: opt-in so WP loads editor.css in the block editor.
@@ -79,16 +110,31 @@ function remove_understrap_post_formats() {
 add_action( 'after_setup_theme', 'remove_understrap_post_formats', 11 );
 
 
-if ( function_exists( 'acf_add_options_page' ) ) {
-    acf_add_options_page(
-        array(
-            'page_title' => 'Site-Wide Settings',
-            'menu_title' => 'Site-Wide Settings',
-            'menu_slug'  => 'theme-general-settings',
-            'capability' => 'edit_posts',
-        )
-    );
+/**
+ * Register the Site-Wide Settings options page.
+ *
+ * Hooked to acf/init rather than called at file load. Calling it directly makes
+ * ACF translate its labels before init, which WordPress reports as
+ * "Translation loading for the acf domain was triggered too early" - thousands
+ * of notices per day in the debug log on WP 6.7+.
+ *
+ * @return void
+ */
+function cb_register_options_page() {
+	if ( ! function_exists( 'acf_add_options_page' ) ) {
+		return;
+	}
+
+	acf_add_options_page(
+		array(
+			'page_title' => 'Site-Wide Settings',
+			'menu_title' => 'Site-Wide Settings',
+			'menu_slug'  => 'theme-general-settings',
+			'capability' => 'edit_posts',
+		)
+	);
 }
+add_action( 'acf/init', 'cb_register_options_page' );
 
 /**
  * Initializes widgets, menus, and theme supports.
@@ -102,6 +148,7 @@ function widgets_init() {
 		array(
 			'primary_nav' => 'Primary Nav',
 			'footer_menu' => 'Footer Nav',
+			'footer_menu_2' => 'Footer Nav 2',
 		)
 	);
 
@@ -274,3 +321,54 @@ function cb_tiny_mce_before_init( $settings ) {
 
 	return $settings;
 }
+
+/**
+ * Allow AutoCAD drawings in the media library.
+ *
+ * The lift installation page links to downloadable CAD drawings, and the
+ * downloads library holds them, so .dwg needs to be an accepted upload type.
+ *
+ * @param array $mimes Allowed mime types.
+ * @return array
+ */
+function cb_allow_cad_uploads( $mimes ) {
+	$mimes['dwg'] = 'image/vnd.dwg';
+	$mimes['dxf'] = 'image/vnd.dxf';
+	return $mimes;
+}
+add_filter( 'upload_mimes', 'cb_allow_cad_uploads' );
+
+/**
+ * Let WordPress accept CAD drawings on upload.
+ *
+ * upload_mimes alone is not enough: wp_check_filetype_and_ext() also compares
+ * the extension against the file's real signature, and .dwg reports as
+ * application/octet-stream, so the check fails and the upload is rejected.
+ * This trusts the extension for these two formats only. Both are inert binary
+ * drawing formats - nothing the web server will execute.
+ *
+ * @param array  $data     ext/type/proper_filename as determined so far.
+ * @param string $file     Full path to the file.
+ * @param string $filename The name of the file.
+ * @param array  $mimes    Allowed mime types.
+ * @return array
+ */
+function cb_cad_filetype( $data, $file, $filename, $mimes ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
+	if ( ! empty( $data['ext'] ) && ! empty( $data['type'] ) ) {
+		return $data;
+	}
+
+	$ext   = strtolower( pathinfo( $filename, PATHINFO_EXTENSION ) );
+	$types = array(
+		'dwg' => 'image/vnd.dwg',
+		'dxf' => 'image/vnd.dxf',
+	);
+
+	if ( isset( $types[ $ext ] ) ) {
+		$data['ext']  = $ext;
+		$data['type'] = $types[ $ext ];
+	}
+
+	return $data;
+}
+add_filter( 'wp_check_filetype_and_ext', 'cb_cad_filetype', 10, 4 );

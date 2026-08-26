@@ -61,6 +61,112 @@
       "placeholder": ""
     },
     {
+      "key": "field_cb_service_cards_source",
+      "label": "Card source",
+      "name": "source",
+      "aria-label": "",
+      "type": "select",
+      "instructions": "Where the cards come from. The CPT options pull the title, card summary and card icon from each Service or Sector post.",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "manual": "Manual cards",
+        "service_all": "All services",
+        "service_select": "Selected services",
+        "service_related": "Services linked to this page",
+        "sector_all": "All sectors",
+        "sector_select": "Selected sectors"
+      },
+      "default_value": "manual",
+      "return_format": "value",
+      "multiple": 0,
+      "allow_null": 0,
+      "ui": 0,
+      "ajax": 0,
+      "placeholder": ""
+    },
+    {
+      "key": "field_cb_service_cards_selected",
+      "label": "Choose posts",
+      "name": "selected_posts",
+      "aria-label": "",
+      "type": "relationship",
+      "instructions": "Cards render in the order set here.",
+      "required": false,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_cb_service_cards_source",
+            "operator": "==",
+            "value": "service_select"
+          }
+        ],
+        [
+          {
+            "field": "field_cb_service_cards_source",
+            "operator": "==",
+            "value": "sector_select"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "post_type": [
+        "service",
+        "sector"
+      ],
+      "post_status": [
+        "publish"
+      ],
+      "taxonomy": "",
+      "filters": [
+        "search",
+        "post_type"
+      ],
+      "return_format": "id",
+      "min": 0,
+      "max": 0,
+      "elements": ""
+    },
+    {
+      "key": "field_cb_service_cards_limit",
+      "label": "Maximum cards",
+      "name": "limit",
+      "aria-label": "",
+      "type": "number",
+      "instructions": "Leave empty or 0 to show all.",
+      "required": false,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_cb_service_cards_source",
+            "operator": "!=",
+            "value": "manual"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "min": 0,
+      "max": "",
+      "step": 1,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
       "key": "field_cb_service_cards",
       "label": "Cards",
       "name": "cards",
@@ -68,7 +174,15 @@
       "type": "repeater",
       "instructions": "",
       "required": false,
-      "conditional_logic": false,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_cb_service_cards_source",
+            "operator": "==",
+            "value": "manual"
+          }
+        ]
+      ],
       "wrapper": {
         "width": "",
         "class": "",
@@ -187,5 +301,5 @@
   "active": true,
   "description": "",
   "show_in_rest": 0,
-  "modified": 1783081450
+  "modified": 1786924800
 }

@@ -1,0 +1,104 @@
+.cb-faqs {
+  padding-block: var(--cb-section-y);
+
+  &__filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__chip {
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(16, 66, 31, 0.2);
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--cb-forest);
+    font-size: var(--cb-fs-card);
+    font-weight: var(--fw-semibold);
+    cursor: pointer;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--cb-emerald);
+    }
+
+    &.is-active {
+      border-color: var(--cb-mint);
+      background: var(--cb-mint);
+      color: var(--cb-ink);
+    }
+  }
+
+  &__list {
+    --bs-accordion-border-color: rgba(16, 66, 31, 0.12);
+    --bs-accordion-border-radius: var(--cb-radius-md);
+    --bs-accordion-btn-color: var(--cb-forest);
+    --bs-accordion-active-color: var(--cb-forest);
+    --bs-accordion-active-bg: var(--cb-sage);
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.2rem rgba(0, 179, 107, 0.25);
+  }
+
+  &__item {
+    margin-bottom: 0.5rem;
+
+    // hidden items are filtered out; the attribute alone can be beaten by
+    // Bootstrap's display rules, so make it explicit.
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  .accordion-button {
+    font-weight: var(--fw-semibold);
+  }
+
+  .accordion-body {
+    color: var(--cb-ink-soft);
+    line-height: 1.6;
+  }
+}
+
+// News index filter chips - same treatment as the FAQ topic filter.
+.cb-post-index {
+  &__filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__chip {
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(16, 66, 31, 0.2);
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--cb-forest);
+    font-size: var(--cb-fs-card);
+    font-weight: var(--fw-semibold);
+    cursor: pointer;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--cb-emerald);
+    }
+
+    &.is-active {
+      border-color: var(--cb-mint);
+      background: var(--cb-mint);
+      color: var(--cb-ink);
+    }
+  }
+
+  &__note {
+    margin-top: 2rem;
+    color: var(--cb-ink-soft);
+    font-size: var(--cb-fs-card);
+  }
+}
+
+.cb-post-card[hidden] {
+  display: none;
+}

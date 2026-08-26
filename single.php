@@ -9,6 +9,38 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 ?>
 <main id="main" class="cb-post">
+	<?php
+	// A dark hero is structural, not decorative: the fixed header renders its
+	// logo and nav in cb-paper white, so a post opening on a light background
+	// would have an invisible header until the reader scrolls. See DESIGN.md.
+	$hero_id  = get_post_thumbnail_id();
+	$hero_url = $hero_id ? wp_get_attachment_image_url( $hero_id, 'full' ) : '';
+	$cats     = get_the_category();
+	?>
+	<section class="cb-hero cb-hero--bottom-curve">
+		<?php
+		if ( $hero_url ) {
+			?>
+		<div class="cb-hero__bg" style="background-image:url('<?= esc_url( $hero_url ); ?>');"></div>
+			<?php
+		}
+		?>
+		<div class="cb-hero__scrim"></div>
+		<div class="container">
+			<h1><?= esc_html( get_the_title() ); ?></h1>
+			<p class="cb-hero__intro">
+				<?php
+				if ( ! empty( $cats[0] ) ) {
+					?>
+				<?= esc_html( $cats[0]->name ); ?> &middot;
+					<?php
+				}
+				?>
+				<?= esc_html( get_the_date( 'j M Y' ) ); ?> &middot;
+				<?= esc_html( estimate_reading_time_in_minutes( get_the_content() ) ); ?> min read
+			</p>
+		</div>
+	</section>
 	<div class="container pt-4 pb-5">
 		<?php
 		if ( function_exists( 'yoast_breadcrumb' ) ) {
@@ -17,18 +49,14 @@ get_header();
 		?>
 		<div class="row">
 			<div class="col-lg-8">
-				<?php if ( has_post_thumbnail() ) { ?>
-				<div class="cb-post__hero">
-					<?= get_the_post_thumbnail( get_the_ID(), 'full', array( 'class' => 'cb-post__hero-img' ) ); ?>
-				</div>
-				<?php } ?>
-				<h1 class="cb-post__title"><?= esc_html( get_the_title() ); ?></h1>
-				<div class="cb-post__meta">
-					<span><?= esc_html( get_the_date( 'j M Y' ) ); ?></span>
-					<span><?= esc_html( estimate_reading_time_in_minutes( get_the_content() ) ); ?> min read</span>
-				</div>
 				<div class="cb-post__content">
-					<?= wp_kses_post( get_the_content() ); ?>
+					<?php
+					// the_content() applies the full filter chain, so blocks render and
+					// wpautop runs. get_the_content() returns raw, unrendered content, and
+					// wrapping it in wp_kses_post() strips <script> tags while keeping the
+					// script body as visible text.
+					the_content();
+					?>
 				</div>
 				<?php
 				$prev = get_previous_post();

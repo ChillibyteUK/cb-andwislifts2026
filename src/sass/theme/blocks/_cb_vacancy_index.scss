@@ -1,0 +1,102 @@
+// Ported from cb-turnpower2025's careers index. Their version themed off
+// --col-blue-* tokens, --wp--preset--color--* presets and hardcoded hex, none
+// of which exist here, so every colour is remapped to our --cb-* tokens.
+.cb-vacancy-index {
+  padding-block: var(--cb-section-y);
+
+  &__empty {
+    color: var(--cb-ink-soft);
+  }
+}
+
+.cb-vacancy-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 1px solid rgba(16, 66, 31, 0.12);
+  border-radius: var(--cb-radius-md);
+  background: var(--cb-paper);
+  box-shadow: var(--cb-shadow-soft);
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-bottom: 0.75rem;
+  }
+
+  &__badge {
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+    background: var(--cb-sage);
+    color: var(--cb-forest);
+    font-size: 0.75rem;
+    font-weight: var(--fw-semibold);
+    line-height: 1.6;
+
+    &--location {
+      background: var(--cb-mint);
+      color: var(--cb-ink);
+    }
+  }
+
+  h3 {
+    margin: 0 0 0.25rem;
+    color: var(--cb-forest);
+    font-size: var(--fs-card-title);
+    font-weight: var(--fw-semibold);
+  }
+
+  &__salary {
+    margin: 0 0 0.75rem;
+    color: var(--cb-emerald);
+    font-weight: var(--fw-semibold);
+  }
+
+  &__excerpt {
+    margin: 0 0 1rem;
+    color: var(--cb-ink-soft);
+    font-size: var(--cb-fs-card);
+    line-height: 1.55;
+  }
+
+  &__link {
+    margin-top: auto;
+    color: var(--cb-forest);
+    font-weight: var(--fw-semibold);
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+    }
+  }
+}
+
+.cb-vacancy {
+  &__body {
+    padding-block: var(--cb-section-y);
+  }
+
+  &__aside {
+    position: sticky;
+    top: 7rem;
+    padding: 1.25rem;
+    border-radius: var(--cb-radius-md);
+    background: var(--cb-sage);
+
+    h2 {
+      margin-top: 0;
+      font-size: var(--fs-card-title);
+    }
+  }
+
+  &__equality {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(16, 66, 31, 0.12);
+    color: var(--cb-ink-soft);
+    font-size: var(--cb-fs-card);
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "key": "group_cb_vacancy_index",
+  "title": "CB Vacancy Index",
+  "fields": [
+    {
+      "key": "field_cb_vacancy_index_message",
+      "label": "CB Vacancy Index",
+      "name": "",
+      "aria-label": "",
+      "type": "message",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "message": "",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    },
+    {
+      "key": "field_cb_vacancy_index_heading",
+      "label": "Heading",
+      "name": "heading",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "default_value": "Current vacancies",
+      "maxlength": "",
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_vacancy_index_empty",
+      "label": "No vacancies message",
+      "name": "no_vacancies_message",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "Shown when there are no open roles.",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "rows": 2,
+      "new_lines": "",
+      "default_value": "",
+      "maxlength": "",
+      "placeholder": ""
+    }
+  ],
+  "location": [
+    [ { "param": "block", "operator": "==", "value": "acf\/cb-vacancy-index" } ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1786924800
+}

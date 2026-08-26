@@ -1,0 +1,51 @@
+.cb-emergency {
+  padding-block: var(--cb-section-y);
+
+  &__inner {
+    padding: 2.5rem 1.5rem;
+    border-radius: var(--cb-radius-md);
+    background: var(--cb-forest);
+    color: var(--cb-paper);
+    text-align: center;
+
+    h2 {
+      margin: 0 0 0.5rem;
+      color: var(--cb-mint);
+    }
+  }
+
+  &__intro {
+    max-width: 42rem;
+    margin: 0 auto 1.5rem;
+    color: var(--cb-paper);
+  }
+
+  &__number {
+    display: inline-block;
+    color: var(--cb-mint);
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-bold);
+    line-height: 1.1;
+    letter-spacing: var(--ls-tight);
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--cb-paper);
+      text-decoration: underline;
+    }
+  }
+
+  &__pending {
+    margin: 0;
+    color: var(--cb-mint);
+    font-style: italic;
+  }
+
+  &__note {
+    max-width: 42rem;
+    margin: 1.25rem auto 0;
+    color: var(--cb-paper);
+    font-size: var(--cb-fs-card);
+  }
+}

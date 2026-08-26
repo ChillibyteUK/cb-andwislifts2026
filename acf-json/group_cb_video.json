@@ -1,0 +1,65 @@
+{
+  "key": "group_cb_video",
+  "title": "CB Video",
+  "fields": [
+    {
+      "key": "field_cb_video_message",
+      "label": "CB Video", "name": "", "aria-label": "", "type": "message",
+      "instructions": "", "required": 0, "conditional_logic": 0,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "message": "", "new_lines": "wpautop", "esc_html": 0
+    },
+    {
+      "key": "field_cb_video_heading",
+      "label": "Heading", "name": "heading", "aria-label": "", "type": "text",
+      "instructions": "", "required": false, "conditional_logic": false,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "default_value": "", "maxlength": "", "placeholder": "", "prepend": "", "append": ""
+    },
+    {
+      "key": "field_cb_video_intro",
+      "label": "Intro", "name": "intro", "aria-label": "", "type": "textarea",
+      "instructions": "", "required": false, "conditional_logic": false,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "rows": 3, "new_lines": "br", "default_value": "", "maxlength": "", "placeholder": ""
+    },
+    {
+      "key": "field_cb_video_url",
+      "label": "Video URL", "name": "video_url", "aria-label": "", "type": "url",
+      "instructions": "YouTube or Vimeo URL. Takes priority over an uploaded file.",
+      "required": false, "conditional_logic": false,
+      "wrapper": { "width": "50", "class": "", "id": "" },
+      "default_value": "", "placeholder": ""
+    },
+    {
+      "key": "field_cb_video_file",
+      "label": "Video file", "name": "video_file", "aria-label": "", "type": "file",
+      "instructions": "Upload an MP4 instead of using a URL.",
+      "required": false, "conditional_logic": false,
+      "wrapper": { "width": "50", "class": "", "id": "" },
+      "return_format": "array", "library": "all", "min_size": "", "max_size": "", "mime_types": "mp4,webm"
+    },
+    {
+      "key": "field_cb_video_poster",
+      "label": "Poster image", "name": "poster", "aria-label": "", "type": "image",
+      "instructions": "Shown as the still frame for an uploaded file, or on its own while the video is still to come.",
+      "required": false, "conditional_logic": false,
+      "wrapper": { "width": "50", "class": "", "id": "" },
+      "return_format": "array", "preview_size": "medium", "library": "all",
+      "min_width": 0, "min_height": 0, "min_size": 0,
+      "max_width": 0, "max_height": 0, "max_size": 0, "mime_types": ""
+    },
+    {
+      "key": "field_cb_video_caption",
+      "label": "Caption", "name": "caption", "aria-label": "", "type": "text",
+      "instructions": "", "required": false, "conditional_logic": false,
+      "wrapper": { "width": "50", "class": "", "id": "" },
+      "default_value": "", "maxlength": "", "placeholder": "", "prepend": "", "append": ""
+    }
+  ],
+  "location": [ [ { "param": "block", "operator": "==", "value": "acf\/cb-video" } ] ],
+  "menu_order": 0, "position": "normal", "style": "default",
+  "label_placement": "top", "instruction_placement": "label",
+  "hide_on_screen": "", "active": true, "description": "", "show_in_rest": 0,
+  "modified": 1786924800
+}

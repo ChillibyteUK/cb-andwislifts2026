@@ -36,3 +36,21 @@
   font-size: $h1-font-size;
   font-weight: $headings-font-weight;
 }
+
+// ACF Blocks v3 always renders the block's PHP preview in the editor canvas, so
+// the canvas needs the same styles the front end uses or every block looks
+// broken. Safe to do now that the fields live in the sidebar rather than the
+// canvas - importing these while fields rendered inline restyled ACF's own
+// field UI and made it unusable.
+//
+// Header and footer are deliberately excluded: they are global templates, not
+// blocks, and their fixed positioning fights the editor canvas.
+@import "theme/typography";
+@import "theme/colours";
+@import "theme/buttons";
+@import "theme/blocks/blocks";
+
+// The canvas has no page background of its own.
+.editor-styles-wrapper {
+  background: var(--cb-paper);
+}

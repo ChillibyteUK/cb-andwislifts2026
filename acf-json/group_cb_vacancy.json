@@ -1,0 +1,644 @@
+{
+  "key": "group_cb_vacancy",
+  "title": "Vacancy Details",
+  "fields": [
+    {
+      "key": "field_cb_vacancy_tab_role",
+      "label": "Role Content",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0,
+      "selected": 0
+    },
+    {
+      "key": "field_cb_vacancy_role_purpose",
+      "label": "Role Purpose",
+      "name": "role_purpose",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "A short summary of the role — displayed as the intro paragraph on the job post and truncated on the index listing.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "rows": 4,
+      "placeholder": "",
+      "new_lines": "br",
+      "maxlength": "",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_vacancy_key_resp",
+      "label": "Key Responsibilities",
+      "name": "key_responsibilities",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "One responsibility per line.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "rows": 6,
+      "placeholder": "",
+      "new_lines": "",
+      "maxlength": "",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_vacancy_skills",
+      "label": "Skills & Experience",
+      "name": "skills_experience",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "One skill or requirement per line.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "rows": 6,
+      "placeholder": "",
+      "new_lines": "",
+      "maxlength": "",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_vacancy_benefits",
+      "label": "Benefits",
+      "name": "benefits",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "One benefit per line.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "rows": 5,
+      "placeholder": "",
+      "new_lines": "",
+      "maxlength": "",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_vacancy_equality",
+      "label": "Equality & Inclusion Statement",
+      "name": "equality_inclusion",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "Standard equality and inclusion statement appended to every job post.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "The Company's aim is to treat all candidates equally and with respect, and to uphold its legal responsibility to ensure that no unlawful discrimination occurs in the recruitment and selection process on the grounds of gender, race, nationality, colour and ethnic or national origin, disability, age, marital or civil partnership status, sexual orientation, gender reassignment, pregnancy or maternity, and religion or belief. These are known as Protected Characteristics.",
+      "rows": 5,
+      "placeholder": "",
+      "new_lines": "br",
+      "maxlength": "",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_vacancy_tab_details",
+      "label": "Job Details",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0,
+      "selected": 0
+    },
+    {
+      "key": "field_cb_vacancy_emp_type",
+      "label": "Employment Type",
+      "name": "employment_type",
+      "aria-label": "",
+      "type": "select",
+      "instructions": "Used in Google JobPosting schema and displayed on the listing.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "FULL_TIME": "Full Time",
+        "PART_TIME": "Part Time",
+        "CONTRACTOR": "Contractor",
+        "TEMPORARY": "Temporary",
+        "INTERN": "Intern",
+        "VOLUNTEER": "Volunteer",
+        "PER_DIEM": "Per Diem",
+        "OTHER": "Other"
+      },
+      "default_value": "FULL_TIME",
+      "return_format": "value",
+      "multiple": 0,
+      "allow_null": 0,
+      "ui": 1,
+      "ajax": 0,
+      "placeholder": "",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_vacancy_tenure",
+      "label": "Tenure",
+      "name": "tenure",
+      "aria-label": "",
+      "type": "select",
+      "instructions": "The contract basis for this role.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "permanent": "Permanent",
+        "temporary": "Temporary",
+        "contract": "Contract",
+        "fixed_term": "Fixed Term",
+        "apprenticeship": "Apprenticeship",
+        "zero_hours": "Zero Hours"
+      },
+      "default_value": "permanent",
+      "return_format": "value",
+      "multiple": 0,
+      "allow_null": 0,
+      "ui": 1,
+      "ajax": 0,
+      "placeholder": "",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_vacancy_date_posted",
+      "label": "Date Posted",
+      "name": "date_posted",
+      "aria-label": "",
+      "type": "date_picker",
+      "instructions": "Defaults to the post publish date if left blank — used in schema only.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "display_format": "d/m/Y",
+      "return_format": "Y-m-d",
+      "first_day": 1,
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_vacancy_valid_through",
+      "label": "Valid Through",
+      "name": "valid_through",
+      "aria-label": "",
+      "type": "date_picker",
+      "instructions": "Closing date for applications — used in schema only.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "display_format": "d/m/Y",
+      "return_format": "Y-m-d",
+      "first_day": 1,
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_vacancy_tab_location",
+      "label": "Location",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0,
+      "selected": 0
+    },
+    {
+      "key": "field_cb_vacancy_location_type",
+      "label": "Location Type",
+      "name": "location_type",
+      "aria-label": "",
+      "type": "radio",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "office": "Office-based",
+        "remote": "Remote",
+        "hybrid": "Hybrid"
+      },
+      "default_value": "office",
+      "layout": "horizontal",
+      "return_format": "value",
+      "save_other_choice": 0,
+      "allow_null": 0,
+      "other_choice": 0,
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_vacancy_street",
+      "label": "Street Address",
+      "name": "street_address",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_cb_vacancy_location_type",
+            "operator": "!=",
+            "value": "remote"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "6 Four Seasons Crescent",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_vacancy_locality",
+      "label": "City / Locality",
+      "name": "address_locality",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_cb_vacancy_location_type",
+            "operator": "!=",
+            "value": "remote"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Sutton",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_vacancy_region",
+      "label": "Region",
+      "name": "address_region",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_cb_vacancy_location_type",
+            "operator": "!=",
+            "value": "remote"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "London",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_vacancy_postcode",
+      "label": "Postal Code",
+      "name": "postal_code",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_cb_vacancy_location_type",
+            "operator": "!=",
+            "value": "remote"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "SM3 9QR",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_vacancy_country",
+      "label": "Country",
+      "name": "address_country",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "ISO 3166-1 alpha-2 country code, e.g. GB",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_cb_vacancy_location_type",
+            "operator": "!=",
+            "value": "remote"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "GB",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_vacancy_tab_salary",
+      "label": "Salary",
+      "name": "",
+      "aria-label": "",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "placement": "top",
+      "endpoint": 0,
+      "selected": 0
+    },
+    {
+      "key": "field_cb_vacancy_salary_type",
+      "label": "Salary Type",
+      "name": "salary_type",
+      "aria-label": "",
+      "type": "radio",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "range": "Salary Range",
+        "negotiable": "Competitive / Negotiable"
+      },
+      "default_value": "range",
+      "layout": "horizontal",
+      "return_format": "value",
+      "save_other_choice": 0,
+      "allow_null": 0,
+      "other_choice": 0,
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_vacancy_min_salary",
+      "label": "Minimum Salary",
+      "name": "minimum_salary",
+      "aria-label": "",
+      "type": "number",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_cb_vacancy_salary_type",
+            "operator": "==",
+            "value": "range"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "min": "",
+      "max": "",
+      "step": "",
+      "prepend": "£",
+      "append": "",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_vacancy_max_salary",
+      "label": "Maximum Salary",
+      "name": "maximum_salary",
+      "aria-label": "",
+      "type": "number",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_cb_vacancy_salary_type",
+            "operator": "==",
+            "value": "range"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "min": "",
+      "max": "",
+      "step": "",
+      "prepend": "£",
+      "append": "",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_vacancy_salary_currency",
+      "label": "Currency",
+      "name": "salary_currency",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "ISO 4217 currency code, e.g. GBP",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_cb_vacancy_salary_type",
+            "operator": "==",
+            "value": "range"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "GBP",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_vacancy_salary_unit",
+      "label": "Salary Unit",
+      "name": "salary_unit",
+      "aria-label": "",
+      "type": "select",
+      "instructions": "Pay period — used in Google schema.",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_cb_vacancy_salary_type",
+            "operator": "==",
+            "value": "range"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "YEAR": "Per Year",
+        "MONTH": "Per Month",
+        "WEEK": "Per Week",
+        "DAY": "Per Day",
+        "HOUR": "Per Hour"
+      },
+      "default_value": "YEAR",
+      "return_format": "value",
+      "multiple": 0,
+      "allow_null": 0,
+      "ui": 1,
+      "ajax": 0,
+      "placeholder": "",
+      "allow_in_bindings": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "vacancy"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "permalink",
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "revisions",
+    "slug",
+    "author",
+    "format",
+    "featured_image",
+    "categories",
+    "tags",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": "Fields for the Careers custom post type — supports Google JobPosting schema.",
+  "show_in_rest": 0,
+  "display_title": "",
+  "modified": 1787132264
+}

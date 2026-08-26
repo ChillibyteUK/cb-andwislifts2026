@@ -2,7 +2,7 @@
 /**
  * Template for displaying the blog index page.
  *
- * @package cb-starlight2025
+ * @package cb-andwislifts2026
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -11,32 +11,37 @@ $page_for_posts = get_option( 'page_for_posts' );
 
 $block_id = 'blog-index-hero';
 
+$hero_id          = get_post_thumbnail_id( $page_for_posts );
+$hero_url         = $hero_id ? wp_get_attachment_image_url( $hero_id, 'full' ) : '';
+$posts_page_intro = $page_for_posts ? get_post_field( 'post_excerpt', $page_for_posts ) : '';
+
 get_header();
 
 ?>
 <main id="main">
-	<section id="<?= esc_attr( $block_id ); ?>" class="cb-hero cb-hero--short">
-		<div class="cb-hero__bg" aria-hidden="true">
-			<?= get_the_post_thumbnail( $page_for_posts, 'full', array( 'class' => 'cb-hero__img' ) ); ?>
-		</div>
-		<div class="cb-hero__overlay" aria-hidden="true"></div>
+	<section id="<?= esc_attr( $block_id ); ?>" class="cb-hero cb-hero--bottom-curve">
+		<?php
+		if ( $hero_url ) {
+			?>
+		<div class="cb-hero__bg" style="background-image:url('<?= esc_url( $hero_url ); ?>');"></div>
+			<?php
+		}
+		?>
+		<div class="cb-hero__scrim"></div>
 		<div class="container">
-			<div class="row">
-				<div class="col-md-8 has-white-color">
-					<h1 class="mb-4"><?= esc_html( get_the_title( $page_for_posts ) ); ?></h1>
-					<div class="cb-hero__ctas">
-						<a href="/contact/" class="button button--primary">Contact our team</a>
-					</div>
-				</div>
-			</div>
+			<h1><?= esc_html( get_the_title( $page_for_posts ) ); ?></h1>
+			<?php
+			if ( $posts_page_intro ) {
+				?>
+			<p class="cb-hero__intro"><?= esc_html( $posts_page_intro ); ?></p>
+				<?php
+			}
+			?>
 		</div>
 	</section>
     <section class="cb-post-index mt-5">
         <div class="container pb-5">
             <?php
-			// phpcs:disable
-			/*
-            // Get all categories for filter buttons.
             $all_categories = get_categories(
 				array(
 					'hide_empty' => true,
@@ -45,27 +50,21 @@ get_header();
 				)
 			);
 
-            if ( ! empty( $all_categories ) ) {
-                ?>
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <div class="filter-buttons text-center">
-                            <button class="btn btn-outline-primary filter-btn active" data-filter="all">All</button>
-                            <?php
-							foreach ( $all_categories as $category ) {
-								?>
-                                <button class="btn btn-outline-primary filter-btn" data-filter="<?= esc_attr( $category->slug ); ?>"><?= esc_html( $category->name ); ?></button>
-                            	<?php
-							}
-							?>
-                        </div>
-                    </div>
-                </div>
-                <?php
-            }
-			*/
-			// phpcs:enable
-            ?>
+            if ( count( $all_categories ) > 1 ) {
+				?>
+            <div class="cb-post-index__filter" role="group" aria-label="Filter news by topic">
+                <button type="button" class="cb-post-index__chip is-active" data-filter="all">All</button>
+				<?php
+				foreach ( $all_categories as $category ) {
+					?>
+                <button type="button" class="cb-post-index__chip" data-filter="<?= esc_attr( $category->slug ); ?>"><?= esc_html( $category->name ); ?></button>
+					<?php
+				}
+				?>
+            </div>
+				<?php
+			}
+			?>
             <div class="cb-post-grid">
             <?php
             $q = new WP_Query(
@@ -83,8 +82,9 @@ get_header();
 					$q->the_post();
 					$categories     = get_the_category();
 					$first_category = ( ! empty( $categories ) && ! is_wp_error( $categories ) ) ? $categories[0] : null;
+					$cat_slugs      = ( $categories && ! is_wp_error( $categories ) ) ? implode( ' ', wp_list_pluck( $categories, 'slug' ) ) : '';
 					?>
-				<a href="<?= esc_url( get_permalink() ); ?>" class="cb-post-card">
+				<a href="<?= esc_url( get_permalink() ); ?>" class="cb-post-card" data-categories="<?= esc_attr( $cat_slugs ); ?>">
 					<div class="cb-post-card__image-wrap">
 						<?php
 						if ( has_post_thumbnail() ) {
@@ -114,9 +114,44 @@ get_header();
             wp_reset_postdata();
             ?>
             </div>
+            <p class="cb-post-index__note">Media enquiries: <a href="mailto:media@andwislifts.com">media@andwislifts.com</a></p>
         </div>
     </section>
 </main>
+<?php
+add_action(
+	'wp_footer',
+	function () {
+		?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	var index = document.querySelector('.cb-post-index');
+	if (!index) return;
+
+	var chips = index.querySelectorAll('.cb-post-index__chip');
+	var cards = index.querySelectorAll('.cb-post-card');
+	if (!chips.length) return;
+
+	chips.forEach(function (chip) {
+		chip.addEventListener('click', function () {
+			var filter = chip.getAttribute('data-filter');
+
+			chips.forEach(function (c) { c.classList.remove('is-active'); });
+			chip.classList.add('is-active');
+
+			cards.forEach(function (card) {
+				var cats = (card.getAttribute('data-categories') || '').split(' ');
+				card.hidden = !(filter === 'all' || cats.indexOf(filter) !== -1);
+			});
+		});
+	});
+});
+</script>
+		<?php
+	},
+	9999
+);
+?>
 <?php
 add_action(
 	'wp_footer',

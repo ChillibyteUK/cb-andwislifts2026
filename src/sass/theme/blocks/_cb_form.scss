@@ -1,0 +1,112 @@
+// Shared Gravity Forms theming.
+//
+// Applied to every scope where the theme renders a form: the CB Form block and
+// the apply panel on single-vacancy.php. Deliberately scoped to those rather
+// than bare .gform_wrapper, so a form embedded anywhere else keeps GF defaults.
+// Add new scopes to this selector list rather than duplicating the block.
+.cb-form .gform_wrapper,
+.cb-vacancy .gform_wrapper {
+  // GF's orbital theme styles its button through these custom properties at a
+  // specificity our .btn-primary rules cannot beat. Setting them is the
+  // supported way in - it hands control back without a war.
+  --gf-ctrl-btn-bg-color-primary: var(--cb-mint);
+  --gf-ctrl-btn-bg-color-hover-primary: var(--cb-forest);
+  --gf-ctrl-btn-bg-color-focus-primary: var(--cb-forest);
+  --gf-ctrl-btn-color-primary: var(--cb-ink);
+  --gf-ctrl-btn-color-hover-primary: var(--cb-paper);
+  --gf-ctrl-btn-color-focus-primary: var(--cb-paper);
+  --gf-ctrl-btn-icon-color-primary: var(--cb-ink);
+  --gf-ctrl-btn-icon-color-hover-primary: var(--cb-paper);
+  --gf-ctrl-btn-icon-color-focus-primary: var(--cb-paper);
+  --gf-ctrl-btn-border-color-primary: transparent;
+  --gf-ctrl-btn-border-color-hover-primary: transparent;
+  --gf-ctrl-btn-border-color-focus-primary: transparent;
+  --gf-ctrl-btn-border-width-primary: 0;
+
+  .gform_required_legend {
+    display: none;
+  }
+
+  .gfield_label {
+    color: var(--cb-forest);
+    font-weight: var(--fw-semibold);
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(16, 66, 31, 0.2);
+    border-radius: var(--cb-radius-md);
+    background: var(--cb-paper);
+    color: var(--cb-ink);
+    font-size: var(--cb-fs-card);
+
+    &:focus {
+      border-color: var(--cb-emerald);
+      outline: 2px solid rgba(0, 179, 107, 0.25);
+      outline-offset: 1px;
+    }
+  }
+
+  // GF sets rows on the textarea, which drives its height and ignores
+  // min-height. Fix the height here and let the user drag it taller if needed.
+  textarea {
+    height: 9rem;
+    min-height: 9rem;
+    resize: vertical;
+  }
+
+  // The consent checkbox label carries a link to the privacy policy. Without
+  // this it inherits the label colour and does not read as a link.
+  .gfield_consent_label a,
+  .gform-field-label a {
+    color: var(--cb-forest);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--cb-emerald);
+    }
+  }
+
+  .gform_footer {
+    padding-block: 1rem 0;
+  }
+
+  // The theme's gform_submit_button filter outputs a label plus an arrow SVG,
+  // with Bootstrap's w-100, so the button stays full width by design.
+  .gform_footer .gform_button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    svg {
+      width: 1.1em;
+      height: 1.1em;
+      flex: 0 0 auto;
+    }
+  }
+}
+
+.cb-form {
+  padding-block: var(--cb-section-y);
+
+  &__wrap {
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+}
+
+.cb-form__placeholder {
+  padding: 1.25rem;
+  border: 1px dashed rgba(16, 66, 31, 0.3);
+  border-radius: var(--cb-radius-md);
+  color: var(--cb-ink-soft);
+  text-align: center;
+}

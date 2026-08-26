@@ -14,98 +14,147 @@
  */
 function cb_register_post_types() {
 
-	register_post_type(
-		'application',
-		array(
-			'labels'              => array(
-				'name'               => 'Applications',
-				'singular_name'      => 'Application',
-				'add_new_item'       => 'Add New Application',
-				'edit_item'          => 'Edit Application',
-				'new_item'           => 'New Application',
-				'view_item'          => 'View Application',
-				'search_items'       => 'Search Applications',
-				'not_found'          => 'No applications found',
-				'not_found_in_trash' => 'No applications in trash',
-			),
-			'has_archive'         => false,
-			'public'              => true,
-			'publicly_queryable'  => true,
-			'exclude_from_search' => true,
-			'show_in_nav_menus'   => true,
-			'show_ui'             => true,
-			'show_in_menu'        => true,
-			'show_in_rest'        => true,
-			'menu_position'       => 26,
-			'menu_icon'           => 'dashicons-portfolio',
-			'supports'            => array( 'title', 'editor', 'thumbnail' ),
-			'capability_type'     => 'post',
-			'map_meta_cap'        => true,
-			'rewrite'             => array( 'slug' => 'applications' ),
-		)
-	);
+	/*
+	Applications and Products are not part of the andwis lifts site. Left here,
+	disabled, in case a later phase needs them. Both were empty when disabled.
+
+	register_post_type( 'application', ... );
+	register_post_type( 'product', ... );
+	*/
 
 	register_post_type(
-		'product',
+		'service',
 		array(
 			'labels'              => array(
-				'name'               => 'Products',
-				'singular_name'      => 'Product',
-				'add_new_item'       => 'Add New Product',
-				'edit_item'          => 'Edit Product',
-				'new_item'           => 'New Product',
-				'view_item'          => 'View Product',
-				'search_items'       => 'Search Products',
-				'not_found'          => 'No products found',
-				'not_found_in_trash' => 'No products in trash',
+				'name'               => 'Services',
+				'singular_name'      => 'Service',
+				'add_new_item'       => 'Add New Service',
+				'edit_item'          => 'Edit Service',
+				'new_item'           => 'New Service',
+				'view_item'          => 'View Service',
+				'search_items'       => 'Search Services',
+				'not_found'          => 'No services found',
+				'not_found_in_trash' => 'No services in trash',
 			),
 			'has_archive'         => false,
 			'public'              => true,
 			'publicly_queryable'  => true,
-			'exclude_from_search' => true,
+			'exclude_from_search' => false,
 			'show_in_nav_menus'   => true,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
 			'show_in_rest'        => true,
-			'menu_position'       => 26,
-			'menu_icon'           => 'dashicons-cart',
-			'supports'            => array( 'title', 'editor', 'thumbnail' ),
+			'menu_position'       => 21,
+			'menu_icon'           => 'dashicons-admin-tools',
+			'supports'            => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt' ),
 			'capability_type'     => 'post',
 			'map_meta_cap'        => true,
 			'rewrite'             => array(
-				'slug'       => 'products',
+				'slug'       => 'lift-services',
 				'with_front' => false,
 			),
 		)
 	);
 
 	register_post_type(
-		'project',
+		'sector',
 		array(
 			'labels'              => array(
-				'name'               => 'Projects',
-				'singular_name'      => 'Project',
-				'add_new_item'       => 'Add New Project',
-				'edit_item'          => 'Edit Project',
-				'new_item'           => 'New Project',
-				'view_item'          => 'View Project',
-				'search_items'       => 'Search Projects',
-				'not_found'          => 'No projects found',
-				'not_found_in_trash' => 'No projects in trash',
+				'name'               => 'Sectors',
+				'singular_name'      => 'Sector',
+				'add_new_item'       => 'Add New Sector',
+				'edit_item'          => 'Edit Sector',
+				'new_item'           => 'New Sector',
+				'view_item'          => 'View Sector',
+				'search_items'       => 'Search Sectors',
+				'not_found'          => 'No sectors found',
+				'not_found_in_trash' => 'No sectors in trash',
 			),
 			'has_archive'         => false,
 			'public'              => true,
 			'publicly_queryable'  => true,
-			'exclude_from_search' => true,
-			'show_in_nav_menus'   => false,
+			'exclude_from_search' => false,
+			'show_in_nav_menus'   => true,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
 			'show_in_rest'        => true,
-			'menu_position'       => 26,
-			'menu_icon'           => 'dashicons-clipboard',
-			'supports'            => array( 'title', 'editor', 'thumbnail' ),
+			'menu_position'       => 22,
+			'menu_icon'           => 'dashicons-building',
+			'supports'            => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt' ),
 			'capability_type'     => 'post',
 			'map_meta_cap'        => true,
+			'rewrite'             => array(
+				'slug'       => 'sectors',
+				'with_front' => false,
+			),
+		)
+	);
+
+	register_post_type(
+		'case_study',
+		array(
+			'labels'              => array(
+				'name'               => 'Case Studies',
+				'singular_name'      => 'Case Study',
+				'add_new_item'       => 'Add New Case Study',
+				'edit_item'          => 'Edit Case Study',
+				'new_item'           => 'New Case Study',
+				'view_item'          => 'View Case Study',
+				'search_items'       => 'Search Case Studies',
+				'not_found'          => 'No case studies found',
+				'not_found_in_trash' => 'No case studies in trash',
+			),
+			'has_archive'         => false,
+			'public'              => true,
+			'publicly_queryable'  => true,
+			'exclude_from_search' => false,
+			'show_in_nav_menus'   => true,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'show_in_rest'        => true,
+			'menu_position'       => 23,
+			'menu_icon'           => 'dashicons-portfolio',
+			'supports'            => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt' ),
+			'capability_type'     => 'post',
+			'map_meta_cap'        => true,
+			'rewrite'             => array(
+				'slug'       => 'case-studies',
+				'with_front' => false,
+			),
+		)
+	);
+
+	register_post_type(
+		'vacancy',
+		array(
+			'labels'              => array(
+				'name'               => 'Vacancies',
+				'singular_name'      => 'Vacancy',
+				'add_new_item'       => 'Add New Vacancy',
+				'edit_item'          => 'Edit Vacancy',
+				'new_item'           => 'New Vacancy',
+				'view_item'          => 'View Vacancy',
+				'search_items'       => 'Search Vacancies',
+				'not_found'          => 'No vacancies found',
+				'not_found_in_trash' => 'No vacancies in trash',
+			),
+			'has_archive'         => false,
+			'public'              => true,
+			'publicly_queryable'  => true,
+			'exclude_from_search' => false,
+			'show_in_nav_menus'   => true,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'show_in_rest'        => true,
+			'menu_position'       => 24,
+			'menu_icon'           => 'dashicons-groups',
+			'supports'            => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt' ),
+			'capability_type'     => 'post',
+			'map_meta_cap'        => true,
+			'rewrite'             => array(
+				'slug'       => 'careers/vacancies',
+				'with_front' => false,
+			),
 		)
 	);
 }
@@ -113,13 +162,16 @@ function cb_register_post_types() {
 add_action( 'init', 'cb_register_post_types' );
 
 /**
- * Use the page template for single product views.
+ * Use the page template for block-built single views.
+ *
+ * These post types are composed from ACF blocks in the editor, exactly like a
+ * page, so they render through page.php rather than single.php.
  *
  * @param string $template Path to the template file.
  * @return string
  */
-function cb_product_single_template( $template ) {
-	if ( is_singular( 'product' ) ) {
+function cb_cpt_single_template( $template ) {
+	if ( is_singular( array( 'service', 'sector' ) ) ) {
 		$page_template = locate_template( 'page.php' );
 		if ( $page_template ) {
 			return $page_template;
@@ -127,10 +179,68 @@ function cb_product_single_template( $template ) {
 	}
 	return $template;
 }
-add_filter( 'single_template', 'cb_product_single_template' );
+add_filter( 'single_template', 'cb_cpt_single_template' );
 
 /**
- * Flush rewrite rules on theme activation so the /products slug works.
+ * Build a normalised set of cards from the Service or Sector post types.
+ *
+ * Returns rows shaped like the manual "cards" repeater on the CB Service Cards
+ * block, so both sources render through the same markup.
+ *
+ * @param string $source   One of service_all, service_select, service_related,
+ *                         sector_all or sector_select.
+ * @param int    $limit    Maximum cards to return. 0 for no limit.
+ * @param array  $selected Post IDs chosen in the editor, for the _select sources.
+ * @return array
+ */
+function cb_get_cpt_cards( $source, $limit = 0, $selected = array() ) {
+	$cards     = array();
+	$post_type = ( 0 === strpos( $source, 'sector' ) ) ? 'sector' : 'service';
+
+	$args = array(
+		'post_type'              => $post_type,
+		'post_status'            => 'publish',
+		'posts_per_page'         => $limit > 0 ? $limit : -1,
+		'orderby'                => array(
+			'menu_order' => 'ASC',
+			'title'      => 'ASC',
+		),
+		'no_found_rows'          => true,
+		'update_post_term_cache' => false,
+	);
+
+	if ( 'service_related' === $source ) {
+		$selected = get_field( 'related_services', get_the_ID() );
+	}
+
+	if ( 'service_all' !== $source && 'sector_all' !== $source ) {
+		if ( empty( $selected ) ) {
+			return $cards;
+		}
+		$args['post__in'] = array_map( 'intval', (array) $selected );
+		$args['orderby']  = 'post__in';
+	}
+
+	$query = new WP_Query( $args );
+
+	foreach ( $query->posts as $item ) {
+		$cards[] = array(
+			'icon'        => get_field( 'card_icon', $item->ID ),
+			'title'       => get_the_title( $item ),
+			'description' => get_field( 'card_summary', $item->ID ),
+			'link'        => array(
+				'url'    => get_permalink( $item ),
+				'title'  => __( 'Learn more', 'cb-andwislifts2026' ),
+				'target' => '',
+			),
+		);
+	}
+
+	return $cards;
+}
+
+/**
+ * Flush rewrite rules on theme activation so the custom post type slugs work.
  */
 function cb_flush_rewrites() {
 	cb_register_post_types();

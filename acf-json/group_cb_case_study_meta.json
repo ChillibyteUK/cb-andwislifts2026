@@ -1,0 +1,208 @@
+{
+  "key": "group_cb_case_study_meta",
+  "title": "Case Study Details",
+  "fields": [
+    {
+      "key": "field_cb_case_study_card_summary",
+      "label": "Card summary",
+      "name": "card_summary",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "Short teaser shown wherever this case study appears in a listing.",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "rows": 3,
+      "new_lines": "",
+      "default_value": "",
+      "maxlength": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_cb_case_study_card_image",
+      "label": "Card icon",
+      "name": "card_icon",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "Optional image shown on listing cards.",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "min_width": 0,
+      "min_height": 0,
+      "min_size": 0,
+      "max_width": 0,
+      "max_height": 0,
+      "max_size": 0,
+      "mime_types": ""
+    },
+    {
+      "key": "field_cb_case_study_client",
+      "label": "Client or project name",
+      "name": "client_name",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "Shown under the title. Leave empty where the client must stay anonymous.",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_case_study_challenge",
+      "label": "The challenge",
+      "name": "challenge",
+      "aria-label": "",
+      "type": "wysiwyg",
+      "instructions": "What the client needed, what the building required, or the problem to solve.",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "tabs": "all",
+      "toolbar": "basic",
+      "media_upload": 0,
+      "delay": 0,
+      "default_value": ""
+    },
+    {
+      "key": "field_cb_case_study_did",
+      "label": "What we did",
+      "name": "what_we_did",
+      "aria-label": "",
+      "type": "wysiwyg",
+      "instructions": "Scope, approach and any notable aspects of the project or account.",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "tabs": "all",
+      "toolbar": "basic",
+      "media_upload": 0,
+      "delay": 0,
+      "default_value": ""
+    },
+    {
+      "key": "field_cb_case_study_result",
+      "label": "The result",
+      "name": "result",
+      "aria-label": "",
+      "type": "wysiwyg",
+      "instructions": "Outcome - what the client now has, what improved, any measurable results.",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "tabs": "all",
+      "toolbar": "basic",
+      "media_upload": 0,
+      "delay": 0,
+      "default_value": ""
+    },
+    {
+      "key": "field_cb_case_study_services",
+      "label": "Services",
+      "name": "related_services",
+      "aria-label": "",
+      "type": "relationship",
+      "instructions": "Which services this case study covers. Drives the \"filter by service type\" control on the case studies hub.",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "post_type": [
+        "service"
+      ],
+      "post_status": [
+        "publish"
+      ],
+      "taxonomy": "",
+      "filters": [
+        "search"
+      ],
+      "return_format": "id",
+      "min": 0,
+      "max": 0,
+      "elements": ""
+    },
+    {
+      "key": "field_cb_case_study_sectors",
+      "label": "Sectors",
+      "name": "related_sectors",
+      "aria-label": "",
+      "type": "relationship",
+      "instructions": "Which sectors this case study sits in. Drives the \"filter by sector\" control on the case studies hub.",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "post_type": [
+        "sector"
+      ],
+      "post_status": [
+        "publish"
+      ],
+      "taxonomy": "",
+      "filters": [
+        "search"
+      ],
+      "return_format": "id",
+      "min": 0,
+      "max": 0,
+      "elements": ""
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "case_study"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1787135018
+}

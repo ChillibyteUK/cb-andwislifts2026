@@ -94,6 +94,15 @@ $display_labels = array_slice( $display_labels, 0, 10 );
 	</div>
 </section>
 
+<?php
+// Emitted on wp_footer rather than inline. An inline <script> inside an ACF
+// block's output breaks its preview in the editor ("This block has encountered
+// an error and cannot be previewed") - the other blocks in this theme already
+// use this pattern.
+add_action(
+	'wp_footer',
+	function () use ( $section_id ) {
+		?>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 	var section = document.getElementById(<?= wp_json_encode( $section_id ); ?>);
@@ -144,3 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	updateParallax();
 });
 </script>
+		<?php
+	},
+	9999
+);

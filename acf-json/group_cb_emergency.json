@@ -1,0 +1,31 @@
+{
+  "key": "group_cb_emergency",
+  "title": "CB Emergency",
+  "fields": [
+    { "key": "field_cb_emergency_message", "label": "CB Emergency", "name": "", "aria-label": "", "type": "message",
+      "instructions": "", "required": 0, "conditional_logic": 0,
+      "wrapper": { "width": "", "class": "", "id": "" }, "message": "", "new_lines": "wpautop", "esc_html": 0 },
+    { "key": "field_cb_emergency_heading", "label": "Heading", "name": "heading", "aria-label": "", "type": "text",
+      "instructions": "", "required": false, "conditional_logic": false,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "default_value": "24/7 emergency callout", "maxlength": "", "placeholder": "", "prepend": "", "append": "" },
+    { "key": "field_cb_emergency_intro", "label": "Intro", "name": "intro", "aria-label": "", "type": "textarea",
+      "instructions": "", "required": false, "conditional_logic": false,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "rows": 2, "new_lines": "br", "default_value": "", "maxlength": "", "placeholder": "" },
+    { "key": "field_cb_emergency_phone", "label": "Phone override", "name": "phone_override", "aria-label": "", "type": "text",
+      "instructions": "Leave empty to use the number from Site-Wide Settings.",
+      "required": false, "conditional_logic": false,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "default_value": "", "maxlength": "", "placeholder": "", "prepend": "", "append": "" },
+    { "key": "field_cb_emergency_note", "label": "Note", "name": "note", "aria-label": "", "type": "textarea",
+      "instructions": "Shown under the number. Basic HTML allowed.",
+      "required": false, "conditional_logic": false,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "rows": 2, "new_lines": "br", "default_value": "", "maxlength": "", "placeholder": "" }
+  ],
+  "location": [ [ { "param": "block", "operator": "==", "value": "acf\/cb-emergency" } ] ],
+  "menu_order": 0, "position": "normal", "style": "default",
+  "label_placement": "top", "instruction_placement": "label",
+  "hide_on_screen": "", "active": true, "description": "", "show_in_rest": 0, "modified": 1786924800
+}

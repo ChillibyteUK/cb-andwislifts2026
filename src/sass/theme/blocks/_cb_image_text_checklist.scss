@@ -28,6 +28,19 @@
     transform-origin: center;
   }
 
+  // Single style: one circular image filling the media column, as on Turnpower.
+  // No dots, no parallax, no absolute positioning.
+  &__media--single {
+    aspect-ratio: 1 / 1;
+
+    .cb-image-text-checklist__fig--1 {
+      position: static;
+      inset: auto;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   &__fig {
     position: absolute;
     border-radius: 50%;

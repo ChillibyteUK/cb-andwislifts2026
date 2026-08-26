@@ -135,7 +135,7 @@ if ( session_status() === PHP_SESSION_NONE ) {
 						'container'      => false,
 						'menu_class'     => 'navbar-nav align-items-xl-center',
 						'fallback_cb'    => '',
-						'depth'          => 1,
+						'depth'          => 2,
 						'walker'         => new Understrap_WP_Bootstrap_Navwalker(),
 					)
 				);

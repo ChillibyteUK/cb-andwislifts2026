@@ -19,14 +19,149 @@ function acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_news_index',
+				'title'           => __( 'CB News Index' ),
+				'category'        => 'layout',
+				'icon'            => 'admin-post',
+				'render_template' => 'blocks/cb-news-index.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_emergency',
+				'title'           => __( 'CB Emergency' ),
+				'category'        => 'layout',
+				'icon'            => 'phone',
+				'render_template' => 'blocks/cb-emergency.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_case_study_index',
+				'title'           => __( 'CB Case Study Index' ),
+				'category'        => 'layout',
+				'icon'            => 'portfolio',
+				'render_template' => 'blocks/cb-case-study-index.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_downloads',
+				'title'           => __( 'CB Downloads' ),
+				'category'        => 'layout',
+				'icon'            => 'download',
+				'render_template' => 'blocks/cb-downloads.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_faqs',
+				'title'           => __( 'CB FAQs' ),
+				'category'        => 'layout',
+				'icon'            => 'editor-help',
+				'render_template' => 'blocks/cb-faqs.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_video',
+				'title'           => __( 'CB Video' ),
+				'category'        => 'layout',
+				'icon'            => 'video-alt3',
+				'render_template' => 'blocks/cb-video.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_vacancy_index',
+				'title'           => __( 'CB Vacancy Index' ),
+				'category'        => 'layout',
+				'icon'            => 'groups',
+				'render_template' => 'blocks/cb-vacancy-index.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_form',
+				'title'           => __( 'CB Form' ),
+				'category'        => 'layout',
+				'icon'            => 'feedback',
+				'render_template' => 'blocks/cb-form.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_pill_strip',
 				'title'           => __( 'CB Pill Strip' ),
 				'category'        => 'layout',
 				'icon'            => 'cover-image',
 				'render_template' => 'blocks/cb-pill-strip.php',
-				'mode'            => 'edit',
+				'api_version'     => 3,
 				'supports'        => array(
-					'mode'      => false,
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
@@ -42,9 +177,8 @@ function acf_blocks() {
 				'category'        => 'layout',
 				'icon'            => 'cover-image',
 				'render_template' => 'blocks/cb-contact-cards.php',
-				'mode'            => 'edit',
+				'api_version'     => 3,
 				'supports'        => array(
-					'mode'      => false,
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
@@ -60,9 +194,8 @@ function acf_blocks() {
 				'category'        => 'layout',
 				'icon'            => 'cover-image',
 				'render_template' => 'blocks/cb-customer-grid.php',
-				'mode'            => 'edit',
+				'api_version'     => 3,
 				'supports'        => array(
-					'mode'      => false,
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
@@ -78,9 +211,8 @@ function acf_blocks() {
 				'category'        => 'layout',
 				'icon'            => 'cover-image',
 				'render_template' => 'blocks/cb-sectors.php',
-				'mode'            => 'edit',
+				'api_version'     => 3,
 				'supports'        => array(
-					'mode'      => false,
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
@@ -96,9 +228,8 @@ function acf_blocks() {
 				'category'        => 'layout',
 				'icon'            => 'cover-image',
 				'render_template' => 'blocks/cb-stats.php',
-				'mode'            => 'edit',
+				'api_version'     => 3,
 				'supports'        => array(
-					'mode'      => false,
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
@@ -114,9 +245,8 @@ function acf_blocks() {
 				'category'        => 'layout',
 				'icon'            => 'cover-image',
 				'render_template' => 'blocks/cb-logo-flow.php',
-				'mode'            => 'edit',
+				'api_version'     => 3,
 				'supports'        => array(
-					'mode'      => false,
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
@@ -132,9 +262,8 @@ function acf_blocks() {
 				'category'        => 'layout',
 				'icon'            => 'cover-image',
 				'render_template' => 'blocks/cb-compliance.php',
-				'mode'            => 'edit',
+				'api_version'     => 3,
 				'supports'        => array(
-					'mode'      => false,
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
@@ -150,9 +279,8 @@ function acf_blocks() {
 				'category'        => 'layout',
 				'icon'            => 'cover-image',
 				'render_template' => 'blocks/cb-feature-accordion.php',
-				'mode'            => 'edit',
+				'api_version'     => 3,
 				'supports'        => array(
-					'mode'      => false,
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
@@ -168,9 +296,8 @@ function acf_blocks() {
 				'category'        => 'layout',
 				'icon'            => 'cover-image',
 				'render_template' => 'blocks/cb-service-cards.php',
-				'mode'            => 'edit',
+				'api_version'     => 3,
 				'supports'        => array(
-					'mode'      => false,
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
@@ -186,9 +313,8 @@ function acf_blocks() {
 				'category'        => 'layout',
 				'icon'            => 'cover-image',
 				'render_template' => 'blocks/cb-image-text-checklist.php',
-				'mode'            => 'edit',
+				'api_version'     => 3,
 				'supports'        => array(
-					'mode'      => false,
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
@@ -204,9 +330,8 @@ function acf_blocks() {
 				'category'        => 'layout',
 				'icon'            => 'cover-image',
 				'render_template' => 'blocks/cb-hero.php',
-				'mode'            => 'edit',
+				'api_version'     => 3,
 				'supports'        => array(
-					'mode'      => false,
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
@@ -218,6 +343,52 @@ function acf_blocks() {
     }
 }
 add_action( 'acf/init', 'acf_blocks' );
+
+/**
+ * Opt every ACF block into ACF Blocks v3.
+ *
+ * WordPress 7.1 forces the block editor into an iframe, and only ACF Blocks v3
+ * is iframe-compatible. On v1/v2 the fields fail to initialise inside the
+ * iframe - WYSIWYG fields throw during quicktags setup and take the whole block
+ * form down with them.
+ *
+ * v3 removes the edit/preview mode concept: blocks always render their preview,
+ * and fields are edited in the sidebar or the larger pop-out panel behind the
+ * pencil icon in the block toolbar.
+ *
+ * @param integer $version The default ACF block version.
+ * @param array   $block   The block settings.
+ * @return integer
+ */
+function cb_acf_block_version( $version, $block ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
+	return 3;
+}
+add_filter( 'acf/blocks/default_block_version', 'cb_acf_block_version', 10, 2 );
+
+
+/**
+ * Populate the CB Form block's form picker from the active Gravity Forms.
+ *
+ * Keeps the choices in sync with whatever forms exist rather than hardcoding
+ * IDs in the field group JSON.
+ *
+ * @param array $field The ACF field array.
+ * @return array
+ */
+function cb_form_id_choices( $field ) {
+	$field['choices'] = array();
+
+	if ( ! class_exists( 'GFAPI' ) ) {
+		return $field;
+	}
+
+	foreach ( GFAPI::get_forms() as $form ) {
+		$field['choices'][ $form['id'] ] = $form['title'];
+	}
+
+	return $field;
+}
+add_filter( 'acf/load_field/key=field_cb_form_form_id', 'cb_form_id_choices' );
 
 // Auto-sync ACF field groups from acf-json folder.
 add_filter(

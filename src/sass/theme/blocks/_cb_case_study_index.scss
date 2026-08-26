@@ -1,0 +1,119 @@
+.cb-case-study-index {
+  padding-block: var(--cb-section-y);
+
+  &__filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__chip {
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(16, 66, 31, 0.2);
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--cb-forest);
+    font-size: var(--cb-fs-card);
+    font-weight: var(--fw-semibold);
+    cursor: pointer;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--cb-emerald);
+    }
+
+    &.is-active {
+      border-color: var(--cb-mint);
+      background: var(--cb-mint);
+      color: var(--cb-ink);
+    }
+  }
+
+  &__col[hidden] {
+    display: none;
+  }
+
+  &__empty {
+    color: var(--cb-ink-soft);
+  }
+}
+
+.cb-case-study-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(16, 66, 31, 0.12);
+  border-radius: var(--cb-radius-md);
+  background: var(--cb-paper);
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 300ms ease;
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: var(--cb-shadow-soft);
+    color: inherit;
+
+    .cb-case-study-card__cta {
+      background: var(--cb-forest);
+      color: var(--cb-paper);
+    }
+  }
+
+  &__media {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--cb-sage);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.25rem;
+  }
+
+  h3 {
+    margin: 0;
+    color: var(--cb-forest);
+    font-size: var(--fs-card-title);
+    font-weight: var(--fw-semibold);
+  }
+
+  p {
+    margin: 0;
+    color: var(--cb-ink-soft);
+    font-size: var(--cb-fs-card);
+    line-height: 1.55;
+  }
+
+  &__cta {
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 0.6rem 1.4rem;
+    border-radius: 9999px;
+    background: var(--cb-mint);
+    color: var(--cb-ink);
+    font-size: var(--fs-caption);
+    font-weight: var(--fw-semibold);
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+}
+
+.cb-case-study__body {
+  padding-block: var(--cb-section-y);
+}
+
+.cb-case-study__more {
+  padding-block: var(--cb-section-y);
+  background: var(--cb-sage);
+}

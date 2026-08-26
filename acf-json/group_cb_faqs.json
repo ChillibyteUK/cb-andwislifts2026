@@ -1,0 +1,75 @@
+{
+  "key": "group_cb_faqs",
+  "title": "CB FAQs",
+  "fields": [
+    {
+      "key": "field_cb_faqs_message",
+      "label": "CB FAQs", "name": "", "aria-label": "", "type": "message",
+      "instructions": "", "required": 0, "conditional_logic": 0,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "message": "", "new_lines": "wpautop", "esc_html": 0
+    },
+    {
+      "key": "field_cb_faqs_heading",
+      "label": "Heading", "name": "heading", "aria-label": "", "type": "text",
+      "instructions": "", "required": false, "conditional_logic": false,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "default_value": "", "maxlength": "", "placeholder": "", "prepend": "", "append": ""
+    },
+    {
+      "key": "field_cb_faqs_intro",
+      "label": "Intro", "name": "intro", "aria-label": "", "type": "textarea",
+      "instructions": "", "required": false, "conditional_logic": false,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "rows": 2, "new_lines": "br", "default_value": "", "maxlength": "", "placeholder": ""
+    },
+    {
+      "key": "field_cb_faqs_show_filter",
+      "label": "Show topic filter", "name": "show_filter", "aria-label": "", "type": "true_false",
+      "instructions": "Shows filter chips built from the categories used below. Needs at least two different categories.",
+      "required": false, "conditional_logic": false,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "message": "", "default_value": 1, "ui": 1, "ui_on_text": "", "ui_off_text": ""
+    },
+    {
+      "key": "field_cb_faqs_items",
+      "label": "Questions", "name": "faq_items", "aria-label": "", "type": "repeater",
+      "instructions": "", "required": false, "conditional_logic": false,
+      "wrapper": { "width": "", "class": "", "id": "" },
+      "layout": "block", "button_label": "Add question",
+      "min": 0, "max": 0, "rows_per_page": 20, "collapsed": "field_cb_faqs_question",
+      "sub_fields": [
+        {
+          "key": "field_cb_faqs_question",
+          "label": "Question", "name": "question", "aria-label": "", "type": "text",
+          "instructions": "", "required": 1, "conditional_logic": false,
+          "wrapper": { "width": "70", "class": "", "id": "" },
+          "default_value": "", "maxlength": "", "placeholder": "", "prepend": "", "append": "",
+          "parent_repeater": "field_cb_faqs_items"
+        },
+        {
+          "key": "field_cb_faqs_category",
+          "label": "Category", "name": "category", "aria-label": "", "type": "text",
+          "instructions": "Optional, used by the filter. Keep wording consistent across questions.",
+          "required": false, "conditional_logic": false,
+          "wrapper": { "width": "30", "class": "", "id": "" },
+          "default_value": "", "maxlength": "", "placeholder": "", "prepend": "", "append": "",
+          "parent_repeater": "field_cb_faqs_items"
+        },
+        {
+          "key": "field_cb_faqs_answer",
+          "label": "Answer", "name": "answer", "aria-label": "", "type": "textarea",
+          "instructions": "", "required": 1, "conditional_logic": false,
+          "wrapper": { "width": "", "class": "", "id": "" },
+          "rows": 4, "new_lines": "", "default_value": "", "maxlength": "", "placeholder": "",
+          "parent_repeater": "field_cb_faqs_items"
+        }
+      ]
+    }
+  ],
+  "location": [ [ { "param": "block", "operator": "==", "value": "acf\/cb-faqs" } ] ],
+  "menu_order": 0, "position": "normal", "style": "default",
+  "label_placement": "top", "instruction_placement": "label",
+  "hide_on_screen": "", "active": true, "description": "", "show_in_rest": 0,
+  "modified": 1786924800
+}

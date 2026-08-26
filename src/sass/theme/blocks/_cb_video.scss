@@ -1,0 +1,28 @@
+.cb-video {
+  padding-block: var(--cb-section-y);
+
+  &__frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--cb-radius-md);
+    background: var(--cb-forest);
+    aspect-ratio: 16 / 9;
+
+    iframe,
+    video,
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      object-fit: cover;
+    }
+  }
+
+  &__caption {
+    margin-top: 0.75rem;
+    color: var(--cb-ink-soft);
+    font-size: var(--cb-fs-card);
+  }
+}

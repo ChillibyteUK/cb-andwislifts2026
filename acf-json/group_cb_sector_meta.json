@@ -1,0 +1,99 @@
+{
+  "key": "group_cb_sector_meta",
+  "title": "Sector Listing Details",
+  "fields": [
+    {
+      "key": "field_cb_sector_card_summary",
+      "label": "Card summary",
+      "name": "card_summary",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "Short description shown wherever this sector appears in a listing (home page, sectors hub).",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "rows": 3,
+      "new_lines": "",
+      "default_value": "",
+      "maxlength": "",
+      "placeholder": ""
+    },
+    {
+      "key": "field_cb_sector_card_image",
+      "label": "Card icon",
+      "name": "card_icon",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "Optional icon shown on listing cards.",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "min_width": 0,
+      "min_height": 0,
+      "min_size": 0,
+      "max_width": 0,
+      "max_height": 0,
+      "max_size": 0,
+      "mime_types": ""
+    },
+    {
+      "key": "field_cb_sector_related_services",
+      "label": "Related services",
+      "name": "related_services",
+      "aria-label": "",
+      "type": "relationship",
+      "instructions": "The services most relevant to this sector. A CB Service Cards block set to \"Services linked to this page\" will render these in the order set here.",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "post_type": [
+        "service"
+      ],
+      "post_status": [
+        "publish"
+      ],
+      "taxonomy": "",
+      "filters": [
+        "search"
+      ],
+      "return_format": "id",
+      "min": 0,
+      "max": 0,
+      "elements": ""
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "sector"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1786924800
+}
