@@ -19,7 +19,11 @@ $image_3        = get_field( 'image_3' );
 $image_position = get_field( 'image_position' ) ? get_field( 'image_position' ) : 'right';
 $image_style    = get_field( 'image_style' ) ? get_field( 'image_style' ) : 'layered';
 
-$has_any_image = ! empty( $image['ID'] ) || ( 'layered' === $image_style && ( ! empty( $image_2['ID'] ) || ! empty( $image_3['ID'] ) ) );
+// The single style always renders a media column: with no image chosen it
+// falls back to the logo placeholder shipped with the theme.
+$has_any_image = ! empty( $image['ID'] )
+	|| 'single' === $image_style
+	|| ( 'layered' === $image_style && ( ! empty( $image_2['ID'] ) || ! empty( $image_3['ID'] ) ) );
 ?>
 <section class="cb-image-text-checklist cb-image-text-checklist--white <?= esc_attr( $extra ); ?>" id="<?= esc_attr( $section_id ); ?>">
 	<div class="container">
@@ -73,10 +77,18 @@ $has_any_image = ! empty( $image['ID'] ) || ( 'layered' === $image_style && ( ! 
 					</svg>
 						<?php
 					}
-					if ( ! empty( $image['ID'] ) ) {
+					if ( ! empty( $image['ID'] ) || 'single' === $image_style ) {
 						?>
 					<figure class="cb-image-text-checklist__fig cb-image-text-checklist__fig--1<?= 'layered' === $image_style ? ' rellax' : ''; ?>"<?= 'layered' === $image_style ? ' data-rellax-speed="0.3"' : ''; ?>>
-						<?= wp_get_attachment_image( $image['ID'], 'large' ); ?>
+						<?php
+						if ( ! empty( $image['ID'] ) ) {
+							echo wp_get_attachment_image( $image['ID'], 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						} else {
+							?>
+						<img class="cb-image-text-checklist__placeholder" src="<?= esc_url( get_stylesheet_directory_uri() . '/img/placeholder-logo.svg' ); ?>" width="800" height="800" alt="" loading="lazy">
+							<?php
+						}
+						?>
 					</figure>
 						<?php
 					}

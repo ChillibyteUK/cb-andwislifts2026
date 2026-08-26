@@ -86,3 +86,10 @@
     transform: rotate(360deg);
   }
 }
+// The logo placeholder is a white square: contain it rather than cropping, and
+// give it a hairline so the circle reads against a white page background.
+.cb-image-text-checklist__placeholder {
+  object-fit: contain !important;
+  background: var(--cb-paper);
+  box-shadow: inset 0 0 0 1px rgba(16, 66, 31, 0.12);
+}

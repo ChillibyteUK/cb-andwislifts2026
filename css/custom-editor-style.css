@@ -6723,6 +6723,13 @@ strong {
     transform: rotate(360deg);
   }
 }
+.cb-image-text-checklist__placeholder {
+  -o-object-fit: contain !important;
+  object-fit: contain !important;
+  background: var(--cb-paper);
+  box-shadow: inset 0 0 0 1px rgba(16, 66, 31, 0.12);
+}
+
 .cb-service-cards {
   padding-block: var(--cb-section-y);
 }
