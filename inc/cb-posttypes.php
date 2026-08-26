@@ -247,3 +247,109 @@ function cb_flush_rewrites() {
 	flush_rewrite_rules();
 }
 add_action( 'after_switch_theme', 'cb_flush_rewrites' );
+
+/**
+ * Build a lookup of published sector posts keyed by normalised title and slug.
+ *
+ * Normalising lets a block label written for display ("Retail & Leisure") find
+ * the post it refers to ("Retail") without the two having to match character
+ * for character.
+ *
+ * @return array Map of normalised key => permalink.
+ */
+function cb_sector_link_map() {
+	static $map = null;
+
+	if ( null !== $map ) {
+		return $map;
+	}
+
+	$map = array();
+
+	$sectors = get_posts(
+		array(
+			'post_type'        => 'sector',
+			'post_status'      => 'publish',
+			'posts_per_page'   => -1,
+			'orderby'          => 'title',
+			'order'            => 'ASC',
+			'suppress_filters' => false,
+		)
+	);
+
+	foreach ( $sectors as $sector ) {
+		$permalink = get_permalink( $sector );
+
+		foreach ( array( $sector->post_title, $sector->post_name ) as $candidate ) {
+			$key = cb_normalise_sector_key( $candidate );
+
+			if ( '' !== $key && ! isset( $map[ $key ] ) ) {
+				$map[ $key ] = $permalink;
+			}
+		}
+	}
+
+	return $map;
+}
+
+/**
+ * Reduce a sector title, slug or label to a comparable key.
+ *
+ * Lowercases, expands ampersands and collapses everything that is not a letter
+ * or number to single spaces, so "Retail & Leisure", "retail-and-leisure" and
+ * "Retail and leisure" all normalise the same way.
+ *
+ * @param string $value The raw title, slug or label.
+ * @return string
+ */
+function cb_normalise_sector_key( $value ) {
+	$value = strtolower( wp_strip_all_tags( (string) $value ) );
+	$value = str_replace( '&', ' and ', $value );
+	$value = preg_replace( '/[^a-z0-9]+/', ' ', $value );
+
+	return trim( $value );
+}
+
+/**
+ * Resolve a sector label to the permalink of its sector post.
+ *
+ * Tries an exact match on the normalised title or slug first, then a prefix
+ * match in either direction so "Retail & Leisure" finds "Retail" and
+ * "Industrial" finds "Industrial and logistics". The prefix match must land on
+ * a word boundary and needs at least four characters, which keeps short or
+ * coincidental overlaps from producing a wrong link.
+ *
+ * Returns an empty string when nothing matches - the caller renders plain text
+ * rather than a link that goes nowhere.
+ *
+ * @param string $label The label as written in the block.
+ * @return string Permalink, or an empty string when there is no match.
+ */
+function cb_resolve_sector_link( $label ) {
+	$key = cb_normalise_sector_key( $label );
+
+	if ( '' === $key ) {
+		return '';
+	}
+
+	$map = cb_sector_link_map();
+
+	if ( isset( $map[ $key ] ) ) {
+		return $map[ $key ];
+	}
+
+	foreach ( $map as $candidate => $permalink ) {
+		$shorter = strlen( $candidate ) < strlen( $key ) ? $candidate : $key;
+		$longer  = strlen( $candidate ) < strlen( $key ) ? $key : $candidate;
+
+		if ( strlen( $shorter ) < 4 ) {
+			continue;
+		}
+
+		if ( 0 === strpos( $longer, $shorter . ' ' ) ) {
+			return $permalink;
+		}
+	}
+
+	return '';
+}

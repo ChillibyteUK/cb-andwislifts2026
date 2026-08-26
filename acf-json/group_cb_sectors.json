@@ -37,6 +37,20 @@
                     "label": "Label",
                     "name": "label",
                     "type": "text"
+                },
+                {
+                    "key": "field_cb_sectors_sector_link",
+                    "label": "Sector page",
+                    "name": "sector_page",
+                    "type": "post_object",
+                    "instructions": "Optional. Leave empty and the label is matched to a sector page by name. Set it when the label does not match the page title, or to point the label somewhere else.",
+                    "post_type": [
+                        "sector"
+                    ],
+                    "return_format": "id",
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 1
                 }
             ]
         }

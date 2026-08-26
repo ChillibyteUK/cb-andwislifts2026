@@ -33,19 +33,28 @@ if ( ! $sectors ) {
 	);
 }
 
-$sector_labels = array_values(
-	array_filter(
-		array_map(
-			function ( $sector ) {
-				return trim( (string) ( $sector['label'] ?? '' ) );
-			},
-			is_array( $sectors ) ? $sectors : array()
-		)
-	)
-);
+$sector_items = array();
 
-if ( empty( $sector_labels ) ) {
-	$sector_labels = array(
+foreach ( is_array( $sectors ) ? $sectors : array() as $sector ) {
+	$label = trim( (string) ( $sector['label'] ?? '' ) );
+
+	if ( '' === $label ) {
+		continue;
+	}
+
+	// An explicit sector page wins. Otherwise the label is matched to a sector
+	// post by name, so labels written before this field existed still link.
+	$chosen = $sector['sector_page'] ?? 0;
+	$url    = $chosen ? (string) get_permalink( (int) $chosen ) : cb_resolve_sector_link( $label );
+
+	$sector_items[] = array(
+		'label' => $label,
+		'url'   => $url,
+	);
+}
+
+if ( empty( $sector_items ) ) {
+	$fallback_labels = array(
 		'Healthcare',
 		'Education',
 		'Government',
@@ -53,15 +62,53 @@ if ( empty( $sector_labels ) ) {
 		'Residential',
 		'Commercial',
 	);
+
+	foreach ( $fallback_labels as $label ) {
+		$sector_items[] = array(
+			'label' => $label,
+			'url'   => cb_resolve_sector_link( $label ),
+		);
+	}
 }
 
-$display_labels      = $sector_labels;
-$display_label_count = count( $display_labels );
-while ( $display_label_count < 10 ) {
-	$display_labels      = array_merge( $display_labels, $sector_labels );
-	$display_label_count = count( $display_labels );
+// The column repeats its labels until it is long enough to fill the panel.
+$sector_count  = count( $sector_items );
+$display_items = $sector_items;
+
+while ( count( $display_items ) < 10 ) {
+	$display_items = array_merge( $display_items, $sector_items );
 }
-$display_labels = array_slice( $display_labels, 0, 10 );
+
+$display_items = array_slice( $display_items, 0, 10 );
+
+/**
+ * Render the label list.
+ *
+ * Both layers get identical markup so the highlight overlay stays aligned to
+ * the base text - an anchor on one layer and bare text on the other would shift
+ * the line boxes apart.
+ *
+ * @param array   $items      Label/url pairs to render.
+ * @param integer $real_count How many leading items are real rather than padding.
+ * @param boolean $decorative Whether this layer is the highlight overlay.
+ * @return void
+ */
+$cb_sectors_render_list = function ( $items, $real_count, $decorative ) {
+	foreach ( $items as $index => $item ) {
+		// Padding repeats the same labels, so keep it out of the tab order and
+		// the accessibility tree. The overlay layer is decorative throughout.
+		$muted = $decorative || $index >= $real_count;
+		?>
+	<li<?= $muted && ! $decorative ? ' aria-hidden="true"' : ''; ?>>
+		<?php if ( ! empty( $item['url'] ) ) { ?>
+		<a href="<?= esc_url( $item['url'] ); ?>"<?= $muted ? ' tabindex="-1"' : ''; ?>><?= esc_html( $item['label'] ); ?></a>
+		<?php } else { ?>
+		<?= esc_html( $item['label'] ); ?>
+		<?php } ?>
+	</li>
+		<?php
+	}
+};
 ?>
 <section class="cb-sectors <?= esc_attr( $extra ); ?>" id="<?= esc_attr( $section_id ); ?>">
 	<div class="container">
@@ -77,16 +124,12 @@ $display_labels = array_slice( $display_labels, 0, 10 );
 				</div>
 			</div>
 			<div class="col-lg-6 ps-lg-5">
-				<div class="cb-sectors__highlight highlight-text rellax" style="--x:180px;--y:350px;--cb-sector-count:<?= esc_attr( count( $sector_labels ) ); ?>;" data-rellax-speed="2" data-rellax-xs-speed="0" data-rellax-mobile-speed="0">
-					<ul class="base-text" aria-hidden="true">
-						<?php foreach ( $display_labels as $label ) { ?>
-							<li><?= esc_html( $label ); ?></li>
-						<?php } ?>
+				<div class="cb-sectors__highlight highlight-text rellax" style="--x:180px;--y:350px;--cb-sector-count:<?= esc_attr( $sector_count ); ?>;" data-rellax-speed="2" data-rellax-xs-speed="0" data-rellax-mobile-speed="0">
+					<ul class="base-text">
+						<?php $cb_sectors_render_list( $display_items, $sector_count, false ); ?>
 					</ul>
-					<ul class="hover-text">
-						<?php foreach ( $display_labels as $label ) { ?>
-							<li><?= esc_html( $label ); ?></li>
-						<?php } ?>
+					<ul class="hover-text" aria-hidden="true">
+						<?php $cb_sectors_render_list( $display_items, $sector_count, true ); ?>
 					</ul>
 				</div>
 			</div>

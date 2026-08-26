@@ -49,8 +49,31 @@
       list-style: none;
     }
 
+    // Anchors must not alter the line box - the highlight overlay is a second
+    // copy of this list stacked on top, and any change to metrics here would
+    // slide the two out of register.
+    a {
+      color: inherit;
+      text-decoration: none;
+      // The spotlight replaces the cursor on this panel, so the pointer is the
+      // only signal that a label is clickable.
+      cursor: pointer;
+
+      &:focus-visible {
+        outline: 2px solid var(--cb-mint);
+        outline-offset: 4px;
+      }
+    }
+
     .base-text {
       color: rgba(255, 255, 255, 0.1);
+
+      // Only the base layer takes clicks; the overlay is already
+      // pointer-events: none. Hovering warms the label so it reads as a link
+      // even when the spotlight is elsewhere.
+      a:hover {
+        color: rgba(255, 255, 255, 0.28);
+      }
     }
 
     .hover-text {

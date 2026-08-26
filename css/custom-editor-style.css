@@ -7129,8 +7129,20 @@ strong {
   letter-spacing: -0.025em;
   list-style: none;
 }
+.cb-sectors .highlight-text a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.cb-sectors .highlight-text a:focus-visible {
+  outline: 2px solid var(--cb-mint);
+  outline-offset: 4px;
+}
 .cb-sectors .highlight-text .base-text {
   color: rgba(255, 255, 255, 0.1);
+}
+.cb-sectors .highlight-text .base-text a:hover {
+  color: rgba(255, 255, 255, 0.28);
 }
 .cb-sectors .highlight-text .hover-text {
   --mask: radial-gradient(circle at var(--x, 50%) var(--y, 50%),

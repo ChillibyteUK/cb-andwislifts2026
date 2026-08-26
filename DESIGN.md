@@ -343,16 +343,26 @@ Fields:
 
 - Heading
 - Body copy
-- CTA label
-- CTA link
-- Central image
-- Six fixed sector labels:
-  - Top
-  - Upper left
-  - Upper right
-  - Lower left
-  - Lower right
-  - Bottom
+- Sectors (repeater)
+  - Label
+  - Sector page (optional post object, `sector` CPT)
+
+The labels render as a tall column of type beside the copy. A second copy of the
+list sits on top of the first, tinted mint and masked to a radial gradient that
+follows the cursor, which produces the spotlight. The list repeats itself until
+it is at least ten items long so the column fills the panel.
+
+Both layers must render identical markup, or the highlight slides out of
+register with the text beneath it. The overlay is `pointer-events: none`, so the
+base layer takes clicks; the overlay is `aria-hidden` and the repeated padding
+items are kept out of the tab order.
+
+Labels link to their sector page. The Sector page field wins when set; otherwise
+`cb_resolve_sector_link()` matches the label to a published `sector` post by
+normalised title or slug, including a word-boundary prefix match in either
+direction, so "Retail & Leisure" finds "Retail" and "Industrial" finds
+"Industrial and logistics". A label with no match renders as plain text rather
+than a dead link - set the Sector page field to link those.
 
 ### CB Customer Grid
 
