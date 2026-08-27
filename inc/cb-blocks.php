@@ -19,6 +19,23 @@ function acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_cta',
+				'title'           => __( 'CB CTA' ),
+				'category'        => 'layout',
+				'icon'            => 'megaphone',
+				'render_template' => 'blocks/cb-cta.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_news_index',
 				'title'           => __( 'CB News Index' ),
 				'category'        => 'layout',

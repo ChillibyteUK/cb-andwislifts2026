@@ -6502,6 +6502,31 @@ strong {
   transform: scale(0.97);
 }
 
+.btn.btn-ghost {
+  --cb-ghost-ink: var(--cb-forest);
+  --cb-ghost-ink-hover: var(--cb-paper);
+  --cb-ghost-fill-hover: var(--cb-forest);
+  padding: 0.8rem 1.5rem;
+  border: 2px solid var(--cb-ghost-ink);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--cb-ghost-ink);
+  font-family: var(--ff-base);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  min-width: 8rem;
+  transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease;
+}
+.btn.btn-ghost:hover, .btn.btn-ghost:focus-visible {
+  border-color: var(--cb-ghost-fill-hover);
+  background: var(--cb-ghost-fill-hover);
+  color: var(--cb-ghost-ink-hover);
+}
+.btn.btn-ghost:active {
+  transform: scale(0.97);
+}
+
 .cb-btn-primary {
   display: inline-flex;
   align-items: center;
@@ -7855,6 +7880,100 @@ strong {
   text-align: center;
 }
 
+.cb-cta {
+  padding-block: var(--cb-section-y);
+}
+.cb-cta__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem 3rem;
+}
+.cb-cta__copy {
+  flex: 1 1 24rem;
+  min-width: 0;
+}
+.cb-cta__copy h2, .cb-cta__copy .h2 {
+  margin: 0;
+  letter-spacing: normal;
+}
+.cb-cta__copy p {
+  margin: 0.75rem 0 0;
+  font-size: var(--cb-fs-body-lg);
+  line-height: var(--cb-lh-body);
+  max-width: 40rem;
+}
+.cb-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  flex: 0 0 auto;
+}
+.cb-cta--centred {
+  text-align: center;
+}
+.cb-cta--centred .cb-cta__inner {
+  flex-direction: column;
+  justify-content: center;
+}
+.cb-cta--centred .cb-cta__copy {
+  flex: 0 1 auto;
+}
+.cb-cta--centred .cb-cta__copy p {
+  margin-inline: auto;
+}
+.cb-cta--forest {
+  background: var(--cb-forest);
+  color: var(--cb-paper);
+}
+.cb-cta--forest h2, .cb-cta--forest .h2 {
+  color: var(--cb-paper);
+}
+.cb-cta--forest p {
+  color: var(--cb-sage);
+}
+.cb-cta--forest .btn.btn-ghost {
+  --cb-ghost-ink: var(--cb-paper);
+  --cb-ghost-ink-hover: var(--cb-forest);
+  --cb-ghost-fill-hover: var(--cb-paper);
+}
+.cb-cta--sage {
+  background: var(--cb-sage);
+}
+.cb-cta--sage h2, .cb-cta--sage .h2 {
+  color: var(--cb-forest);
+}
+.cb-cta--sage p {
+  color: var(--cb-ink);
+}
+.cb-cta--paper h2, .cb-cta--paper .h2 {
+  color: var(--cb-forest);
+}
+.cb-cta--paper p {
+  color: var(--cb-ink-soft);
+}
+
+@media (max-width: 767px) {
+  .cb-cta__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .cb-cta__actions {
+    width: 100%;
+  }
+  .cb-cta__actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+    text-align: center;
+  }
+  .cb-cta--centred .cb-cta__inner {
+    align-items: center;
+    text-align: center;
+  }
+}
 .editor-styles-wrapper {
   background: var(--cb-paper);
 }

@@ -356,6 +356,31 @@ description by calling `get_the_excerpt()`, which applies `the_content` outside
 the loop; without that guard the section leaks into the description tag and the
 real render is skipped.
 
+### CB CTA
+
+A closing call to action for pages that should end on a prompt rather than a
+full contact form.
+
+Fields:
+
+- Heading (required)
+- Body (optional, one short line)
+- Button
+- Secondary button (optional, renders as `.btn-ghost`)
+- Background: Forest, Sage or Paper
+- Layout: Split (copy left, buttons right) or Centred
+
+The block renders nothing without a heading or a button link.
+
+A bare button between two paper sections reads as leftover markup rather than an
+invitation, so the button always arrives with a heading and its own banded
+background. Forest is the default because it breaks the run of white around it.
+
+Note `.btn-ghost` in `_buttons.scss`. Until it existed the theme had a single
+button style, so a supporting action rendered identically to the main one and
+the two competed. It keeps the pill shape and sizing, drops the fill, and takes
+its colour from `--cb-ghost-ink`, which the forest variant flips to paper.
+
 ### CB Sectors
 
 Source HTML: `.sectors`

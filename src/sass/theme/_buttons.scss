@@ -72,6 +72,44 @@
   transform: scale(0.97);
 }
 
+// Secondary button. The theme only had one button style, so a supporting
+// action rendered identically to the main one and the two competed. This keeps
+// the pill shape and sizing and drops the fill.
+//
+// --cb-ghost-ink is the colour it draws itself in, so a dark section can flip it
+// to paper without restating the rest.
+.btn.btn-ghost {
+  --cb-ghost-ink: var(--cb-forest);
+  --cb-ghost-ink-hover: var(--cb-paper);
+  --cb-ghost-fill-hover: var(--cb-forest);
+
+  padding: 0.8rem 1.5rem;
+  border: 2px solid var(--cb-ghost-ink);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--cb-ghost-ink);
+  font-family: var(--ff-base);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  min-width: 8rem;
+  transition:
+    background-color 300ms ease,
+    color 300ms ease,
+    border-color 300ms ease;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--cb-ghost-fill-hover);
+    background: var(--cb-ghost-fill-hover);
+    color: var(--cb-ghost-ink-hover);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
 .cb-btn-primary {
   display: inline-flex;
   align-items: center;

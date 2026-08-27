@@ -1,0 +1,121 @@
+.cb-cta {
+  padding-block: var(--cb-section-y);
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem 3rem;
+  }
+
+  &__copy {
+    flex: 1 1 24rem;
+    min-width: 0;
+
+    h2 {
+      margin: 0;
+      letter-spacing: normal;
+    }
+
+    p {
+      margin: 0.75rem 0 0;
+      font-size: var(--cb-fs-body-lg);
+      line-height: var(--cb-lh-body);
+      max-width: 40rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    flex: 0 0 auto;
+  }
+
+  // Split puts the copy and the buttons on one line, which reads as a deliberate
+  // band rather than a button left behind in whitespace.
+  &--centred {
+    text-align: center;
+
+    .cb-cta__inner {
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .cb-cta__copy {
+      flex: 0 1 auto;
+
+      p {
+        margin-inline: auto;
+      }
+    }
+  }
+
+  &--forest {
+    background: var(--cb-forest);
+    color: var(--cb-paper);
+
+    h2 {
+      color: var(--cb-paper);
+    }
+
+    p {
+      color: var(--cb-sage);
+    }
+
+    .btn.btn-ghost {
+      --cb-ghost-ink: var(--cb-paper);
+      --cb-ghost-ink-hover: var(--cb-forest);
+      --cb-ghost-fill-hover: var(--cb-paper);
+    }
+  }
+
+  &--sage {
+    background: var(--cb-sage);
+
+    h2 {
+      color: var(--cb-forest);
+    }
+
+    p {
+      color: var(--cb-ink);
+    }
+  }
+
+  &--paper {
+    h2 {
+      color: var(--cb-forest);
+    }
+
+    p {
+      color: var(--cb-ink-soft);
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .cb-cta {
+    &__inner {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    &__actions {
+      width: 100%;
+
+      .btn {
+        flex: 1 1 auto;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+    &--centred .cb-cta__inner {
+      align-items: center;
+      text-align: center;
+    }
+  }
+}
