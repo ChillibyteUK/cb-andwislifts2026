@@ -13,6 +13,11 @@ $heading    = get_field( 'heading' );
 $intro      = get_field( 'intro' );
 $source     = get_field( 'source' ) ? get_field( 'source' ) : 'manual';
 
+// Icon is the original behaviour and stays the default, so blocks built before
+// this option existed are untouched. The other three treat the same field as a
+// photograph rather than a small mark.
+$media_style = get_field( 'media_style' ) ? get_field( 'media_style' ) : 'icon';
+
 if ( 'manual' === $source ) {
 	$cards = get_field( 'cards' );
 } else {
@@ -38,7 +43,7 @@ if ( $card_count > 0 && $card_count <= 2 ) {
 	$col_class = 'col-lg-3 col-md-6';
 }
 ?>
-<section class="cb-service-cards <?= esc_attr( $extra ); ?>" id="<?= esc_attr( $section_id ); ?>">
+<section class="cb-service-cards cb-service-cards--<?= esc_attr( $media_style ); ?> <?= esc_attr( $extra ); ?>" id="<?= esc_attr( $section_id ); ?>">
 	<div class="container">
 		<div class="cb-section-head pb-5 cb-gsap-fade">
 			<?php
@@ -64,31 +69,38 @@ if ( $card_count > 0 && $card_count <= 2 ) {
 				$card_icon = $card['icon'] ?? null;
 				?>
 			<div class="<?= esc_attr( $col_class ); ?>">
-				<div class="cb-service-card" style="opacity:0;visibility:hidden;transform:translate3d(0,20px,0);">
+				<div class="cb-service-card cb-service-card--<?= esc_attr( $media_style ); ?>" style="opacity:0;visibility:hidden;transform:translate3d(0,20px,0);">
 					<?php
 					if ( ! empty( $card_icon['ID'] ) ) {
+						// An icon is a small mark, so the thumbnail crop suits it. A
+						// photograph needs a real image to cover the card.
+						$card_media_size = 'icon' === $media_style ? 'thumbnail' : 'medium_large';
 						?>
-					<div class="cb-service-card__icon"><?= wp_get_attachment_image( $card_icon['ID'], 'thumbnail' ); ?></div>
-						<?php
-					}
-					if ( ! empty( $card['title'] ) ) {
-						?>
-					<h3><?= esc_html( $card['title'] ); ?></h3>
-						<?php
-					}
-					if ( ! empty( $card['description'] ) ) {
-						?>
-					<p><?= esc_html( $card['description'] ); ?></p>
-						<?php
-					}
-					if ( ! empty( $card_link['url'] ) ) {
-						$card_link_target = ! empty( $card_link['target'] ) ? $card_link['target'] : '_self';
-						$card_link_title  = ! empty( $card_link['title'] ) ? $card_link['title'] : __( 'Learn more', 'cb-andwislifts2026' );
-						?>
-					<a href="<?= esc_url( $card_link['url'] ); ?>" target="<?= esc_attr( $card_link_target ); ?>"><?= esc_html( $card_link_title ); ?></a>
+					<div class="cb-service-card__media"><?= wp_get_attachment_image( $card_icon['ID'], $card_media_size, false, array( 'loading' => 'lazy' ) ); ?></div>
 						<?php
 					}
 					?>
+					<div class="cb-service-card__body">
+						<?php
+						if ( ! empty( $card['title'] ) ) {
+							?>
+						<h3><?= esc_html( $card['title'] ); ?></h3>
+							<?php
+						}
+						if ( ! empty( $card['description'] ) ) {
+							?>
+						<p><?= esc_html( $card['description'] ); ?></p>
+							<?php
+						}
+						if ( ! empty( $card_link['url'] ) ) {
+							$card_link_target = ! empty( $card_link['target'] ) ? $card_link['target'] : '_self';
+							$card_link_title  = ! empty( $card_link['title'] ) ? $card_link['title'] : __( 'Learn more', 'cb-andwislifts2026' );
+							?>
+						<a href="<?= esc_url( $card_link['url'] ); ?>" target="<?= esc_attr( $card_link_target ); ?>"><?= esc_html( $card_link_title ); ?></a>
+							<?php
+						}
+						?>
+					</div>
 				</div>
 			</div>
 				<?php

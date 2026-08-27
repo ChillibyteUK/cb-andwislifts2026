@@ -224,8 +224,16 @@ function cb_get_cpt_cards( $source, $limit = 0, $selected = array() ) {
 	$query = new WP_Query( $args );
 
 	foreach ( $query->posts as $item ) {
+		// Fall back to the featured image so the photo styles have something to
+		// show on posts that only ever had an icon set.
+		$card_icon = get_field( 'card_icon', $item->ID );
+
+		if ( empty( $card_icon['ID'] ) && has_post_thumbnail( $item->ID ) ) {
+			$card_icon = array( 'ID' => get_post_thumbnail_id( $item->ID ) );
+		}
+
 		$cards[] = array(
-			'icon'        => get_field( 'card_icon', $item->ID ),
+			'icon'        => $card_icon,
 			'title'       => get_the_title( $item ),
 			'description' => get_field( 'card_summary', $item->ID ),
 			'link'        => array(

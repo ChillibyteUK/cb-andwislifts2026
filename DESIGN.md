@@ -263,14 +263,32 @@ Fields:
 - Card source (Manual / All services / Selected services / Services linked to this page / All sectors / Selected sectors)
 - Choose posts (relationship, shown for the "selected" sources)
 - Maximum cards (shown for all CPT sources)
+- Media style (Icon / Top / Beside / Rollover)
 - Cards repeater (shown for Manual only):
-  - Number/label
+  - Icon / image
   - Title
   - Description
   - Optional link
 
+Media style decides how the card's image field is treated. **Icon** is the
+original behaviour and the default, so blocks built before the option existed
+are unchanged: a 2.5rem `object-fit: contain` mark above the title, served at
+`thumbnail`. **Top**, **Beside** and **Rollover** treat the same field as a
+photograph and serve `medium_large` with `object-fit: cover`.
+
+Rollover fades the photograph up behind the copy on hover, under a gradient that
+keeps the text legible. It only applies inside `@media (hover: hover) and
+(pointer: fine)` - a touch screen never fires hover, so the image would never be
+seen there. Below that it keeps the Top treatment, which is why the two share
+the same banded rules.
+
+Feeding a photograph into the Icon style is what makes it look wrong: a 150px
+crop squeezed into a 2.5rem contain box. Match the style to the asset.
+
 CPT sources map each post to a card via `cb_get_cpt_cards()` in `inc/cb-posttypes.php`:
 post title → card title, `card_summary` → description, `card_icon` → icon, permalink → link.
+Where a post has no `card_icon`, its featured image is used instead, so the photo
+styles have something to show.
 "Services linked to this page" reads the `related_services` field on the current post.
 
 Layout is four-up (`col-lg-3 col-md-6`). Exactly five cards switch to the shared
