@@ -49,12 +49,35 @@
             "mime_types": ""
         },
         {
+            "key": "field_cb_image_row_shape",
+            "label": "Shape",
+            "name": "shape",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "Circle crops each image to a circle, matching the circular imagery used elsewhere on the site. Natural keeps the image's own shape, which is what logos need.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "natural": "Natural",
+                "circle": "Circle"
+            },
+            "default_value": "natural",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_cb_image_row_size",
             "label": "Size",
             "name": "size",
             "aria-label": "",
             "type": "button_group",
-            "instructions": "Sets the height each image is fitted to. Logos vary in shape, so matching height is what makes them look level.",
+            "instructions": "Natural fits each image to this height. Circle uses it as the diameter.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {

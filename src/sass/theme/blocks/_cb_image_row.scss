@@ -24,18 +24,46 @@
     }
   }
 
-  // Fitting to height rather than width keeps a tall badge and a wide wordmark
-  // reading as the same weight next to each other.
-  &--small &__item img {
-    max-height: 4rem;
+  // One Size control, read differently by each shape: a height to fit a logo
+  // into, or a diameter for a circle. Circles carry the whole image so they run
+  // considerably larger than a logo would.
+  &--small {
+    --cb-image-row-height: 4rem;
+    --cb-image-row-diameter: 11rem;
   }
 
-  &--medium &__item img {
-    max-height: 6rem;
+  &--medium {
+    --cb-image-row-height: 6rem;
+    --cb-image-row-diameter: 15rem;
   }
 
-  &--large &__item img {
-    max-height: 9rem;
+  &--large {
+    --cb-image-row-height: 9rem;
+    --cb-image-row-diameter: 19rem;
+  }
+
+  // Natural: fitting to height rather than width keeps a tall badge and a wide
+  // wordmark reading as the same weight next to each other.
+  &--natural &__item img {
+    max-height: var(--cb-image-row-height, 6rem);
+  }
+
+  // Circle: the same treatment as the circular imagery elsewhere on the site.
+  // The vw ceiling keeps two circles side by side on a narrow screen rather
+  // than letting a fixed diameter force them to wrap.
+  &--circle &__item {
+    width: min(var(--cb-image-row-diameter, 15rem), 38vw);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: var(--cb-shadow-soft);
+
+    img {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: cover;
+    }
   }
 
   &--left &__items {
@@ -55,5 +83,11 @@
   .cb-image-row__items {
     gap: 1.5rem;
     justify-content: center;
+  }
+
+  // Room is tight enough here that a pair of circles reads better stacked and
+  // large than side by side and tiny.
+  .cb-image-row--circle .cb-image-row__item {
+    width: min(var(--cb-image-row-diameter, 15rem), 62vw);
   }
 }
