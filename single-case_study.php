@@ -139,30 +139,9 @@ $has_sections = $challenge || $did || $result;
 			<div class="row g-3">
 				<?php
 				foreach ( $more->posts as $item ) {
-					$thumb   = get_post_thumbnail_id( $item->ID );
-					$summary = get_field( 'card_summary', $item->ID );
 					?>
 				<div class="col-lg-4 col-md-6">
-					<a class="cb-case-study-card h-100" href="<?= esc_url( get_permalink( $item ) ); ?>">
-						<?php
-						if ( $thumb ) {
-							?>
-						<div class="cb-case-study-card__media"><?= wp_get_attachment_image( $thumb, 'medium_large' ); ?></div>
-							<?php
-						}
-						?>
-						<div class="cb-case-study-card__body">
-							<h3><?= esc_html( get_the_title( $item ) ); ?></h3>
-							<?php
-							if ( $summary ) {
-								?>
-							<p><?= esc_html( wp_trim_words( $summary, 20 ) ); ?></p>
-								<?php
-							}
-							?>
-							<span class="cb-case-study-card__cta">Read the case study</span>
-						</div>
-					</a>
+					<?php cb_case_study_card( $item, 20 ); ?>
 				</div>
 					<?php
 				}

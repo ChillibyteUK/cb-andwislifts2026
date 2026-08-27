@@ -335,6 +335,27 @@ Fields:
   - Value
   - Description
 
+### Related case studies on sector pages
+
+Sector pages are built from blocks stored in post content, so this section is
+injected at render time by `inc/cb-case-studies.php` rather than written into
+every sector page. It renders immediately before the CB Form block that each
+sector page ends on, and falls back to appending after the content on a sector
+page with no form block.
+
+Case studies are matched through the **Sectors** relationship field on the case
+study (`related_sectors`). A sector with no tagged case studies renders nothing
+rather than an empty band. A sector page that already contains a CB Case Study
+Index block placed by hand is skipped, so the manual block wins.
+
+Card markup is shared - `cb_case_study_card()` is used by this section, the CB
+Case Study Index block, and the "More case studies" band on a single case study.
+
+Both injection filters bail unless `in_the_loop()`. SEO plugins build the meta
+description by calling `get_the_excerpt()`, which applies `the_content` outside
+the loop; without that guard the section leaks into the description tag and the
+real render is skipped.
+
 ### CB Sectors
 
 Source HTML: `.sectors`

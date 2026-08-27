@@ -38,6 +38,17 @@
   &__empty {
     color: var(--cb-ink-soft);
   }
+
+  // The related variant is injected above the contact form on sector pages. It
+  // takes the same tinted band as the "More case studies" section on a single
+  // case study, so the two related lists read as the same thing.
+  &--related {
+    background: var(--cb-sage);
+  }
+
+  &__more {
+    margin: 2rem 0 0;
+  }
 }
 
 .cb-case-study-card {

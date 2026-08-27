@@ -24560,6 +24560,12 @@ input, select, textarea {
 .cb-case-study-index__empty {
   color: var(--cb-ink-soft);
 }
+.cb-case-study-index--related {
+  background: var(--cb-sage);
+}
+.cb-case-study-index__more {
+  margin: 2rem 0 0;
+}
 
 .cb-case-study-card {
   display: flex;

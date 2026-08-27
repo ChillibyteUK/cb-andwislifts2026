@@ -17,6 +17,7 @@ require_once CB_THEME_DIR . '/inc/cb-posttypes.php';
 
 require_once CB_THEME_DIR . '/inc/cb-blocks.php';
 require_once CB_THEME_DIR . '/inc/cb-faq-schema.php';
+require_once CB_THEME_DIR . '/inc/cb-case-studies.php';
 
 /**
  * House style: plain hyphens, never em or en dashes.
