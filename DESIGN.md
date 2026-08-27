@@ -448,6 +448,13 @@ so rather than rendering an empty banner or a dead `tel:` link.
 
 Fields: Heading, Intro, Phone override, Note.
 
+The number renders as `.btn.btn-primary` with a phone icon, not a text link, at
+`--fs-h5` rather than normal button text - it is the primary action on the
+banner and someone reading it is usually mid-breakdown. Its hover fill is
+overridden to paper, because `.btn-primary` slides a forest fill in and the
+banner panel is itself forest, so the default would dissolve the button into its
+own background.
+
 ### CB News Index
 
 Latest posts as cards, reusing the `.cb-post-card` markup from `index.php` so the

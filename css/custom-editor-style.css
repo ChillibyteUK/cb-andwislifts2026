@@ -7843,17 +7843,29 @@ strong {
   color: var(--cb-paper);
 }
 .cb-emergency__number {
-  display: inline-block;
-  color: var(--cb-mint);
-  font-size: var(--fs-h2);
-  font-weight: var(--fw-bold);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   line-height: 1.1;
-  letter-spacing: var(--ls-tight);
-  text-decoration: none;
 }
-.cb-emergency__number:hover, .cb-emergency__number:focus-visible {
-  color: var(--cb-paper);
-  text-decoration: underline;
+.cb-emergency__number.btn-primary {
+  padding: 1rem 2rem;
+  font-size: var(--fs-h5);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tight);
+  background-image: linear-gradient(90deg, var(--cb-paper) 50%, transparent 75%, transparent 100%);
+}
+.cb-emergency__number.btn-primary:hover, .cb-emergency__number.btn-primary:focus-visible {
+  color: var(--cb-ink);
+}
+.cb-emergency__number.btn-primary:focus-visible {
+  outline: 2px solid var(--cb-paper);
+  outline-offset: 3px;
+}
+.cb-emergency__number svg {
+  inline-size: 1em;
+  block-size: 1em;
+  flex: 0 0 auto;
 }
 .cb-emergency__pending {
   margin: 0;
@@ -7977,5 +7989,4 @@ strong {
 .editor-styles-wrapper {
   background: var(--cb-paper);
 }
-
 /*# sourceMappingURL=custom-editor-style.css.map */

@@ -35,7 +35,9 @@ $tel        = $phone ? preg_replace( '/[^0-9+]/', '', $phone ) : '';
 			}
 			if ( $phone ) {
 				?>
-			<a class="cb-emergency__number" href="tel:<?= esc_attr( $tel ); ?>"><?= esc_html( $phone ); ?></a>
+			<a class="btn btn-primary cb-emergency__number" href="tel:<?= esc_attr( $tel ); ?>">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.25 1z"></path></svg>
+				<span class="visually-hidden">Call </span><?= esc_html( $phone ); ?></a>
 				<?php
 			} else {
 				// No number configured yet - say so rather than render an empty banner.
