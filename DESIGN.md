@@ -329,6 +329,40 @@ Fields:
   - Fallback label
 - Image position
 
+This is the block for a row of accreditation or certification logos. Leave the
+Image empty and it drops the background, curve and two-column split and renders
+as a centred `col-lg-8` column - heading, body, logo row - which is what suits a
+short accreditations section sitting under another block.
+
+Each logo cell falls back to its label when no image is set, and only an empty
+cell carries the dashed outline (`&__logo--placeholder`). So a row can be built
+with labelled placeholders and have real logos dropped in later without the
+slots still reading as gaps.
+
+### CB Image Row
+
+Images side by side. Built for a pair of accreditation logos sitting under
+another section.
+
+Fields:
+
+- Images (gallery)
+- Size (Small / Medium / Large)
+- Alignment (Left / Centre / Right)
+
+Renders nothing with no images.
+
+Size sets a `max-height` rather than a width. Logos arrive at wildly different
+aspect ratios, and matching their heights is what makes a row of them look
+level - constraining width instead leaves a tall badge towering over a wide
+wordmark. Two sit side by side; more wrap.
+
+Vertical padding is half a normal section, since it is meant to sit beneath
+another block rather than stand on its own.
+
+For a logo row that also needs a heading, body copy, or labelled placeholders
+where logos are still missing, use CB Compliance with its Image left empty.
+
 ### CB Logo Flow
 
 Source HTML: `.merger`

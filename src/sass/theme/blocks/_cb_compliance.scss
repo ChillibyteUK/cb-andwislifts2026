@@ -70,12 +70,16 @@
     min-width: 110px;
     min-height: 90px;
     padding: 14px 18px;
-    border: 1px dashed var(--cb-sage);
     border-radius: var(--cb-radius-sm);
     background: var(--cb-paper);
     color: var(--cb-muted);
     font-size: var(--cb-fs-small);
     text-align: center;
+
+    // Only an empty slot draws the dashed outline.
+    &--placeholder {
+      border: 1px dashed var(--cb-sage);
+    }
 
     img {
       display: block;

@@ -52,8 +52,11 @@ $image_position = get_field( 'image_position' ) ? get_field( 'image_position' ) 
 					<div class="cb-compliance__logos">
 						<?php
 						foreach ( $logos as $logo ) {
+							// The dashed slot is the empty state. Once a real logo is in
+							// place the cell should not still look like a gap.
+							$logo_placeholder = empty( $logo['logo']['ID'] ) ? ' cb-compliance__logo--placeholder' : '';
 							?>
-						<div class="cb-compliance__logo">
+						<div class="cb-compliance__logo<?= esc_attr( $logo_placeholder ); ?>">
 							<?php
 							if ( ! empty( $logo['logo']['ID'] ) ) {
 								echo wp_get_attachment_image( $logo['logo']['ID'], 'medium' );

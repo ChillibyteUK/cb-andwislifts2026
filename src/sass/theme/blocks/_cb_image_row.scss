@@ -1,0 +1,59 @@
+.cb-image-row {
+  // Sits under another section rather than standing alone, so it carries a
+  // lighter rhythm than a full block.
+  padding-block: calc(var(--cb-section-y) / 2);
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem 3rem;
+  }
+
+  &__item {
+    flex: 0 0 auto;
+    max-width: 100%;
+
+    img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      // Height is what levels a row of mixed-shape logos. Width follows.
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  // Fitting to height rather than width keeps a tall badge and a wide wordmark
+  // reading as the same weight next to each other.
+  &--small &__item img {
+    max-height: 4rem;
+  }
+
+  &--medium &__item img {
+    max-height: 6rem;
+  }
+
+  &--large &__item img {
+    max-height: 9rem;
+  }
+
+  &--left &__items {
+    justify-content: flex-start;
+  }
+
+  &--center &__items {
+    justify-content: center;
+  }
+
+  &--right &__items {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 575px) {
+  .cb-image-row__items {
+    gap: 1.5rem;
+    justify-content: center;
+  }
+}
