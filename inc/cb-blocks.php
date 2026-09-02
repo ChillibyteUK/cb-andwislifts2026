@@ -19,6 +19,23 @@ function acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_offices',
+				'title'           => __( 'CB Offices' ),
+				'category'        => 'layout',
+				'icon'            => 'location-alt',
+				'render_template' => 'blocks/cb-offices.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_image_row',
 				'title'           => __( 'CB Image Row' ),
 				'category'        => 'layout',

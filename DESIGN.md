@@ -657,6 +657,35 @@ defaults. **Add new form scopes to that selector list**, don't duplicate the blo
 GF's orbital theme wins on specificity, so its `--gf-ctrl-btn-*` custom properties
 are the only reliable way to colour the submit button.
 
+### CB Offices
+
+Regional offices for the contact page. Each office is an image beside a forest
+panel carrying the address, the main number and the named contacts for that
+region.
+
+Fields:
+
+- Heading, Intro
+- Show search and region filter (default on)
+- Offices repeater:
+  - Image, Office name, Region, Address, Main phone
+  - Contacts repeater: role, name, email, phone
+
+Offices are a repeater and contacts a repeater within them, so an editor
+duplicates a row to add a region rather than the structure having to change.
+Renders nothing with no offices, and an office with no name is skipped.
+
+Region drives the select and falls back to the office name when empty, so the
+filter works before anyone has thought about regions as a separate idea. Search
+matches the whole panel - name, address, postcode and contacts - because that is
+what people type. Filtering is client-side and shares its markup and behaviour
+with CB Downloads, so the two filtered listings on the site work the same way.
+
+Addresses are entered a line per line and rendered with `nl2br`. Phone numbers
+and emails are real `tel:` and `mailto:` links, which the source site did not
+have. Emails set `overflow-wrap: anywhere` - a long address would otherwise push
+the panel wider than its column.
+
 ### CB Pill Strip
 
 Source HTML: `.legacy-strip`
