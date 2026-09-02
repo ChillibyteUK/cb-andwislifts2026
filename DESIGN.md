@@ -347,15 +347,30 @@ another section.
 Fields:
 
 - Images (gallery)
+- Shape (Natural / Circle)
 - Size (Small / Medium / Large)
 - Alignment (Left / Centre / Right)
 
 Renders nothing with no images.
 
-Size sets a `max-height` rather than a width. Logos arrive at wildly different
-aspect ratios, and matching their heights is what makes a row of them look
-level - constraining width instead leaves a tall badge towering over a wide
-wordmark. Two sit side by side; more wrap.
+Size is one control read differently by each shape, via the
+`--cb-image-row-height` / `--cb-image-row-diameter` pair set on the size
+modifier.
+
+**Natural** fits each image to a `max-height` (4 / 6 / 9rem) rather than a
+width. Logos arrive at wildly different aspect ratios, and matching their
+heights is what makes a row of them look level - constraining width instead
+leaves a tall badge towering over a wide wordmark.
+
+**Circle** uses the size as a diameter (11 / 15 / 19rem) and applies the same
+treatment as the circular imagery elsewhere on the site: `border-radius: 50%`,
+`aspect-ratio: 1 / 1`, `object-fit: cover` and `--cb-shadow-soft`. Width is
+`min(diameter, 38vw)` so a pair stays side by side on a narrow screen instead of
+a fixed diameter forcing a wrap, rising to `62vw` below 576px. Circles request a
+`large` source rather than `medium_large`, since they render bigger and crop
+from the centre.
+
+Two sit side by side; more wrap.
 
 Vertical padding is half a normal section, since it is meant to sit beneath
 another block rather than stand on its own.
@@ -545,11 +560,30 @@ rebuilding the structure.
 Fields:
 
 - Heading, Intro
+- Show search and filters (default on)
 - Documents repeater: document, group, file, version, review date
 - Note (basic HTML allowed)
 
 Rows with no file still render, marked "Available on request", so the page reads
 correctly while certificates are still being supplied.
+
+With filters on, the block adds a search box, a Topic select built from the
+groups in use, and a File type select built from the extensions in use.
+Filtering is client-side - every document is already in the DOM - so it is
+instant and the page still works with no JavaScript.
+
+A select only appears when it has more than one option to offer, so the File
+type filter stays hidden until documents of a second type are uploaded. Item
+text is cached on load rather than read from the DOM on every keystroke, and
+input is debounced.
+
+A group whose documents are all filtered out is hidden too - a heading with
+nothing under it reads as a fault. The result count is a `role="status"` live
+region, so a screen reader hears the list change.
+
+File type is taken from the filename extension rather than the mime type, since
+that is what a reader recognises, and drives both the badge on the row and the
+filter.
 
 ### CB FAQs
 

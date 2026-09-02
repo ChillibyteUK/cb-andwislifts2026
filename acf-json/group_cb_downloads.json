@@ -1,93 +1,249 @@
 {
-  "key": "group_cb_downloads",
-  "title": "CB Downloads",
-  "fields": [
-    {
-      "key": "field_cb_downloads_message",
-      "label": "CB Downloads", "name": "", "aria-label": "", "type": "message",
-      "instructions": "", "required": 0, "conditional_logic": 0,
-      "wrapper": { "width": "", "class": "", "id": "" },
-      "message": "", "new_lines": "wpautop", "esc_html": 0
-    },
-    {
-      "key": "field_cb_downloads_heading",
-      "label": "Heading", "name": "heading", "aria-label": "", "type": "text",
-      "instructions": "", "required": false, "conditional_logic": false,
-      "wrapper": { "width": "", "class": "", "id": "" },
-      "default_value": "", "maxlength": "", "placeholder": "", "prepend": "", "append": ""
-    },
-    {
-      "key": "field_cb_downloads_intro",
-      "label": "Intro", "name": "intro", "aria-label": "", "type": "textarea",
-      "instructions": "", "required": false, "conditional_logic": false,
-      "wrapper": { "width": "", "class": "", "id": "" },
-      "rows": 2, "new_lines": "br", "default_value": "", "maxlength": "", "placeholder": ""
-    },
-    {
-      "key": "field_cb_downloads_items",
-      "label": "Documents", "name": "documents", "aria-label": "", "type": "repeater",
-      "instructions": "Documents are grouped by the Group field, in the order the groups first appear.",
-      "required": false, "conditional_logic": false,
-      "wrapper": { "width": "", "class": "", "id": "" },
-      "layout": "table", "button_label": "Add document",
-      "min": 0, "max": 0, "rows_per_page": 30, "collapsed": "",
-      "sub_fields": [
+    "key": "group_cb_downloads",
+    "title": "CB Downloads",
+    "fields": [
         {
-          "key": "field_cb_downloads_title",
-          "label": "Document", "name": "title", "aria-label": "", "type": "text",
-          "instructions": "", "required": 1, "conditional_logic": false,
-          "wrapper": { "width": "34", "class": "", "id": "" },
-          "default_value": "", "maxlength": "", "placeholder": "", "prepend": "", "append": "",
-          "parent_repeater": "field_cb_downloads_items"
+            "key": "field_cb_downloads_message",
+            "label": "CB Downloads",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
         },
         {
-          "key": "field_cb_downloads_group",
-          "label": "Group", "name": "group", "aria-label": "", "type": "text",
-          "instructions": "Keep wording identical across rows in the same group.",
-          "required": false, "conditional_logic": false,
-          "wrapper": { "width": "22", "class": "", "id": "" },
-          "default_value": "", "maxlength": "", "placeholder": "", "prepend": "", "append": "",
-          "parent_repeater": "field_cb_downloads_items"
+            "key": "field_cb_downloads_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
-          "key": "field_cb_downloads_file",
-          "label": "File", "name": "file", "aria-label": "", "type": "file",
-          "instructions": "Leave empty until the document is supplied.",
-          "required": false, "conditional_logic": false,
-          "wrapper": { "width": "22", "class": "", "id": "" },
-          "return_format": "array", "library": "all", "min_size": "", "max_size": "", "mime_types": "pdf,doc,docx",
-          "parent_repeater": "field_cb_downloads_items"
+            "key": "field_cb_downloads_intro",
+            "label": "Intro",
+            "name": "intro",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 2,
+            "new_lines": "br",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
         },
         {
-          "key": "field_cb_downloads_version",
-          "label": "Version", "name": "version", "aria-label": "", "type": "text",
-          "instructions": "", "required": false, "conditional_logic": false,
-          "wrapper": { "width": "10", "class": "", "id": "" },
-          "default_value": "", "maxlength": "", "placeholder": "", "prepend": "", "append": "",
-          "parent_repeater": "field_cb_downloads_items"
+            "key": "field_cb_downloads_filters",
+            "label": "Show search and filters",
+            "name": "show_filters",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Adds a search box, a topic filter and a file type filter above the list. Worth turning off for a short list where they would only get in the way.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
-          "key": "field_cb_downloads_review",
-          "label": "Review date", "name": "review_date", "aria-label": "", "type": "date_picker",
-          "instructions": "", "required": false, "conditional_logic": false,
-          "wrapper": { "width": "12", "class": "", "id": "" },
-          "display_format": "d/m/Y", "return_format": "Y-m-d", "first_day": 1,
-          "parent_repeater": "field_cb_downloads_items"
+            "key": "field_cb_downloads_items",
+            "label": "Documents",
+            "name": "documents",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Documents are grouped by the Group field, in the order the groups first appear.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "button_label": "Add document",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 30,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_cb_downloads_title",
+                    "label": "Document",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "34",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_downloads_items"
+                },
+                {
+                    "key": "field_cb_downloads_group",
+                    "label": "Group",
+                    "name": "group",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Keep wording identical across rows in the same group.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "22",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_downloads_items"
+                },
+                {
+                    "key": "field_cb_downloads_file",
+                    "label": "File",
+                    "name": "file",
+                    "aria-label": "",
+                    "type": "file",
+                    "instructions": "Leave empty until the document is supplied.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "22",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": "pdf,doc,docx",
+                    "parent_repeater": "field_cb_downloads_items"
+                },
+                {
+                    "key": "field_cb_downloads_version",
+                    "label": "Version",
+                    "name": "version",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "10",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_downloads_items"
+                },
+                {
+                    "key": "field_cb_downloads_review",
+                    "label": "Review date",
+                    "name": "review_date",
+                    "aria-label": "",
+                    "type": "date_picker",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "12",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "d/m/Y",
+                    "return_format": "Y-m-d",
+                    "first_day": 1,
+                    "parent_repeater": "field_cb_downloads_items"
+                }
+            ]
+        },
+        {
+            "key": "field_cb_downloads_note",
+            "label": "Note",
+            "name": "note",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Shown under the list. Basic HTML allowed.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 2,
+            "new_lines": "br",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
         }
-      ]
-    },
-    {
-      "key": "field_cb_downloads_note",
-      "label": "Note", "name": "note", "aria-label": "", "type": "textarea",
-      "instructions": "Shown under the list. Basic HTML allowed.",
-      "required": false, "conditional_logic": false,
-      "wrapper": { "width": "", "class": "", "id": "" },
-      "rows": 2, "new_lines": "br", "default_value": "", "maxlength": "", "placeholder": ""
-    }
-  ],
-  "location": [ [ { "param": "block", "operator": "==", "value": "acf\/cb-downloads" } ] ],
-  "menu_order": 0, "position": "normal", "style": "default",
-  "label_placement": "top", "instruction_placement": "label",
-  "hide_on_screen": "", "active": true, "description": "", "show_in_rest": 0,
-  "modified": 1786924800
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/cb-downloads"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1786924800
 }
