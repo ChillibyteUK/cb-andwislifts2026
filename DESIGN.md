@@ -693,8 +693,27 @@ Source HTML: `.legacy-strip`
 Fields:
 
 - Label
+- Layout (Pills / Columns)
 - Pills repeater:
   - Text
+
+**Pills** is the original layout and the default: short labels as dashed
+capsules, centred and wrapping. It only works while the labels are short - the
+homepage's "Formerly known as" row is what it was built for.
+
+**Columns** renders the same rows as a two-column list. Fourteen full sentences
+as centred wrapping capsules produce a ragged block with no alignment to read
+against, which is what the accreditations page had.
+
+The list uses CSS `columns`, so it fills down the first column then across, and
+a list ordered by reference number still reads in order. `break-inside: avoid`
+keeps a row from splitting across the break, and it drops to one column below
+768px.
+
+Rows written as "EN81-21 - New lifts in existing buildings" are split on the
+first " - " and the reference is set on its own line in forest semibold. The
+split only applies when the leading segment is 32 characters or fewer, so a row
+that merely contains a hyphen renders whole.
 
 ## Suggested Page Order
 

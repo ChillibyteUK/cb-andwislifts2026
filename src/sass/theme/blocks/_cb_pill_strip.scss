@@ -26,4 +26,38 @@
       font-size: 13px;
     }
   }
+
+  // Two columns, filled down then across, so a list that is ordered by
+  // reference number still reads in order.
+  &__list {
+    columns: 2;
+    column-gap: 3rem;
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+
+    li {
+      // A row split across the column break is unreadable.
+      break-inside: avoid;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(16, 66, 31, 0.1);
+      color: var(--cb-ink-soft);
+      font-size: var(--cb-fs-card);
+      line-height: 1.45;
+    }
+  }
+
+  &__code {
+    display: block;
+    color: var(--cb-forest);
+    font-weight: var(--fw-semibold);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .cb-pill-strip__list {
+    columns: 1;
+  }
 }

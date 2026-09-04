@@ -41,6 +41,29 @@
             "append": ""
         },
         {
+            "key": "field_cb_pill_layout",
+            "label": "Layout",
+            "name": "layout",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "Pills suit a few short labels. Columns renders the rows as a two-column list, which reads far better for longer entries such as a list of standards.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "pills": "Pills",
+                "columns": "Columns"
+            },
+            "default_value": "pills",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_cb_pill_pills",
             "label": "Pills",
             "name": "pills",
@@ -90,7 +113,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-pill-strip"
+                "value": "acf/cb-pill-strip"
             }
         ]
     ],

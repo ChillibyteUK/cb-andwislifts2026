@@ -24248,7 +24248,38 @@ input, select, textarea {
   color: var(--cb-ink-soft);
   font-size: 13px;
 }
+.cb-pill-strip__list {
+  -moz-columns: 2;
+  columns: 2;
+  -moz-column-gap: 3rem;
+  column-gap: 3rem;
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+.cb-pill-strip__list li {
+  -moz-column-break-inside: avoid;
+  break-inside: avoid;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(16, 66, 31, 0.1);
+  color: var(--cb-ink-soft);
+  font-size: var(--cb-fs-card);
+  line-height: 1.45;
+}
+.cb-pill-strip__code {
+  display: block;
+  color: var(--cb-forest);
+  font-weight: var(--fw-semibold);
+}
 
+@media (max-width: 767.98px) {
+  .cb-pill-strip__list {
+    -moz-columns: 1;
+    columns: 1;
+  }
+}
 .cb-form .gform_wrapper,
 .cb-vacancy .gform_wrapper {
   --gf-ctrl-btn-bg-color-primary: var(--cb-mint);
