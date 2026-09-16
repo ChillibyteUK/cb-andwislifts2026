@@ -596,7 +596,17 @@ Fields:
 - Heading
 - Intro text
 - Show topic filter (needs two or more distinct categories to appear)
-- Questions repeater: question, category, answer
+- Questions repeater: question, category, answer, call to action
+
+The call to action is an optional ACF link appended to the end of that answer -
+a route on to the relevant form or page. Empty adds nothing, and a link with no
+title falls back to "Find out more". It renders as a link with a trailing arrow
+rather than a button, so it sits inside an answer without competing with the
+page's own CTAs.
+
+It is deliberately outside the answer text passed to `cb_collect_faq()`: a link
+label is an affordance, not part of the answer, and it should not end up in the
+FAQPage schema.
 
 Every question calls `cb_collect_faq()`. `inc/cb-faq-schema.php` then emits **one**
 aggregated `FAQPage` JSON-LD per page on `wp_footer`, deduped by question hash -

@@ -7719,6 +7719,27 @@ strong {
   color: var(--cb-ink-soft);
   line-height: 1.6;
 }
+.cb-faqs__cta {
+  margin: 1rem 0 0;
+}
+.cb-faqs__cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--cb-forest);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+}
+.cb-faqs__cta a:hover, .cb-faqs__cta a:focus-visible {
+  color: var(--cb-emerald);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.cb-faqs__cta svg {
+  width: 0.9em;
+  height: 0.9em;
+  flex: 0 0 auto;
+}
 
 .cb-post-index__filter {
   display: flex;

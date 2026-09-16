@@ -88,7 +88,28 @@ if ( $items ) {
 					</button>
 				</h3>
 				<div id="<?= esc_attr( $item_id ); ?>" class="accordion-collapse collapse" data-bs-parent="#<?= esc_attr( $section_id ); ?>-accordion">
-					<div class="accordion-body"><?= wp_kses_post( wpautop( $answer ) ); ?></div>
+					<div class="accordion-body">
+						<?= wp_kses_post( wpautop( $answer ) ); ?>
+						<?php
+						// Optional route on from the answer. Deliberately outside the
+						// answer text so it is not swept into the FAQPage schema - a
+						// link label is an affordance, not part of the answer.
+						$cta = $item['cta'] ?? null;
+
+						if ( ! empty( $cta['url'] ) ) {
+							$cta_label  = ! empty( $cta['title'] ) ? $cta['title'] : __( 'Find out more', 'cb-andwislifts2026' );
+							$cta_target = ! empty( $cta['target'] ) ? $cta['target'] : '';
+							?>
+						<p class="cb-faqs__cta">
+							<a href="<?= esc_url( $cta['url'] ); ?>"<?= $cta_target ? ' target="' . esc_attr( $cta_target ) . '" rel="noopener"' : ''; ?>>
+								<?= esc_html( $cta_label ); ?>
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+							</a>
+						</p>
+							<?php
+						}
+						?>
+					</div>
 				</div>
 			</div>
 				<?php

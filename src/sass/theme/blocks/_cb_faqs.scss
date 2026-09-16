@@ -58,6 +58,34 @@
     color: var(--cb-ink-soft);
     line-height: 1.6;
   }
+
+  // Optional route on from an answer. Reads as a link rather than a button, so
+  // it sits inside the answer without competing with the page's own CTAs.
+  &__cta {
+    margin: 1rem 0 0;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--cb-forest);
+      font-weight: var(--fw-semibold);
+      text-decoration: none;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--cb-emerald);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+    }
+
+    svg {
+      width: 0.9em;
+      height: 0.9em;
+      flex: 0 0 auto;
+    }
+  }
 }
 
 // News index filter chips - same treatment as the FAQ topic filter.
