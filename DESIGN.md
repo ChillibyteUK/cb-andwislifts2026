@@ -715,6 +715,33 @@ first " - " and the reference is set on its own line in forest semibold. The
 split only applies when the leading segment is 32 characters or fewer, so a row
 that merely contains a hyphen renders whole.
 
+## Footer legal disclosure
+
+The footer's legal bar carries the statutory company details and the legal
+links. Both are driven from data rather than hardcoded.
+
+**Details** come from Site-Wide Settings > Legal: registered company name,
+company registration number, place of registration, VAT registration number and
+registered office. `footer.php` composes them into one statement per line and
+prints nothing at all when the fields are empty, so the bar never shows a stub.
+Partial data degrades sensibly - a number with no name renders "Company number
+12345678."
+
+Each statement sits on its own line rather than running together. As a single
+paragraph the three ran to two wrapped lines and broke mid-way through the VAT
+number. Lines are escaped individually and joined with literal `<br>`.
+
+A UK limited company has to show its registered name, number, place of
+registration and registered office on its website, and its VAT number where it
+is registered, which is why those five fields exist rather than one free-text
+box. The registered office is entered a line per line and joined with commas.
+
+**Links** are built by looking up `privacy-policy`, `cookie-policy` and
+`terms-of-use` with `get_page_by_path()`. A page that is missing or not
+published is dropped rather than linked to a 404, and the permalink is looked up
+so a page nested under a parent still resolves. Add a slug to that array in
+`footer.php` to add a legal link.
+
 ## Suggested Page Order
 
 1. CB Hero

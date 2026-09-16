@@ -22683,8 +22683,15 @@ strong {
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.636363rem;
 }
+.site-footer__legal-details {
+  margin: 0.75rem 0 0;
+  max-width: 62rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+}
 .site-footer__legal-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   justify-content: flex-end;
 }

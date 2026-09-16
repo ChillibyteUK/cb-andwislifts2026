@@ -141,8 +141,18 @@
     font-size: 0.636363rem;
   }
 
+  // Statutory disclosure. Quieter than the copyright line - it has to be
+  // present and legible, not prominent.
+  &__legal-details {
+    margin: 0.75rem 0 0;
+    max-width: 62rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+  }
+
   &__legal-links {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     justify-content: flex-end;
 

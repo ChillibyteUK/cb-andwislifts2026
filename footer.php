@@ -27,6 +27,67 @@ $social_links = array_filter(
 	)
 );
 
+// Statutory disclosure for the footer. A UK limited company must show its
+// registered name, number, place of registration and registered office on its
+// website, plus the VAT number where it is registered. All of it is maintained
+// on Site-Wide Settings > Legal, and anything left empty is simply omitted.
+$legal_name   = trim( (string) get_field( 'registered_name', 'option' ) );
+$legal_number = trim( (string) get_field( 'company_number', 'option' ) );
+$legal_place  = trim( (string) get_field( 'place_of_registration', 'option' ) );
+$legal_vat    = trim( (string) get_field( 'vat_number', 'option' ) );
+$legal_office = trim( (string) get_field( 'registered_office', 'option' ) );
+
+$legal_lines = array();
+
+if ( $legal_name ) {
+	$registration = $legal_name;
+
+	if ( $legal_place ) {
+		/* translators: %s: part of the UK the company is registered in. */
+		$registration .= ' ' . sprintf( __( 'is registered in %s', 'cb-andwislifts2026' ), $legal_place );
+	}
+
+	if ( $legal_number ) {
+		/* translators: %s: company registration number. */
+		$registration .= ( $legal_place ? ', ' : ' ' ) . sprintf( __( 'company number %s', 'cb-andwislifts2026' ), $legal_number );
+	}
+
+	$legal_lines[] = $registration . '.';
+} elseif ( $legal_number ) {
+	/* translators: %s: company registration number. */
+	$legal_lines[] = sprintf( __( 'Company number %s.', 'cb-andwislifts2026' ), $legal_number );
+}
+
+if ( $legal_office ) {
+	// Entered a line per line, shown as one line.
+	$office = implode( ', ', array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $legal_office ) ) ) );
+
+	/* translators: %s: registered office address. */
+	$legal_lines[] = sprintf( __( 'Registered office: %s.', 'cb-andwislifts2026' ), $office );
+}
+
+if ( $legal_vat ) {
+	/* translators: %s: VAT registration number. */
+	$legal_lines[] = sprintf( __( 'VAT registration number %s.', 'cb-andwislifts2026' ), $legal_vat );
+}
+
+// Legal links, in the order they should read. A page that does not exist is
+// dropped rather than linked to a 404, and the permalink is looked up so a
+// nested page still resolves.
+$legal_pages = array();
+
+foreach ( array(
+	'privacy-policy' => __( 'Privacy Policy', 'cb-andwislifts2026' ),
+	'cookie-policy'  => __( 'Cookies', 'cb-andwislifts2026' ),
+	'terms-of-use'   => __( 'Terms of Use', 'cb-andwislifts2026' ),
+) as $legal_slug => $legal_label ) {
+	$legal_page = get_page_by_path( $legal_slug );
+
+	if ( $legal_page && 'publish' === $legal_page->post_status ) {
+		$legal_pages[ get_permalink( $legal_page ) ] = $legal_label;
+	}
+}
+
 $social_labels = array(
 	'linkedin'  => 'LinkedIn',
 	'facebook'  => 'Facebook',
@@ -112,11 +173,23 @@ $social_labels = array(
 			<div class="col">
 				&copy; <?= esc_html( $current_year ); ?> andwis lifts
 			</div>
+			<?php if ( $legal_pages ) : ?>
 			<div class="col-auto site-footer__legal-links">
-				<a href="<?= esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy Policy</a>
-				<a href="<?= esc_url( home_url( '/cookie-policy/' ) ); ?>">Cookies</a>
+				<?php foreach ( $legal_pages as $legal_url => $legal_label ) : ?>
+				<a href="<?= esc_url( $legal_url ); ?>"><?= esc_html( $legal_label ); ?></a>
+				<?php endforeach; ?>
 			</div>
+			<?php endif; ?>
 		</div>
+		<?php if ( $legal_lines ) : ?>
+		<p class="site-footer__legal-details">
+			<?php
+			// One statement per line. Each is escaped individually and joined with
+			// literal markup, which also stops a VAT number wrapping mid-way.
+			echo implode( '<br>', array_map( 'esc_html', $legal_lines ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			?>
+		</p>
+		<?php endif; ?>
 	</div>
 </footer>
 <?php wp_footer(); ?>
