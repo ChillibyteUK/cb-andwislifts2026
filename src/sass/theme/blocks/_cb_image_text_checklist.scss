@@ -41,6 +41,22 @@
     }
   }
 
+  // Photo style: one rectangular image filling the media column. For case
+  // studies and anywhere the picture carries the information - a circular crop
+  // takes the corners off a machine room or a lift car and loses the detail.
+  &__media--photo {
+    aspect-ratio: 4 / 3;
+
+    .cb-image-text-checklist__fig--1 {
+      position: static;
+      inset: auto;
+      width: 100%;
+      height: 100%;
+      aspect-ratio: auto;
+      border-radius: var(--cb-radius-md);
+    }
+  }
+
   &__fig {
     position: absolute;
     border-radius: 50%;

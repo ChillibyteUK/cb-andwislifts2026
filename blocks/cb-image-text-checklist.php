@@ -22,7 +22,7 @@ $image_style    = get_field( 'image_style' ) ? get_field( 'image_style' ) : 'lay
 // The single style always renders a media column: with no image chosen it
 // falls back to the logo placeholder shipped with the theme.
 $has_any_image = ! empty( $image['ID'] )
-	|| 'single' === $image_style
+	|| in_array( $image_style, array( 'single', 'photo' ), true )
 	|| ( 'layered' === $image_style && ( ! empty( $image_2['ID'] ) || ! empty( $image_3['ID'] ) ) );
 ?>
 <section class="cb-image-text-checklist cb-image-text-checklist--white <?= esc_attr( $extra ); ?>" id="<?= esc_attr( $section_id ); ?>">
@@ -77,7 +77,7 @@ $has_any_image = ! empty( $image['ID'] )
 					</svg>
 						<?php
 					}
-					if ( ! empty( $image['ID'] ) || 'single' === $image_style ) {
+					if ( ! empty( $image['ID'] ) || in_array( $image_style, array( 'single', 'photo' ), true ) ) {
 						?>
 					<figure class="cb-image-text-checklist__fig cb-image-text-checklist__fig--1<?= 'layered' === $image_style ? ' rellax' : ''; ?>"<?= 'layered' === $image_style ? ' data-rellax-speed="0.3"' : ''; ?>>
 						<?php
