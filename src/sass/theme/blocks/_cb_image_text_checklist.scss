@@ -44,8 +44,23 @@
   // Photo style: one rectangular image filling the media column. For case
   // studies and anywhere the picture carries the information - a circular crop
   // takes the corners off a machine room or a lift car and loses the detail.
+  // A photo row stretches, so the picture matches the height of the copy beside
+  // it instead of floating in the middle of it. That keeps the two columns
+  // balanced whatever the copy length, which centring cannot do.
+  &:has(.cb-image-text-checklist__media--photo) .row {
+    align-items: stretch;
+  }
+
   &__media--photo {
-    aspect-ratio: 4 / 3;
+    // The 500px cap above keeps a circle from becoming a giant disc. A
+    // rectangular photo wants the whole column, so it is lifted here.
+    max-width: none;
+    // Height comes from the stretched row. The floor stops a short row
+    // collapsing; the ceiling stops a very long one turning into a tower.
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 22rem;
+    max-height: 40rem;
 
     .cb-image-text-checklist__fig--1 {
       position: static;
@@ -108,4 +123,12 @@
   object-fit: contain !important;
   background: var(--cb-paper);
   box-shadow: inset 0 0 0 1px rgba(16, 66, 31, 0.12);
+}
+
+@media (max-width: 991.98px) {
+  .cb-image-text-checklist__media--photo {
+    height: auto;
+    max-height: none;
+    aspect-ratio: 4 / 3;
+  }
 }
