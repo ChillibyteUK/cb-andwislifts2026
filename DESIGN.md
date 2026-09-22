@@ -752,6 +752,25 @@ published is dropped rather than linked to a 404, and the permalink is looked up
 so a page nested under a parent still resolves. Add a slug to that array in
 `footer.php` to add a legal link.
 
+## Finding where a block is used
+
+Block instances are stored as HTML comments in `post_content`, so there is
+nothing WordPress indexes to query - it is a content search.
+
+`block-usage.php` in the theme root does it:
+
+```
+wp eval-file block-usage.php "CB Emergency"
+```
+
+It takes the title, the slug or the full name (`acf/cb-emergency`), and lists
+every post using it with its type, status, permalink and how many times the
+block appears in that post. Revisions, auto-drafts and trash are excluded, so a
+post is not counted twice.
+
+It exits immediately unless `WP_CLI` is defined - it sits in the theme root
+alongside the other dev scripts and must not be reachable over the web.
+
 ## Suggested Page Order
 
 1. CB Hero
