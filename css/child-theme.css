@@ -24353,7 +24353,7 @@ input, select, textarea {
   padding: 0.75rem 1rem;
   border: 1px solid rgba(16, 66, 31, 0.2);
   border-radius: var(--cb-radius-md);
-  background: var(--cb-paper);
+  background-color: var(--cb-paper);
   color: var(--cb-ink);
   font-size: var(--cb-fs-card);
 }

@@ -42,7 +42,11 @@
     padding: 0.75rem 1rem;
     border: 1px solid rgba(16, 66, 31, 0.2);
     border-radius: var(--cb-radius-md);
-    background: var(--cb-paper);
+    // background-color, never the `background` shorthand. GF draws the select
+    // chevron with background-image plus -position, -repeat and -size; the
+    // shorthand resets those to initial, so the icon vanished at rest and its
+    // hover variant tiled across the whole control.
+    background-color: var(--cb-paper);
     color: var(--cb-ink);
     font-size: var(--cb-fs-card);
 
