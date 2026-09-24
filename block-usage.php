@@ -5,9 +5,17 @@
  * Block instances live as HTML comments in post_content, so this is a content
  * search rather than anything WordPress indexes.
  *
+ * The path is resolved against the current directory, not the theme, so from a
+ * site root (Kinsta SSH lands you there) give it the full path:
+ *
+ *   wp eval-file wp-content/themes/cb-andwislifts2026/block-usage.php "CB Emergency"
+ *
+ * Or from the theme directory:
+ *
  *   wp eval-file block-usage.php "CB Emergency"
- *   wp eval-file block-usage.php cb-emergency
- *   wp eval-file block-usage.php acf/cb-emergency
+ *
+ * The block can be named as its title, its slug or in full - "CB Emergency",
+ * cb-emergency and acf/cb-emergency all work.
  *
  * @package cb-andwislifts2026
  */

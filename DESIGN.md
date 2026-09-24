@@ -757,11 +757,16 @@ so a page nested under a parent still resolves. Add a slug to that array in
 Block instances are stored as HTML comments in `post_content`, so there is
 nothing WordPress indexes to query - it is a content search.
 
-`block-usage.php` in the theme root does it:
+`block-usage.php` in the theme root does it. `wp eval-file` resolves its path
+against the current directory rather than the theme, so from a site root - which
+is where an SSH session starts - pass the full path:
 
 ```
-wp eval-file block-usage.php "CB Emergency"
+wp eval-file wp-content/themes/cb-andwislifts2026/block-usage.php "CB Emergency"
 ```
+
+From the theme directory itself, `wp eval-file block-usage.php "CB Emergency"`
+is enough.
 
 It takes the title, the slug or the full name (`acf/cb-emergency`), and lists
 every post using it with its type, status, permalink and how many times the
