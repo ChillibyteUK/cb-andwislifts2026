@@ -24327,6 +24327,7 @@ input, select, textarea {
   --gf-ctrl-btn-border-color-hover-primary: transparent;
   --gf-ctrl-btn-border-color-focus-primary: transparent;
   --gf-ctrl-btn-border-width-primary: 0;
+  --gf-ctrl-padding-x: 1rem;
 }
 .cb-form .gform_wrapper .gform_required_legend,
 .cb-vacancy .gform_wrapper .gform_required_legend {
@@ -24350,7 +24351,6 @@ input, select, textarea {
 .cb-vacancy .gform_wrapper select,
 .cb-vacancy .gform_wrapper textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
   border: 1px solid rgba(16, 66, 31, 0.2);
   border-radius: var(--cb-radius-md);
   background-color: var(--cb-paper);
@@ -24377,6 +24377,8 @@ input, select, textarea {
 .cb-vacancy .gform_wrapper textarea {
   height: 9rem;
   min-height: 9rem;
+  padding-block: 0.75rem;
+  line-height: var(--cb-lh-body);
   resize: vertical;
 }
 .cb-form .gform_wrapper .gfield_consent_label a,
