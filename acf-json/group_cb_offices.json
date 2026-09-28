@@ -170,12 +170,98 @@
                     "parent_repeater": "field_cb_offices_offices"
                 },
                 {
+                    "key": "field_cb_offices_locations",
+                    "label": "Locations",
+                    "name": "locations",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "One row per physical office. Use this where a region has more than one site, so each gets its own address and phone.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "button_label": "Add location",
+                    "min": 0,
+                    "max": 0,
+                    "rows_per_page": 20,
+                    "collapsed": "field_cb_offices_loc_label",
+                    "sub_fields": [
+                        {
+                            "key": "field_cb_offices_loc_label",
+                            "label": "Label",
+                            "name": "label",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Optional, e.g. Service Office or Projects Office. Leave empty for a region with a single site.",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_cb_offices_locations"
+                        },
+                        {
+                            "key": "field_cb_offices_loc_phone",
+                            "label": "Phone",
+                            "name": "phone",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_cb_offices_locations"
+                        },
+                        {
+                            "key": "field_cb_offices_loc_address",
+                            "label": "Address",
+                            "name": "address",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "One line per line, as it should appear.",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "rows": 5,
+                            "placeholder": "",
+                            "new_lines": "",
+                            "parent_repeater": "field_cb_offices_locations"
+                        }
+                    ]
+                },
+                {
                     "key": "field_cb_offices_address",
-                    "label": "Address",
+                    "label": "Address (single site)",
                     "name": "address",
                     "aria-label": "",
                     "type": "textarea",
-                    "instructions": "One line per line, as it should appear.",
+                    "instructions": "Used only when Locations above is empty. For a region with more than one office, add Locations instead.",
                     "required": false,
                     "conditional_logic": false,
                     "wrapper": {
@@ -192,11 +278,11 @@
                 },
                 {
                     "key": "field_cb_offices_phone",
-                    "label": "Main phone",
+                    "label": "Main phone (single site)",
                     "name": "phone",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "",
+                    "instructions": "Used only when Locations above is empty.",
                     "required": false,
                     "conditional_logic": false,
                     "wrapper": {

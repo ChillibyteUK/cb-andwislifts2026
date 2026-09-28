@@ -678,8 +678,20 @@ Fields:
 - Heading, Intro
 - Show search and region filter (default on)
 - Offices repeater:
-  - Image, Office name, Region, Address, Main phone
+  - Image, Office name, Region
+  - Locations repeater: label, phone, address
+  - Address / Main phone (single site, superseded by Locations)
   - Contacts repeater: role, name, email, phone
+
+A region often has more than one site - a service office and a projects office,
+say - each with its own address and number. Locations is a repeater inside the
+office for exactly that, with an optional label per row. Before it existed the
+only way to show two sites was to run both addresses into the one Address field,
+which left them sharing a single phone number.
+
+Where Locations is empty the office falls back to the single Address and Main
+phone, so rows entered before the repeater existed still render. Those two
+fields are kept only for that; new entries should use Locations.
 
 Offices are a repeater and contacts a repeater within them, so an editor
 duplicates a row to add a region rather than the structure having to change.

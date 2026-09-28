@@ -136,6 +136,20 @@
     }
   }
 
+  // Several sites can share one region panel, so each needs separating clearly
+  // enough that an address and the number beneath it read as a pair.
+  &__locations {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  &__location-label {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--cb-mint);
+    font-weight: var(--fw-semibold);
+  }
+
   &__address {
     margin: 0 0 0.75rem;
     color: var(--cb-sage);

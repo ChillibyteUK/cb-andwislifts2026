@@ -94,6 +94,35 @@ $total = count( $offices );
 			$region   = trim( (string) ( $office['region'] ?? '' ) );
 			$address  = trim( (string) ( $office['address'] ?? '' ) );
 			$phone    = trim( (string) ( $office['phone'] ?? '' ) );
+
+			// A region can hold several offices - a service site and a projects
+			// site, say - each with its own address and number. Where Locations is
+			// empty the older single address and phone are used instead, so rows
+			// entered before this field existed keep working.
+			$locations = array();
+
+			foreach ( (array) ( $office['locations'] ?? array() ) as $location ) {
+				$loc_address = trim( (string) ( $location['address'] ?? '' ) );
+				$loc_phone   = trim( (string) ( $location['phone'] ?? '' ) );
+
+				if ( '' === $loc_address && '' === $loc_phone ) {
+					continue;
+				}
+
+				$locations[] = array(
+					'label'   => trim( (string) ( $location['label'] ?? '' ) ),
+					'address' => $loc_address,
+					'phone'   => $loc_phone,
+				);
+			}
+
+			if ( ! $locations && ( $address || $phone ) ) {
+				$locations[] = array(
+					'label'   => '',
+					'address' => $address,
+					'phone'   => $phone,
+				);
+			}
 			$image    = $office['image'] ?? null;
 			$contacts = $office['contacts'] ?? array();
 
@@ -111,11 +140,22 @@ $total = count( $offices );
 			<?php } ?>
 			<div class="cb-offices__panel">
 				<h3><?= esc_html( $name ); ?></h3>
-				<?php if ( $address ) { ?>
-				<p class="cb-offices__address"><?= nl2br( esc_html( $address ) ); ?></p>
-				<?php } ?>
-				<?php if ( $phone ) { ?>
-				<p class="cb-offices__phone"><a href="tel:<?= esc_attr( preg_replace( '/[^0-9+]/', '', $phone ) ); ?>"><?= esc_html( $phone ); ?></a></p>
+				<?php if ( $locations ) { ?>
+				<div class="cb-offices__locations">
+					<?php foreach ( $locations as $location ) { ?>
+					<div class="cb-offices__location">
+						<?php if ( $location['label'] ) { ?>
+						<span class="cb-offices__location-label"><?= esc_html( $location['label'] ); ?></span>
+						<?php } ?>
+						<?php if ( $location['address'] ) { ?>
+						<p class="cb-offices__address"><?= nl2br( esc_html( $location['address'] ) ); ?></p>
+						<?php } ?>
+						<?php if ( $location['phone'] ) { ?>
+						<p class="cb-offices__phone"><a href="tel:<?= esc_attr( preg_replace( '/[^0-9+]/', '', $location['phone'] ) ); ?>"><?= esc_html( $location['phone'] ); ?></a></p>
+						<?php } ?>
+					</div>
+					<?php } ?>
+				</div>
 				<?php } ?>
 				<?php if ( $contacts ) { ?>
 				<ul class="cb-offices__contacts">

@@ -25287,6 +25287,16 @@ input, select, textarea {
   color: var(--cb-mint);
   text-decoration: underline;
 }
+.cb-offices__locations {
+  display: grid;
+  gap: 1.25rem;
+}
+.cb-offices__location-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--cb-mint);
+  font-weight: var(--fw-semibold);
+}
 .cb-offices__address {
   margin: 0 0 0.75rem;
   color: var(--cb-sage);
