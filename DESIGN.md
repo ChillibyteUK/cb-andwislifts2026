@@ -339,6 +339,40 @@ cell carries the dashed outline (`&__logo--placeholder`). So a row can be built
 with labelled placeholders and have real logos dropped in later without the
 slots still reading as gaps.
 
+### CB Gallery
+
+A set of photographs, as a carousel or a grid.
+
+Fields:
+
+- Heading, Intro (both optional)
+- Images (gallery, required)
+- Layout (Carousel / Grid)
+- Images across (2 / 3 / 4)
+- Show captions (uses each image's media library caption)
+
+Renders nothing with no images. A carousel with no more images than it shows at
+once falls back to a grid - there is nothing to move through, and Swiper's loop
+misbehaves with fewer slides than slidesPerView.
+
+The carousel is Swiper, which `inc/cb-theme.php` already enqueues site-wide, so
+it adds no new dependency. The init runs on `wp_footer` like the theme's other
+block scripts, and bails to a horizontally scrolling row if Swiper is absent.
+
+Two traps worth knowing, both hit while building this:
+
+**Auto-height slides.** Swiper's CSS gives `.swiper-wrapper` and
+`.swiper-slide` `height: 100%`. Against a container sized by its content that is
+circular: the wrapper collapsed and the figures overflowed out of the flow, so
+slides rendered blank. Both need `height: auto`.
+
+**`aria-live` and the carousel.** Swiper's a11y module marks `.swiper-wrapper`
+`aria-live="polite"`. `_a11y.scss` used to hide every `[aria-live]` element
+10000px off screen, which hid the whole carousel - and the visible filter counts
+on CB Downloads and CB Offices with it. That rule is now the opt-in `.cb-sr-live`
+class. Do not reintroduce a blanket attribute selector: a live region is not
+inherently invisible.
+
 ### CB Image Row
 
 Images side by side. Built for a pair of accreditation logos sitting under

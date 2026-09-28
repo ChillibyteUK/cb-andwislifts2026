@@ -249,8 +249,12 @@ span a {
 // ARIA Live Region Styling
 // ============================================================================
 
-[aria-live="polite"],
-[aria-live="assertive"] {
+// Opt in with this class. A live region is not inherently invisible: a filter
+// result count and a form status line are both live regions meant to be read on
+// screen. A blanket [aria-live] selector here hid those, and hid Swiper's
+// carousel wrapper, which its a11y module marks aria-live="polite" - the whole
+// carousel was positioned 10000px off screen.
+.cb-sr-live {
   position: absolute;
   left: -10000px;
   width: 1px;

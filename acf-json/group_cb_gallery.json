@@ -1,0 +1,181 @@
+{
+    "key": "group_cb_gallery",
+    "title": "CB Gallery",
+    "fields": [
+        {
+            "key": "field_cb_gallery_message",
+            "label": "CB Gallery",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_cb_gallery_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_gallery_intro",
+            "label": "Intro",
+            "name": "intro",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 2,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_cb_gallery_images",
+            "label": "Images",
+            "name": "images",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "Drag to reorder. A carousel needs more images than it shows at once, or it falls back to a grid.",
+            "required": true,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "insert": "append",
+            "library": "all",
+            "min": "",
+            "max": "",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_cb_gallery_layout",
+            "label": "Layout",
+            "name": "layout",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "carousel": "Carousel",
+                "grid": "Grid"
+            },
+            "default_value": "carousel",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_cb_gallery_perview",
+            "label": "Images across",
+            "name": "per_view",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "How many are visible at once. Fewer on smaller screens.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "2": "2",
+                "3": "3",
+                "4": "4"
+            },
+            "default_value": 3,
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_cb_gallery_captions",
+            "label": "Show captions",
+            "name": "show_captions",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Uses each image's caption from the media library.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/cb-gallery"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1790000000
+}
