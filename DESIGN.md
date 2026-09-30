@@ -541,6 +541,17 @@ Fields:
 
 Contact values should preferably default from Site-Wide Settings where useful.
 
+The card is a flex column with `__value` on `margin-top: auto`, so the email is
+pinned to the bottom. The cards sit in one row at equal height, but a
+description that wraps to two lines used to push its email down a line and break
+the alignment across the row. Pinning holds them level whatever the copy length.
+
+Worth knowing before reaching for the padding: at the default 26px the longest
+description missed fitting on one line by a single pixel, and trimming to 16px
+only bought enough room above a 1400px viewport - between 1200 and 1399px the
+column is 273px and it still wrapped. The alignment was the thing to fix, not
+the wrap.
+
 ### CB Emergency
 
 High-contrast 24/7 callout banner. The number comes from `contact_phone` in

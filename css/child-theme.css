@@ -24224,7 +24224,8 @@ input, select, textarea {
 }
 
 .cb-contact-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   padding: 32px 26px;
   border: 1px solid var(--cb-sage);
   border-radius: var(--cb-radius-md);
@@ -24265,6 +24266,8 @@ input, select, textarea {
   line-height: 1.5;
 }
 .cb-contact-card__value {
+  margin-top: auto;
+  padding-top: 0.5rem;
   color: var(--cb-emerald);
   font-size: 14.5px;
   font-weight: var(--fw-semibold);

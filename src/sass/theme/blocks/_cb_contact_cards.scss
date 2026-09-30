@@ -11,7 +11,13 @@
 }
 
 .cb-contact-card {
-  display: block;
+  // A flex column so the value can be pinned to the bottom. The four cards sit
+  // in one row and are already equal height, but a description that wraps to two
+  // lines pushed its email down a line and broke the alignment across the row.
+  // Pinning it holds the emails level whatever the copy length, at any width -
+  // trimming the padding only bought enough room above 1400px.
+  display: flex;
+  flex-direction: column;
   padding: 32px 26px;
   border: 1px solid var(--cb-sage);
   border-radius: var(--cb-radius-md);
@@ -59,6 +65,8 @@
   }
 
   &__value {
+    margin-top: auto;
+    padding-top: 0.5rem;
     color: var(--cb-emerald);
     font-size: 14.5px;
     font-weight: var(--fw-semibold);
