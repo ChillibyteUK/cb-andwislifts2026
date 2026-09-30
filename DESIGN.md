@@ -546,11 +546,11 @@ pinned to the bottom. The cards sit in one row at equal height, but a
 description that wraps to two lines used to push its email down a line and break
 the alignment across the row. Pinning holds them level whatever the copy length.
 
-Worth knowing before reaching for the padding: at the default 26px the longest
-description missed fitting on one line by a single pixel, and trimming to 16px
-only bought enough room above a 1400px viewport - between 1200 and 1399px the
-column is 273px and it still wrapped. The alignment was the thing to fix, not
-the wrap.
+Horizontal padding is 16px rather than the 26px it started at. At 26px the
+longest description missed fitting on one line by a single pixel; 16px buys
+enough room on a wide desktop, which is where it is reviewed. It does not fit
+between 1200 and 1399px, where the column is 273px - the description wraps there
+and the pinned value keeps the row aligned anyway.
 
 ### CB Emergency
 
