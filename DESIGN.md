@@ -771,6 +771,25 @@ first " - " and the reference is set on its own line in forest semibold. The
 split only applies when the leading segment is 32 characters or fewer, so a row
 that merely contains a hyphen renders whole.
 
+## Nav CTA pill
+
+The last primary nav item ("Let's talk") renders as a green pill, matching the
+group site at andwis.com. Add the CSS class `button` to that menu item in
+Appearance > Menus (Screen Options > CSS Classes if the field is hidden) -
+`.navbar-nav .menu-item.button > .nav-link` in `_header.scss` does the rest.
+`button` is deliberately the same class name andwis.com uses for its own nav CTA.
+
+The hover is the gradient sweep `.btn-primary` already uses: a 400% wide
+linear-gradient parked at `background-position: 100%` and slid to `0%` on hover.
+andwis.com does exactly the same thing, and its tokens are ours - its `--dark` is
+`rgb(28 66 32)`, our `--cb-forest`, and its `--highlight` is `#00ff99`, our
+`--cb-mint` - so this matches rather than approximates it.
+
+The rule is repeated for the `.scrolled` and `:focus-within` header states,
+because those set the nav link colour and the pill has to stay green whether it
+sits over a hero or on white. It also resets `-webkit-text-stroke`, which the
+nav's own hover applies - on a filled pill that reads as a wobble.
+
 ## Footer legal disclosure
 
 The footer's legal bar carries the statutory company details and the legal

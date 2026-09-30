@@ -22473,6 +22473,23 @@ strong {
 #wrapper-navbar.scrolled .navbar-nav .nav-link:hover, #wrapper-navbar.scrolled .navbar-nav .nav-link:focus-visible, #wrapper-navbar:focus-within .navbar-nav .nav-link:hover, #wrapper-navbar:focus-within .navbar-nav .nav-link:focus-visible {
   color: var(--cb-ink);
 }
+#wrapper-navbar .navbar-nav .menu-item.button > .nav-link, #wrapper-navbar.scrolled .navbar-nav .menu-item.button > .nav-link, #wrapper-navbar:focus-within .navbar-nav .menu-item.button > .nav-link {
+  display: inline-block;
+  padding: calc(0.25rem + 2px) calc(1.2rem + 2px);
+  border-radius: 9999px;
+  background-color: var(--cb-mint);
+  background-image: linear-gradient(90deg, var(--cb-forest) 50%, transparent 75%, transparent 100%);
+  background-size: 400%;
+  background-position: 100%;
+  color: var(--cb-ink);
+  font-weight: var(--fw-semibold);
+  transition: background-position 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+#wrapper-navbar .navbar-nav .menu-item.button > .nav-link:hover, #wrapper-navbar .navbar-nav .menu-item.button > .nav-link:focus-visible, #wrapper-navbar.scrolled .navbar-nav .menu-item.button > .nav-link:hover, #wrapper-navbar.scrolled .navbar-nav .menu-item.button > .nav-link:focus-visible, #wrapper-navbar:focus-within .navbar-nav .menu-item.button > .nav-link:hover, #wrapper-navbar:focus-within .navbar-nav .menu-item.button > .nav-link:focus-visible {
+  background-position: 0%;
+  color: var(--cb-paper);
+  -webkit-text-stroke: 0;
+}
 #wrapper-navbar .dropdown-menu {
   --bs-dropdown-min-width: 13rem;
   --bs-dropdown-padding-y: 0.5rem;

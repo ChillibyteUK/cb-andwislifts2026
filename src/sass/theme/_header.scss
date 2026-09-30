@@ -160,6 +160,49 @@
     }
   }
 
+  // Nav CTA pill. Add the CSS class `button` to the menu item in
+  // Appearance > Menus, matching the convention andwis.com uses for its own
+  // nav CTA.
+  //
+  // The gradient sweep is the same one .btn-primary already uses: a 400% wide
+  // linear-gradient parked off to the right, slid across on hover. andwis.com
+  // does exactly this, and its tokens are ours - its --dark is rgb(28 66 32),
+  // our --cb-forest, and its --highlight is #00ff99, our --cb-mint - so this
+  // matches rather than approximates.
+  //
+  // Listed for both header states: the pill stays green whether the nav is over
+  // a hero or scrolled onto white, so it must beat the colour rules above.
+  .navbar-nav .menu-item.button > .nav-link,
+  &.scrolled .navbar-nav .menu-item.button > .nav-link,
+  &:focus-within .navbar-nav .menu-item.button > .nav-link {
+    display: inline-block;
+    padding: calc(0.25rem + 2px) calc(1.2rem + 2px);
+    border-radius: 9999px;
+    background-color: var(--cb-mint);
+    background-image: linear-gradient(
+      90deg,
+      var(--cb-forest) 50%,
+      transparent 75%,
+      transparent 100%
+    );
+    background-size: 400%;
+    background-position: 100%;
+    color: var(--cb-ink);
+    font-weight: var(--fw-semibold);
+    transition:
+      background-position 0.5s ease-in-out,
+      color 0.5s ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      background-position: 0%;
+      color: var(--cb-paper);
+      // The nav's own hover thickens the glyphs; on a filled pill that reads as
+      // a wobble rather than emphasis.
+      -webkit-text-stroke: 0;
+    }
+  }
+
   // DISABLED UNTIL PAGES ARE BUILT OUT
   // // Active / current page
   // .current-menu-item > .nav-link,
