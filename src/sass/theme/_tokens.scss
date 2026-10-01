@@ -94,16 +94,18 @@ $col-light: #f2f2f2;
   --cb-ls-kicker: 0.14em;
 
   /* ─── Font Sizes ─── */
-  /* Display / Headings (fluid via clamp: min @ ~375px, max @ ~1280px) */
-  --fs-hero: 3rem;
+  /* Display / Headings. Fluid via clamp: the minimum lands at a 375px phone and
+     the maximum - the original fixed size - at 1280px and up. Root is 22px, so
+     fixed rem headings were 49.5px on a phone and long words overflowed. */
+  --fs-hero: clamp(1.9rem, 1.444rem + 2.674vw, 3rem);
   /* hero h1 (80 → 72 → 48) */
-  --fs-h1: 2.5rem;
+  --fs-h1: clamp(1.75rem, 1.439rem + 1.823vw, 2.5rem);
   /* apps headline (64) */
-  --fs-h2: 2.25rem;
+  --fs-h2: clamp(1.5rem, 1.189rem + 1.823vw, 2.25rem);
   /* section h2s — unified 52/56 → 54 */
-  --fs-h3: 2rem;
+  --fs-h3: clamp(1.35rem, 1.081rem + 1.580vw, 2rem);
   /* parent h2 (42) */
-  --fs-h4: 1.75rem;
+  --fs-h4: clamp(1.25rem, 1.043rem + 1.215vw, 1.75rem);
   /* form-title */
   --fs-h5: 1.5rem;
   /* marquee num, proj-card wide title */

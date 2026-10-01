@@ -4,6 +4,11 @@
   margin-top: clamp(4rem, 8vw, 7rem);
   background: var(--cb-forest);
   color: var(--cb-paper);
+  // The curve below is 120vw wide, so it overhangs each side by 10vw. Without
+  // this every page was wider than the viewport and scrolled sideways on a
+  // phone. clip rather than hidden: it leaves the vertical axis visible, which
+  // the curve needs because it sits above the footer's top edge.
+  overflow-x: clip;
 
   &::before {
     content: "";

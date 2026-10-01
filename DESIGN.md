@@ -801,6 +801,27 @@ because those set the nav link colour and the pill has to stay green whether it
 sits over a hero or on white. It also resets `-webkit-text-stroke`, which the
 nav's own hover applies - on a filled pill that reads as a wobble.
 
+## Mobile and horizontal overflow
+
+Heading tokens `--fs-hero` to `--fs-h4` are fluid `clamp()` values: the original
+fixed size at 1280px and above, scaling down to a 375px phone. Root is 22px, so
+fixed rem headings were 49.5px on a phone and single long words overflowed.
+
+Three things used to make pages wider than the viewport on a phone. All are
+fixed, and all are easy to reintroduce:
+
+- The footer curve is a `120vw` pseudo-element, so `.site-footer` carries
+  `overflow-x: clip`. Use `clip`, not `hidden` - the curve sits above the
+  footer's top edge and needs the vertical axis left visible.
+- The CB Image Text Checklist dots ring is a rotating square whose corners sweep
+  wider than its column, so the section also carries `overflow-x: clip`.
+- The photo image style must reset `min-height` wherever it sets
+  `aspect-ratio`. With both in force the browser widens the box to satisfy them.
+
+The layered style's three circles are sized and positioned as percentages of
+the media square, which equal the original rem sizes at the 500px desktop width
+and scale down together below it.
+
 ## Cookie consent
 
 CookieYes is loaded in `header.php`, immediately after the viewport meta and

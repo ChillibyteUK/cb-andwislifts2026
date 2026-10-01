@@ -1,5 +1,8 @@
 .cb-image-text-checklist {
   padding-block: var(--cb-section-y);
+  // The dots ring is a square that rotates, so its corners sweep wider than
+  // the column. The dots themselves sit in a circle and are never cut off.
+  overflow-x: clip;
 
   h2 {
     margin: 0 0 20px;
@@ -86,27 +89,31 @@
       display: block;
     }
 
+    // Sized and placed as percentages of the media square, so the composition
+    // scales with it. These work out to the original 16 / 7 / 10rem circles at
+    // the 500px desktop size; in fixed rem the largest was 352px regardless and
+    // covered the other two on a phone.
     &--1 {
-      top: 1rem;
+      top: 4.4%;
       right: 0;
-      width: 16rem;
-      height: 16rem;
+      width: 70.4%;
+      height: auto;
       z-index: 3;
     }
 
     &--2 {
-      top: 11rem;
+      top: 48.4%;
       left: 0;
-      width: 7rem;
-      height: 7rem;
+      width: 30.8%;
+      height: auto;
       z-index: 2;
     }
 
     &--3 {
-      top: 3rem;
-      left: 0.5rem;
-      width: 10rem;
-      height: 10rem;
+      top: 13.2%;
+      left: 2.2%;
+      width: 44%;
+      height: auto;
       z-index: 1;
     }
   }
@@ -128,6 +135,10 @@
 @media (max-width: 991.98px) {
   .cb-image-text-checklist__media--photo {
     height: auto;
+    // The desktop min-height must go too. Left in place alongside aspect-ratio,
+    // the browser satisfies both by widening the box - 22rem tall at 4:3 is
+    // 645px wide, which overflowed a phone and gave the page a sideways scroll.
+    min-height: 0;
     max-height: none;
     aspect-ratio: 4 / 3;
   }
