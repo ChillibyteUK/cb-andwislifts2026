@@ -24,6 +24,20 @@ if ( session_status() === PHP_SESSION_NONE ) {
         charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1">
 
+    <!-- Start cookieyes banner -->
+    <?php
+    // Consent manager. Deliberately first in <head> and deliberately not async:
+    // it has to run before Google Analytics and GTM below so it can block their
+    // cookies until consent is given. Moving it after them, or deferring it,
+    // defeats the point of having it.
+    //
+    // Loaded for everyone, including logged-in users, unlike the analytics tags
+    // below - the banner needs to be testable without logging out.
+    ?>
+    <script id="cookieyes" type="text/javascript"
+        src="https://cdn-cookieyes.com/client_data/d3de0529e2ed6607cc7662698e9ac24e/script.js"></script>
+    <!-- End cookieyes banner -->
+
 	<link rel="preload"
 		href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/poppins-400-latin.woff2' ); ?>"
 		as="font" type="font/woff2" crossorigin="anonymous">

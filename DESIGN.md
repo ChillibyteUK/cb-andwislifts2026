@@ -801,6 +801,20 @@ because those set the nav link colour and the pill has to stay green whether it
 sits over a hero or on white. It also resets `-webkit-text-stroke`, which the
 nav's own hover applies - on a filled pill that reads as a wobble.
 
+## Cookie consent
+
+CookieYes is loaded in `header.php`, immediately after the viewport meta and
+before everything else in `<head>`.
+
+Two things about that placement are deliberate and should not be changed
+casually. It sits **before** the Google Analytics and GTM tags further down the
+head, because it has to run first to block their cookies until consent is given.
+And it carries no `async` or `defer`, for the same reason - deferring it lets the
+tags it is meant to gate fire first.
+
+Unlike the analytics tags, it is not wrapped in `! is_user_logged_in()`, so the
+banner is testable without logging out.
+
 ## Footer legal disclosure
 
 The footer's legal bar carries the statutory company details and the legal
