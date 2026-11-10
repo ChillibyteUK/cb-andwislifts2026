@@ -138,22 +138,11 @@ if ( session_status() === PHP_SESSION_NONE ) {
 				data-bs-toggle="collapse" data-bs-target="#primary-navbar"
 				aria-controls="primary-navbar" aria-expanded="false"
 				aria-label="Toggle navigation">
-				<i class="fas fa-bars" aria-hidden="true"></i>
+				<?= cb_nav_icon( 'menu' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</button>
 
 			<div id="primary-navbar" class="collapse navbar-collapse">
-				<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'primary_nav',
-						'container'      => false,
-						'menu_class'     => 'navbar-nav align-items-xl-center',
-						'fallback_cb'    => '',
-						'depth'          => 2,
-						'walker'         => new Understrap_WP_Bootstrap_Navwalker(),
-					)
-				);
-				?>
+				<?php cb_render_primary_nav(); ?>
 			</div>
 		</div>
 	</nav>

@@ -68,7 +68,8 @@ so none of them pick up the `/news/` prefix.
   `data-categories` (all posts are already in the DOM). Categories from the brief:
   Contract awards, Company news, Community, Industry.
 - `single.php` opens with a dark hero carrying the title, category and date. That
-  is structural, not decorative - see the Header note above. The title, featured
+  was structural when the header was transparent over the hero; it is now a design
+  choice only. The title, featured
   image and meta live in the hero only; do not reintroduce them in the body.
 
 ## PHP Coding Standards
@@ -183,28 +184,85 @@ Splide, GLightbox, Tom Select, AOS, lightbox — commented out in `cb_theme_enqu
 
 ### Header
 
-Source HTML: `.topnav`
+Global template: `header.php`. Navigation markup: `inc/cb-nav.php`.
+Styles: `src/sass/theme/_header.scss`.
 
-Global template: `header.php`
+Phase two (November 2026) replaced the transparent-over-hero header with the
+redesign's solid white bar: 90px tall on desktop, 72px below 1200px, dark logo,
+ink links. It is still `position: fixed`, so the page still starts underneath
+it. `.scrolled` now only adds a hairline and a soft shadow.
 
-**Every page must open with a CB Hero block.** `#wrapper-navbar` is `position: fixed`
-with `background: transparent`, and the logo's `.andwis` paths are `fill: var(--cb-paper)`
-- white, so it reads against a dark hero image. It only flips to a white bar with
-`fill: var(--cb-forest)` once `.scrolled` is applied. A page that opens on a light
-background therefore has an invisible logo and nav until the user scrolls.
+A page no longer needs to open on a dark hero for the header to be legible.
 
-If a page ever needs to open without a hero, the header needs a light-background
-variant (apply the `.scrolled` treatment from page load) rather than dropping the hero.
+#### Primary navigation
 
-Status: deferred, except for replacing existing font preloads with self-hosted Poppins.
+The menu is still edited in Appearance > Menus ("Primary Nav" location), two
+levels deep. `cb_render_primary_nav()` reads it with `wp_get_nav_menu_items()`
+and builds the markup itself - the Understrap Bootstrap walker is no longer
+used, because each dropdown needs its own layout.
 
-Includes:
+A top-level item **with children** renders as a `<button>` that opens a panel,
+not as a link. The panel's heading carries the link to the parent page instead.
+A top-level item without children is a plain link.
 
-- Sticky forest-green header
-- Site logo
-- Primary nav menu
-- Anchor links to page sections
-- Mobile horizontal-scroll nav as supplied in the design
+The panel style comes from a CSS class on the top-level menu item (Screen
+Options > CSS Classes if the field is hidden):
+
+| Class | Panel | Used for |
+| --- | --- | --- |
+| `nav-split` | Green link list plus a white "Case study examples" column | Services |
+| `nav-bar` | Full-width green bar of links, flush under the header | Sectors and Coverage |
+| `nav-dark` | Dark green panel. The default when no class is set | About |
+| `nav-mint` | Mint panel | Contact |
+| `button` | Not a panel: the item becomes the mint CTA pill | Ask the experts |
+
+The panel heading is the menu item's **Title Attribute** when one is set, and
+its navigation label otherwise. That is how "Services" opens a panel headed
+"By service" and "Contact" one headed "Contact us".
+
+`setup-phase-two-menu.php` in the theme root rebuilds the menu to the sitemap
+with those classes and headings. Menus are database content, so it has to be
+run once per environment:
+
+    wp eval-file wp-content/themes/cb-andwislifts2026/setup-phase-two-menu.php
+    wp eval-file wp-content/themes/cb-andwislifts2026/setup-phase-two-menu.php apply
+
+The first only prints the plan. `apply` replaces every item in the menu. It
+skips pages that are not published and lists them.
+
+#### Case study examples (Services panel)
+
+Each service link in a `nav-split` panel shows up to two case studies whose
+`related_services` field includes that service; hovering or focusing a link
+swaps them. A service with none, and any link that is not a service, shows the
+two most recent case studies under "Recent projects". The supporting line under
+each title is `client_name`, falling back to `card_summary` cut to one line.
+
+The lookup is one meta query per service, so `cb_nav_case_study_map()` caches it
+in the `cb_nav_case_studies_v1` transient for 12 hours and clears it whenever a
+case study or service is saved, trashed or deleted.
+
+#### Behaviour
+
+The script is printed on `wp_footer` by `cb_nav_footer_script()`, like the
+blocks' scripts, so the nav does not depend on the JS build.
+
+- Devices that can hover open a panel on hover. A mouse click keeps it open
+  rather than toggling it shut.
+- Touch and keyboard toggle with the button. Escape closes the panel and
+  returns focus to its button. Focus leaving a panel, or a click outside the
+  nav, closes it.
+- The script keeps each panel inside the page container and lines a bar's links
+  up under the item that opened it (`--cb-nav-bar-offset`).
+- Below 1200px the same markup is an accordion inside the Bootstrap collapse.
+  The case study column is hidden there.
+
+Each nav item is stretched to the full height of the header, and the gap above
+a floating panel is padding on the panel wrapper. Both are deliberate: the
+pointer must not leave the item on its way down to the panel, or it would close.
+
+Sizes in `_header.scss` are px, not rem. The root font-size is 22px and the
+header is drawn to fixed pixel sizes.
 
 ### Footer
 
@@ -784,22 +842,16 @@ that merely contains a hyphen renders whole.
 
 ## Nav CTA pill
 
-The last primary nav item ("Let's talk") renders as a green pill, matching the
-group site at andwis.com. Add the CSS class `button` to that menu item in
-Appearance > Menus (Screen Options > CSS Classes if the field is hidden) -
-`.navbar-nav .menu-item.button > .nav-link` in `_header.scss` does the rest.
-`button` is deliberately the same class name andwis.com uses for its own nav CTA.
+The primary nav item with the CSS class `button` ("Ask the experts") renders as
+a mint pill, matching the group site at andwis.com. `button` is deliberately the
+same class name andwis.com uses for its own nav CTA. `cb_render_primary_nav()`
+outputs it as `.cb-nav__cta`; see the Header section for the other menu classes.
 
 The hover is the gradient sweep `.btn-primary` already uses: a 400% wide
 linear-gradient parked at `background-position: 100%` and slid to `0%` on hover.
 andwis.com does exactly the same thing, and its tokens are ours - its `--dark` is
 `rgb(28 66 32)`, our `--cb-forest`, and its `--highlight` is `#00ff99`, our
 `--cb-mint` - so this matches rather than approximates it.
-
-The rule is repeated for the `.scrolled` and `:focus-within` header states,
-because those set the nav link colour and the pill has to stay green whether it
-sits over a hero or on white. It also resets `-webkit-text-stroke`, which the
-nav's own hover applies - on a filled pill that reads as a wobble.
 
 ## Mobile and horizontal overflow
 
