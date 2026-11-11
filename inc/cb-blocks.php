@@ -19,6 +19,193 @@ function acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_contact',
+				'title'           => __( 'CB Contact' ),
+				'category'        => 'layout',
+				'icon'            => 'email',
+				'render_template' => 'blocks/cb-contact.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_resources',
+				'title'           => __( 'CB Resources' ),
+				'category'        => 'layout',
+				'icon'            => 'media-document',
+				'render_template' => 'blocks/cb-resources.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_office_finder',
+				'title'           => __( 'CB Office Finder' ),
+				'category'        => 'layout',
+				'icon'            => 'location',
+				'render_template' => 'blocks/cb-office-finder.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_intro',
+				'title'           => __( 'CB Intro' ),
+				'category'        => 'layout',
+				'icon'            => 'editor-aligncenter',
+				'render_template' => 'blocks/cb-intro.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_statement',
+				'title'           => __( 'CB Statement' ),
+				'category'        => 'layout',
+				'icon'            => 'marker',
+				'render_template' => 'blocks/cb-statement.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_text_media',
+				'title'           => __( 'CB Text Media' ),
+				'category'        => 'layout',
+				'icon'            => 'align-pull-right',
+				'render_template' => 'blocks/cb-text-media.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_service_floors',
+				'title'           => __( 'CB Service Floors' ),
+				'category'        => 'layout',
+				'icon'            => 'sort',
+				'render_template' => 'blocks/cb-service-floors.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_carousel',
+				'title'           => __( 'CB Carousel' ),
+				'category'        => 'layout',
+				'icon'            => 'slides',
+				'render_template' => 'blocks/cb-carousel.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_reasons',
+				'title'           => __( 'CB Reasons' ),
+				'category'        => 'layout',
+				'icon'            => 'grid-view',
+				'render_template' => 'blocks/cb-reasons.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_case_study_showcase',
+				'title'           => __( 'CB Case Study Showcase' ),
+				'category'        => 'layout',
+				'icon'            => 'columns',
+				'render_template' => 'blocks/cb-case-study-showcase.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_cross_sell',
+				'title'           => __( 'CB Cross Sell' ),
+				'category'        => 'layout',
+				'icon'            => 'networking',
+				'render_template' => 'blocks/cb-cross-sell.php',
+				'api_version'     => 3,
+				'supports'        => array(
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_gallery',
 				'title'           => __( 'CB Gallery' ),
 				'category'        => 'layout',
@@ -457,6 +644,8 @@ function cb_form_id_choices( $field ) {
 	return $field;
 }
 add_filter( 'acf/load_field/key=field_cb_form_form_id', 'cb_form_id_choices' );
+add_filter( 'acf/load_field/key=field_cb_contact_form_id', 'cb_form_id_choices' );
+add_filter( 'acf/load_field/key=field_cb_contact_action_form_id', 'cb_form_id_choices' );
 
 // Auto-sync ACF field groups from acf-json folder.
 add_filter(

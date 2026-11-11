@@ -5,6 +5,7 @@
 // than bare .gform_wrapper, so a form embedded anywhere else keeps GF defaults.
 // Add new scopes to this selector list rather than duplicating the block.
 .cb-form .gform_wrapper,
+.cb-contact .gform_wrapper,
 .cb-vacancy .gform_wrapper {
   // GF's orbital theme styles its button through these custom properties at a
   // specificity our .btn-primary rules cannot beat. Setting them is the

@@ -1,0 +1,278 @@
+// Phone layouts, from the 390px frames in the phase two design (Home, Sectors
+// and Coverage, Resources, Contact). Kept together because they are one set
+// of decisions applied across many blocks: on a phone the hero's buttons drop
+// below the photo, buttons run the full width, section headings on Home sit
+// on the left, and a picture comes between a heading and its text.
+//
+// Imported after the blocks, so these win where a block says otherwise.
+
+$arc: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 65' xml:space='preserve'><path d='M1440 66C1283.48 26.17 1019.4 0 720 0S156.52 26.17 0 66h1440z'/></svg>";
+
+@media (max-width: 767.98px) {
+  // ------------------------------------------------------------------ hero
+  // The photo fills the top, the words sit along its bottom edge over a green
+  // wash, and the buttons follow underneath on a band of their own.
+  .cb-hero:not(.cb-hero--light) {
+    .cb-hero__bg {
+      // No drift on a phone: the band below must meet the photo exactly.
+      inset: 0;
+      transform: none !important;
+    }
+
+    .cb-hero__scrim {
+      background: linear-gradient(180deg, rgba(13, 36, 20, 0.08) 0%, rgba(13, 36, 20, 0.28) 40%, rgba(28, 66, 32, 0.95) 100%);
+    }
+
+    .cb-hero__content {
+      padding-top: calc(72px + 46vw);
+      padding-bottom: 60px;
+    }
+
+    .cb-hero__kicker {
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      max-width: none;
+    }
+
+    .cb-hero__intro {
+      max-width: none;
+      margin-top: 12px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  }
+
+  .cb-hero:not(.cb-hero--light):has(.cb-hero__cta) {
+    --cb-hero-band: var(--cb-paper);
+
+    // The band is the bottom of the hero, so the hero's own curve goes.
+    &.cb-hero--bottom-curve::after {
+      display: none;
+    }
+
+    .cb-hero__content {
+      padding-bottom: 0;
+    }
+
+    .cb-hero__cta {
+      position: relative;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 56px;
+      padding: 24px 0 28px;
+
+      // The band, painted over the photo across the full width.
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        z-index: -1;
+        background-color: var(--cb-hero-band);
+        transform: translateX(-50%);
+      }
+
+      // A few px over the bottom, so nothing of the photo shows between the
+      // band and whatever follows it.
+      &::before {
+        top: 0;
+        bottom: -4px;
+        width: 100vw;
+      }
+
+      // Its curved top edge, the same arc as the hero's.
+      &::after {
+        bottom: calc(100% - 1px);
+        width: 120vw;
+        height: 6vw;
+        mask-image: url($arc);
+        mask-position: center bottom;
+        mask-repeat: no-repeat;
+        mask-size: 100% auto;
+        -webkit-mask-image: url($arc);
+        -webkit-mask-position: center bottom;
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-size: 100% auto;
+      }
+
+      .btn {
+        width: 100%;
+        min-height: 52px;
+        padding-block: 10px;
+      }
+
+      // On white the outlined button needs dark ink.
+      .btn.btn-ghost {
+        --cb-ghost-ink: var(--cb-forest);
+        --cb-ghost-ink-hover: var(--cb-paper);
+        --cb-ghost-fill-hover: var(--cb-forest);
+      }
+    }
+  }
+
+  // With the figures underneath, the band is green and runs into them.
+  .cb-hero--has-stats:not(.cb-hero--light):has(.cb-hero__cta) {
+    --cb-hero-band: var(--cb-forest);
+
+    .cb-hero__cta {
+      padding-bottom: 6px;
+
+      .btn.btn-ghost {
+        --cb-ghost-ink: var(--cb-paper);
+        --cb-ghost-ink-hover: var(--cb-forest);
+        --cb-ghost-fill-hover: var(--cb-paper);
+      }
+    }
+
+    .cb-hero__stats {
+      margin-top: 0;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  // The figures: two by two, ruled into quarters.
+  .cb-hero__stats {
+    padding: 14px 0 44px;
+  }
+
+  .cb-hero__stats .cb-hero__stats-list {
+    gap: 0;
+  }
+
+  .cb-hero__stat {
+    padding: 18px 0 18px 18px;
+
+    &:nth-child(odd) {
+      padding-right: 18px;
+      padding-left: 0;
+      border-right: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    &:nth-child(-n + 2) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  .cb-hero__stat-value {
+    font-size: 36px;
+  }
+
+  .cb-hero__stat-label {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  // ------------------------------------------------- headings on the left
+  // On Home the section headings sit on the left on a phone; an opening
+  // statement (CB Intro) stays centred.
+  .cb-service-floors__head,
+  .cb-carousel__head,
+  .cb-carousel__foot,
+  .cb-reasons__head,
+  .cb-showcase__heading {
+    margin-inline: 0;
+    text-align: left;
+  }
+}
+
+@media (max-width: 991.98px) {
+  // ------------------------------------------------------ text and picture
+  // Heading, then the picture, then the text and button.
+  .cb-text-media:not(.cb-text-media--no-image) {
+    .cb-text-media__inner {
+      row-gap: 0;
+    }
+
+    .cb-text-media__copy {
+      display: contents;
+    }
+
+    .cb-text-media__kicker {
+      order: 1;
+    }
+
+    h2 {
+      order: 2;
+    }
+
+    .cb-text-media__sub {
+      order: 3;
+    }
+
+    .cb-text-media__media {
+      order: 4;
+      margin: 24px 0 4px;
+    }
+
+    .cb-text-media__body {
+      order: 5;
+    }
+
+    .cb-text-media__button {
+      order: 6;
+      justify-self: start;
+    }
+
+    .cb-text-media__aside {
+      order: 7;
+    }
+  }
+
+  // ------------------------------------------------------- service floors
+  // Each service opens in place, under its own row, not below the whole list.
+  .cb-service-floors--js {
+    .cb-service-floors__inner {
+      display: flex;
+      flex-direction: column;
+      // The block lines its two columns up at the top; here every row fills
+      // the width.
+      align-items: stretch;
+      gap: 12px;
+    }
+
+    .cb-service-floors__tabs,
+    .cb-service-floors__panels {
+      display: contents;
+    }
+
+    @for $i from 1 through 8 {
+      .cb-service-floors__tab:nth-child(#{$i}) {
+        order: #{$i * 2 - 1};
+      }
+
+      .cb-service-floors__panel:nth-child(#{$i}) {
+        order: #{$i * 2};
+      }
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  // ------------------------------------------------------ full-width buttons
+  .cb-intro__button,
+  .cb-text-media__button,
+  .cb-carousel__button,
+  .cb-showcase__actions .btn,
+  .cb-news-index__more .btn,
+  .cb-case-study__more-link .btn,
+  .cb-offices__aside .btn,
+  .cb-office-finder__actions .btn {
+    display: flex;
+    justify-content: center;
+    justify-self: stretch;
+    width: 100%;
+    min-width: 0;
+    min-height: 52px;
+  }
+
+  // The result cards in the finder keep a compact button beside the number.
+  .cb-office-finder__actions .btn {
+    width: auto;
+    min-height: 40px;
+  }
+}

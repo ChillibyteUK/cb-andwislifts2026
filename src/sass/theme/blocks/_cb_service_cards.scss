@@ -158,3 +158,239 @@
     }
   }
 }
+
+/* Phase two styles: "photo" and "plain". Neither has a card around it. Sizes
+   are px to match the design. */
+.cb-service-cards--photo,
+.cb-service-cards--plain {
+  padding-block: clamp(48px, 5vw, 90px);
+
+  .cb-section-head {
+    text-align: center;
+
+    h2 {
+      margin: 0;
+      color: var(--cb-forest);
+    }
+
+    p {
+      max-width: 900px;
+      margin: 20px auto 0;
+      color: var(--cb-ink);
+      font-size: clamp(16px, 13px + 0.76vw, 24px);
+      line-height: 1.6;
+    }
+
+  }
+
+  .row {
+    --bs-gutter-x: 32px;
+    --bs-gutter-y: clamp(40px, 4.4vw, 84px);
+  }
+}
+
+.cb-service-card--photo,
+.cb-service-card--plain {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+
+  .cb-service-card__body {
+    align-items: flex-start;
+    padding: 0;
+  }
+
+  h3 {
+    margin: 0 0 10px;
+    color: var(--cb-forest);
+    font-size: clamp(20px, 1.5vw, 24px);
+    font-weight: var(--fw-semibold);
+    line-height: 1.25;
+  }
+
+  p {
+    margin: 0;
+    color: var(--cb-ink);
+    font-size: 16px;
+    line-height: 1.5;
+
+    // The gap above the button belongs to the text, so the button itself is
+    // free to drop to the bottom of the card.
+    &:not(:last-child) {
+      margin-bottom: 22px;
+    }
+  }
+
+  // Pushed to the bottom of the card. The cards in a row are all as tall as
+  // the tallest, so the buttons line up however long each description is.
+  .cb-service-card__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    min-height: 44px;
+    margin-top: auto;
+    padding: 6px 24px;
+    border-width: 1px;
+    font-size: 14px;
+  }
+}
+
+.cb-service-card--photo .cb-service-card__media {
+  aspect-ratio: 384 / 251;
+  margin: 0 0 24px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--cb-sage);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// Contract options: a small mark, the name as a large word over a smaller
+// one, a paragraph and a button, all centred.
+.cb-service-card--plain {
+  align-items: center;
+  max-width: 392px;
+  margin-inline: auto;
+  text-align: center;
+
+  .cb-service-card__media {
+    height: 44px;
+    margin: 0 0 14px;
+
+    img {
+      width: auto;
+      max-width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .cb-service-card__body {
+    align-items: center;
+  }
+
+  h3 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+    font-size: clamp(26px, 2.2vw, 32px);
+    line-height: 1.05;
+  }
+
+  .cb-title-sub {
+    font-size: 0.62em;
+  }
+
+  p {
+    font-size: 15px;
+
+    &:not(:last-child) {
+      margin-bottom: 28px;
+    }
+  }
+}
+
+// The closing prompt card. As tall as a photo, so it lines up with the row.
+.cb-service-card--promo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  aspect-ratio: 384 / 251;
+  padding: 28px 32px;
+  border-radius: 20px;
+  background: var(--cb-sage);
+
+  h3 {
+    margin: 0 0 10px;
+    color: var(--cb-forest);
+    font-size: clamp(22px, 1.9vw, 28px);
+    font-weight: var(--fw-semibold);
+    line-height: 1.2;
+  }
+
+  p {
+    margin: 0;
+    color: var(--cb-ink);
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    min-height: 44px;
+    margin-top: 20px;
+    padding: 6px 24px;
+    border-width: 1px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 575.98px) {
+    aspect-ratio: auto;
+  }
+}
+
+// Straight after an intro the cards belong to it, so they close up under it.
+.cb-intro + .cb-service-cards--photo,
+.cb-intro + .cb-service-cards--plain {
+  padding-top: 0;
+}
+
+// "Tile": the photo style with only the name and the button, side by side
+// under the picture. Used for the sectors.
+.cb-service-cards--tile {
+  @extend .cb-service-cards--photo;
+
+  // The heading here introduces the grid; it is not a section title.
+  .cb-section-head h2 {
+    font-size: clamp(22px, 2.2vw, 32px);
+  }
+
+  .cb-section-head {
+    padding-bottom: clamp(28px, 3vw, 48px) !important;
+  }
+
+  .row {
+    --bs-gutter-y: clamp(32px, 3.4vw, 56px);
+  }
+}
+
+.cb-service-card--tile {
+  @extend .cb-service-card--photo;
+
+  .cb-service-card__media {
+    margin-bottom: 18px;
+  }
+
+  .cb-service-card__body {
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: clamp(18px, 1.4vw, 20px);
+  }
+
+  .cb-service-card__button {
+    flex: none;
+    min-width: 0;
+    min-height: 40px;
+    margin: 0;
+    padding: 4px 22px;
+    font-size: 13px;
+  }
+}
+

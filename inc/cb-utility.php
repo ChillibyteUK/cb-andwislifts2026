@@ -1372,3 +1372,112 @@ function cb_social_icon( $slug ) {
 
 	return $icons[ $slug ] ?? '';
 }
+
+/**
+ * The andwis lifts wordmark as inline SVG.
+ *
+ * One copy for the header and the footer. The two halves carry the classes
+ * `andwis` and `dot` ("." plus "lifts") so each place can colour them: dark on
+ * the white header, white on the dark footer.
+ *
+ * @return string
+ */
+function cb_site_logo_svg() {
+	return '<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="andwis lifts" viewBox="0 0 223.94 33.32">' .
+		'<path class="dot" d="M150.13 24.31c2.27 0 4.1 1.83 4.1 4.09s-1.84 4.09-4.1 4.09-4.1-1.83-4.1-4.09 1.84-4.09 4.1-4.09"/><path class="andwis" d="M43.73 32.52v-12.6c0-1.07-.03-2.72-1.31-3.96-.77-.73-2.01-1.24-3.16-1.24s-2.34.47-3.08 1.12c-1.54 1.35-1.51 3.22-1.51 4.66v12.03h-6.66v-12.15c0-2.69.12-5.5 2.9-8.3 2.16-2.19 4.86-3.19 8.47-3.19s6.93 1.39 8.52 3.08c2.24 2.42 2.51 5.7 2.51 8.42v12.15h-6.68v-.02ZM116.02 9.19h7.16V32.5h-7.16z"/><path class="andwis" d="M119.61 0c2.25 0 4.07 1.82 4.07 4.06s-1.82 4.06-4.07 4.06-4.07-1.82-4.07-4.06 1.82-4.06 4.07-4.06"/><path class="andwis" d="M71.35 29.91c-2.04 1.99-4.12 2.72-6.9 2.72s-5.26-.9-7.28-2.72c-2.7-2.39-4.09-5.5-4.09-9.14s1.3-6.32 3.73-8.66c2.18-2.12 4.82-3.21 7.77-3.21s4.99.95 6.55 2.94V.89h6.85v31.63h-6.63v-2.61ZM65.98 26.45c2.95 0 5.42-2.42 5.42-5.63s-2.48-5.85-5.67-5.85-5.78 2.64-5.78 5.77 2.51 5.71 6.03 5.71"/><path class="andwis" d="M131.94 25.35v.22c0 1.25 1 2.14 2.44 2.14s2.26-.72 2.26-1.97c0-1.84-1.81-1.75-4.62-2.64-3.9-1.22-5.79-3.31-5.79-6.7s3.23-7.5 8.61-7.5 7.65 2.64 7.9 6.92h-6.01c-.25-1.47-.8-2.09-1.98-2.09s-2.06.75-2.06 1.84c0 1.55 1.39 1.92 3.7 2.56 4.62 1.25 6.93 3.02 6.93 6.75s-3.57 7.8-9.02 7.8-8.15-2.72-8.6-7.3h6.26-.02v-.02ZM114.33 9.21 104.05 33.32l-7.3-15.11-6.68 15.11L79.69 9.21h7.1l4.22 9.64 3.18-7.04-1.2-2.6h6.21l4.28 10.06 3.75-10.06h7.1ZM18.3 29.9c-2.04 1.99-4.12 2.72-6.92 2.72s-5.26-.9-7.3-2.72C1.39 27.51 0 24.38 0 20.75s1.31-6.33 3.73-8.67c2.18-2.12 4.82-3.21 7.77-3.21s4.99.95 6.56 2.94v-2.61h6.86v23.28h-6.65v-2.61h.02v.02ZM12.91 26.44c2.95 0 5.42-2.42 5.42-5.63s-2.48-5.85-5.69-5.85-5.78 2.64-5.78 5.77 2.51 5.71 6.04 5.71"/><path class="dot" d="M157.1 1.83h6.96v30.71h-6.96zM185.2 9.9v-.56c0-1.13.2-1.85.64-2.28.47-.46 1.29-.65 2.6-.61h.36V1.08h-.34c-3.45-.1-5.92.62-7.52 2.17-1.37 1.34-2.07 3.32-2.07 5.89v.75h-2.49v5.26h2.49v17.38h6.33V15.16h3.84V9.9h-3.84ZM204.61 15.16V9.9h-4.91V4.48h-6.29V9.9h-2.61v5.26h2.61v10.22c0 4.75 2.48 7.16 7.36 7.16h3.84v-5.38h-2.93c-1.68 0-1.98-.59-1.98-1.74V15.16h4.91ZM166.96 9.23h7.16v23.31h-7.16z"/><path class="dot" d="M170.54.04c2.25 0 4.07 1.82 4.07 4.06s-1.82 4.06-4.07 4.06-4.07-1.82-4.07-4.06S168.3.04 170.54.04"/><path class="dot" d="M212.55 25.22v.22c0 1.25 1 2.14 2.44 2.14s2.26-.72 2.26-1.97c0-1.84-1.81-1.75-4.62-2.64-3.9-1.22-5.79-3.31-5.79-6.7s3.23-7.5 8.61-7.5 7.65 2.64 7.9 6.92h-6.01c-.25-1.47-.8-2.09-1.98-2.09s-2.06.75-2.06 1.84c0 1.55 1.39 1.92 3.7 2.56 4.62 1.25 6.93 3.02 6.93 6.75s-3.57 7.8-9.02 7.8-8.15-2.72-8.61-7.3h6.26-.02v-.02Z"/>' .
+		'</svg>';
+}
+
+/**
+ * Escape a heading and turn *starred* words into the green highlight.
+ *
+ * The phase two headings pick out a phrase in emerald, as in
+ * "Covering the *full lifecycle* of lift assets". Editors mark it with
+ * asterisks, which is quicker and safer than typing markup into a text field.
+ *
+ * @param string $text Raw field value.
+ * @return string Safe HTML.
+ */
+function cb_highlight( $text ) {
+	return preg_replace( '/\*([^*]+)\*/', '<span class="cb-highlight">$1</span>', esc_html( (string) $text ) );
+}
+
+/**
+ * CB Video: load a video when its play button is pressed. Printed once, on
+ * pages where a video is standing behind its poster.
+ *
+ * @return void
+ */
+function cb_video_facade_script() {
+	if ( empty( $GLOBALS['cb_video_facade'] ) ) {
+		return;
+	}
+	?>
+<script>
+document.addEventListener('click', function (event) {
+	var button = event.target.closest ? event.target.closest('.cb-video__play') : null;
+	if (!button) return;
+
+	var frame = button.parentNode;
+	var template = frame.querySelector('template');
+	if (!template) return;
+
+	var player = template.content.querySelector('iframe');
+	if (player) {
+		// Pressing play is the request to play, so the video starts by itself.
+		player.src += (player.src.indexOf('?') === -1 ? '?' : '&') + 'autoplay=1';
+		player.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+	}
+
+	frame.textContent = '';
+	frame.appendChild(template.content);
+	frame.classList.remove('cb-video__frame--facade');
+});
+</script>
+	<?php
+}
+add_action( 'wp_footer', 'cb_video_facade_script', 9999 );
+
+/**
+ * Turn *starred* phrases in body copy into the green emphasis.
+ *
+ * The same convention as cb_highlight(), for text that is already HTML: the
+ * design picks out a phrase or a closing line in bold emerald. A pair of
+ * asterisks has to sit within one run of text, so it cannot swallow markup.
+ *
+ * @param string $html Body copy, already filtered.
+ * @return string
+ */
+function cb_highlight_body( $html ) {
+	return preg_replace( '/\*([^*<>\r\n]{2,})\*/', '<strong class="cb-highlight">$1</strong>', (string) $html );
+}
+
+/**
+ * Open and rel attributes for an ACF link array.
+ *
+ * @param array $link ACF link.
+ * @return string Leading-space-prefixed attributes, already escaped.
+ */
+function cb_link_target( $link ) {
+	return ! empty( $link['target'] ) ? sprintf( ' target="%s" rel="noopener"', esc_attr( $link['target'] ) ) : '';
+}
+
+/**
+ * A title as a large first word over a smaller remainder, as in the contract
+ * options: "Essential" over "Care+". A trailing plus sign turns green.
+ *
+ * @param string $title Raw title.
+ * @return string Safe HTML.
+ */
+function cb_split_title( $title ) {
+	$parts = preg_split( '/\s+/', trim( (string) $title ), 2 );
+	$main  = esc_html( $parts[0] );
+
+	if ( empty( $parts[1] ) ) {
+		return $main;
+	}
+
+	$sub = preg_replace( '/\+$/', '<span class="cb-highlight">+</span>', esc_html( $parts[1] ) );
+
+	return '<span class="cb-title-main">' . $main . '</span> <span class="cb-title-sub">' . $sub . '</span>';
+}

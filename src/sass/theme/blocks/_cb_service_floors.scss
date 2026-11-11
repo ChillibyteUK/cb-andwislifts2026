@@ -1,0 +1,274 @@
+// CB Service Floors: the services as numbered floors, with a card for the
+// selected one. Behaviour is in blocks/cb-service-floors.php.
+.cb-service-floors {
+  position: relative;
+  padding-block: clamp(64px, 6vw, 110px) clamp(72px, 8vw, 170px);
+  overflow: hidden;
+  background: var(--cb-forest);
+  color: var(--cb-paper);
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__head {
+    max-width: 860px;
+    margin: 0 auto clamp(36px, 4vw, 64px);
+    text-align: center;
+
+    h2 {
+      margin: 0;
+      color: var(--cb-paper);
+    }
+
+    p {
+      margin: 20px 0 0;
+      color: var(--cb-sage);
+      font-size: clamp(16px, 13px + 0.76vw, 24px);
+      line-height: 1.6;
+    }
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 548px) minmax(0, 1fr);
+    gap: 24px 16px;
+    align-items: start;
+  }
+
+  &__tabs {
+    display: grid;
+    gap: 15px;
+  }
+
+  // A row: the floor number, then the pill with the name and the call button.
+  &__tab {
+    display: flex;
+    align-items: center;
+    min-height: 78px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    background: transparent;
+    color: var(--cb-paper);
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 250ms ease;
+
+    &:focus-visible {
+      outline: 2px solid var(--cb-mint);
+      outline-offset: 3px;
+    }
+  }
+
+  &__number {
+    flex: 0 0 122px;
+    margin-left: -4px;
+    font-size: 96px;
+    font-weight: var(--fw-semibold);
+    line-height: 78px;
+    letter-spacing: -0.04em;
+    transition: color 250ms ease;
+  }
+
+  &__pill {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 78px;
+    padding: 0 14px 0 24px;
+    border-radius: 16px;
+    background: var(--cb-paper);
+    color: var(--cb-forest);
+    transition: background-color 250ms ease, color 250ms ease;
+  }
+
+  &__label {
+    font-size: clamp(17px, 1.5vw, 20px);
+    font-weight: var(--fw-semibold);
+    line-height: 1.25;
+  }
+
+  &__icon {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--cb-forest);
+    color: var(--cb-emerald);
+    transition: background-color 250ms ease, color 250ms ease, transform 250ms ease;
+  }
+
+  // Selected: the whole row is outlined, the number lights up and the call
+  // button points at the card.
+  &__tab.is-active {
+    border-color: var(--cb-mint);
+
+    .cb-service-floors__number {
+      color: var(--cb-mint);
+    }
+
+    .cb-service-floors__pill {
+      background: transparent;
+      color: var(--cb-paper);
+    }
+
+    .cb-service-floors__icon {
+      background: var(--cb-mint);
+      color: var(--cb-forest);
+      transform: rotate(90deg);
+    }
+  }
+
+  &__tab:not(.is-active):hover &__icon {
+    background: var(--cb-emerald);
+    color: var(--cb-forest);
+  }
+
+  &__panel {
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--cb-paper);
+    color: var(--cb-ink);
+
+    & + & {
+      margin-top: 16px;
+    }
+  }
+
+  // With the script running only the selected card shows.
+  &--js &__panel {
+    margin-top: 0;
+
+    &:not(.is-active) {
+      display: none;
+    }
+  }
+
+  &__text {
+    padding: 28px 36px;
+
+    p {
+      max-width: 520px;
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.45;
+    }
+  }
+
+  // The tab already names the service, so with the tabs working the card's
+  // own title is only for assistive technology.
+  &__panel-title {
+    margin: 0 0 8px;
+    color: var(--cb-forest);
+    font-size: 20px;
+    line-height: 1.3;
+  }
+
+  &--js &__panel-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  &__media {
+    position: relative;
+    min-height: 214px;
+    background: var(--cb-sage);
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    // No photo yet: just the button, on white.
+    &--empty {
+      min-height: 0;
+      padding: 0 36px 28px;
+      background: transparent;
+      text-align: right;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    right: 28px;
+    bottom: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    min-height: 48px;
+    padding-block: 6px;
+    font-size: 15px;
+  }
+
+  &__media--empty &__button {
+    position: static;
+  }
+
+  &__shapes {
+    position: absolute;
+    right: -30px;
+    bottom: -40px;
+    z-index: 0;
+    width: clamp(220px, 26vw, 420px);
+    height: auto;
+    fill: var(--cb-emerald);
+    pointer-events: none;
+  }
+
+  @media (max-width: 991.98px) {
+    &__inner {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    &__shapes {
+      display: none;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    &__tab,
+    &__pill {
+      min-height: 62px;
+    }
+
+    &__number {
+      flex-basis: 84px;
+      font-size: 64px;
+      line-height: 62px;
+    }
+
+    &__icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    &__text {
+      padding: 22px 22px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__tab,
+    &__number,
+    &__pill,
+    &__icon {
+      transition: none;
+    }
+  }
+}

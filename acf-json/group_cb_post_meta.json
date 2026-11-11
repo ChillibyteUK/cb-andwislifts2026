@@ -1,0 +1,53 @@
+{
+    "key": "group_cb_post_meta",
+    "title": "Article Details",
+    "fields": [
+        {
+            "key": "field_cb_post_gallery",
+            "label": "More images",
+            "name": "gallery",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "The featured image is shown across the top of the article. Add more here and they become a carousel with it.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min": "",
+            "max": "",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "insert": "append",
+            "preview_size": "medium"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1794323463
+}

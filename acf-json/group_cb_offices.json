@@ -21,6 +21,53 @@
             "esc_html": 0
         },
         {
+            "key": "field_cb_offices_use_shared",
+            "label": "Use the site's offices",
+            "name": "use_shared",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Shows the offices kept in Site-wide Settings > Offices, so the list only has to be kept up to date in one place. The Offices rows below are then ignored; the layout, heading and intro are still this block's own.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_cb_offices_layout",
+            "label": "Layout",
+            "name": "layout",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "cards": "Cards with photos",
+                "list": "Plain list in three columns"
+            },
+            "default_value": "cards",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_cb_offices_heading",
             "label": "Heading",
             "name": "heading",
@@ -68,7 +115,15 @@
             "type": "true_false",
             "instructions": "Adds a search box and a region select above the list.",
             "required": false,
-            "conditional_logic": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cb_offices_layout",
+                        "operator": "!=",
+                        "value": "list"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -79,6 +134,86 @@
             "ui": 1,
             "ui_on_text": "",
             "ui_off_text": ""
+        },
+        {
+            "key": "field_cb_offices_aside_heading",
+            "label": "Last cell heading",
+            "name": "aside_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional call to action shown as the last cell of the list, for example \"Multi site operator?\".",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cb_offices_layout",
+                        "operator": "==",
+                        "value": "list"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_offices_aside_text",
+            "label": "Last cell text",
+            "name": "aside_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cb_offices_layout",
+                        "operator": "==",
+                        "value": "list"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_offices_aside_cta",
+            "label": "Last cell button",
+            "name": "aside_cta",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cb_offices_layout",
+                        "operator": "==",
+                        "value": "list"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
         },
         {
             "key": "field_cb_offices_offices",
@@ -427,5 +562,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1787000000
+    "modified": 1794325456
 }

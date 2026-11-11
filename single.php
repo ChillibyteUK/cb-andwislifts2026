@@ -1,124 +1,78 @@
 <?php
 /**
- * Template for displaying single posts.
+ * Template for a news article.
+ *
+ * The same frame as a case study: a green hero with the category, date, title
+ * and - when the article has a hand-written excerpt - that as an intro, with
+ * the pictures across its bottom edge. Then the article, three related ones,
+ * the group cross-sell and the closing band. The hero and the article's
+ * layout are in inc/cb-story.php.
  *
  * @package cb-andwislifts2026
  */
 
 defined( 'ABSPATH' ) || exit;
+
 get_header();
+
+the_post();
+
+$article_id = get_the_ID();
+
+ob_start();
+cb_news_tags_list( $article_id, 'cb-case-tags--light' );
+$article_tags = (string) ob_get_clean();
 ?>
-<main id="main" class="cb-post">
+<main id="main" class="cb-article">
 	<?php
-	// A dark hero is structural, not decorative: the fixed header renders its
-	// logo and nav in cb-paper white, so a post opening on a light background
-	// would have an invisible header until the reader scrolls. See DESIGN.md.
-	$hero_id  = get_post_thumbnail_id();
-	$hero_url = $hero_id ? wp_get_attachment_image_url( $hero_id, 'full' ) : '';
-	$cats     = get_the_category();
-	?>
-	<section class="cb-hero cb-hero--bottom-curve">
-		<?php
-		if ( $hero_url ) {
-			?>
-		<div class="cb-hero__bg" style="background-image:url('<?= esc_url( $hero_url ); ?>');"></div>
-			<?php
-		}
+	cb_story_hero(
+		array(
+			'tags'    => $article_tags,
+			'meta'    => get_the_date( 'j F Y' ),
+			'title'   => get_the_title(),
+			// Only an excerpt someone wrote: an automatic one would just repeat
+			// the opening of the article underneath it.
+			'intro'   => has_excerpt() ? wp_strip_all_tags( get_the_excerpt() ) : '',
+			'images'  => cb_story_images( $article_id ),
+			'variant' => 'article',
+		)
+	);
+
+	cb_story_content();
+
+	$related = cb_news_related( $article_id );
+
+	if ( $related ) {
 		?>
-		<div class="cb-hero__scrim"></div>
+	<section class="cb-case-study__more cb-article__related">
 		<div class="container">
-			<h1><?= esc_html( get_the_title() ); ?></h1>
-			<p class="cb-hero__intro">
+			<h2><?php esc_html_e( 'Related news', 'cb-andwislifts2026' ); ?></h2>
+			<div class="cb-case-study-grid">
 				<?php
-				if ( ! empty( $cats[0] ) ) {
-					?>
-				<?= esc_html( $cats[0]->name ); ?> &middot;
-					<?php
+				foreach ( $related as $item ) {
+					cb_news_card( $item );
 				}
 				?>
-				<?= esc_html( get_the_date( 'j M Y' ) ); ?> &middot;
-				<?= esc_html( estimate_reading_time_in_minutes( get_the_content() ) ); ?> min read
-			</p>
+			</div>
 		</div>
 	</section>
-	<div class="container pt-4 pb-5">
 		<?php
-		if ( function_exists( 'yoast_breadcrumb' ) ) {
-			yoast_breadcrumb( '<div id="breadcrumbs" class="mb-4">', '</div>' );
-		}
-		?>
-		<div class="row">
-			<div class="col-lg-8">
-				<div class="cb-post__content">
-					<?php
-					// the_content() applies the full filter chain, so blocks render and
-					// wpautop runs. get_the_content() returns raw, unrendered content, and
-					// wrapping it in wp_kses_post() strips <script> tags while keeping the
-					// script body as visible text.
-					the_content();
-					?>
-				</div>
-				<?php
-				$prev = get_previous_post();
-				$next = get_next_post();
+	}
 
-				if ( $prev || $next ) {
-					$justify = $prev && $next ? 'justify-content-between' : ( $next ? 'justify-content-end' : 'justify-content-start' );
-					?>
-				<nav class="cb-post__nav d-flex <?= esc_attr( $justify ); ?>" aria-label="Post navigation">
-					<?php if ( $prev ) { ?>
-					<a href="<?= esc_url( get_permalink( $prev ) ); ?>" class="button button--secondary">&larr; Previous</a>
-					<?php } ?>
-					<?php if ( $next ) { ?>
-					<a href="<?= esc_url( get_permalink( $next ) ); ?>" class="button button--primary">Next &rarr;</a>
-					<?php } ?>
-				</nav>
-					<?php
-				}
-				?>
-			</div>
-			<div class="col-lg-4">
-				<?php
-				$q = new WP_Query(
-					array(
-						'post_type'      => 'post',
-						'posts_per_page' => 5,
-						'post__not_in'   => array( get_the_ID() ),
-						'orderby'        => 'date',
-						'order'          => 'DESC',
-					)
-				);
-				if ( $q->have_posts() ) {
-					?>
-				<aside class="cb-post-sidebar">
-					<h2 class="cb-post-sidebar__title has-underline">Latest News &amp; Advice</h2>
-					<?php
-					while ( $q->have_posts() ) {
-						$q->the_post();
-						?>
-					<a class="cb-post-sidebar__item" href="<?= esc_url( get_permalink() ); ?>">
-						<?php if ( has_post_thumbnail() ) { ?>
-						<div class="cb-post-sidebar__image-wrap">
-							<?= get_the_post_thumbnail( get_the_ID(), 'medium', array( 'class' => 'cb-post-sidebar__image' ) ); ?>
-						</div>
-						<?php } ?>
-						<div class="cb-post-sidebar__body">
-							<div class="cb-post-sidebar__meta">
-								<span><?= esc_html( get_the_date( 'j M Y' ) ); ?></span>
-								<span><?= esc_html( estimate_reading_time_in_minutes( get_the_content() ) ); ?> min read</span>
-							</div>
-							<div class="cb-post-sidebar__post-title"><?= esc_html( get_the_title() ); ?></div>
-						</div>
-					</a>
-					<?php } ?>
-				</aside>
-					<?php
-					wp_reset_postdata();
-				}
-				?>
-			</div>
-		</div>
-	</div>
+	// Every article closes on the group cross-sell, as in the phase two design.
+	cb_cross_sell_render(
+		array(
+			'card_heading' => __( 'Which services do you look after?', 'cb-andwislifts2026' ),
+		)
+	);
+
+	cb_story_closing_band(
+		'Have questions?',
+		"Whether you need a quote, have a technical question, or need someone on site right now, we're here.",
+		'Contact us',
+		'/contact/'
+	);
+	?>
 </main>
 <?php
 get_footer();

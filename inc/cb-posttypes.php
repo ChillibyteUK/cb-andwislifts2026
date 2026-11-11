@@ -13,6 +13,8 @@
  * @return void
  */
 function cb_register_post_types() {
+	// Every type keeps revisions. They did not at first, which meant an edit to
+	// a service, sector or case study could not be undone the way a page's can.
 
 	/*
 	Applications and Products are not part of the andwis lifts site. Left here,
@@ -46,7 +48,7 @@ function cb_register_post_types() {
 			'show_in_rest'        => true,
 			'menu_position'       => 21,
 			'menu_icon'           => 'dashicons-admin-tools',
-			'supports'            => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt' ),
+			'supports'            => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt', 'revisions' ),
 			'capability_type'     => 'post',
 			'map_meta_cap'        => true,
 			'rewrite'             => array(
@@ -80,7 +82,7 @@ function cb_register_post_types() {
 			'show_in_rest'        => true,
 			'menu_position'       => 22,
 			'menu_icon'           => 'dashicons-building',
-			'supports'            => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt' ),
+			'supports'            => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt', 'revisions' ),
 			'capability_type'     => 'post',
 			'map_meta_cap'        => true,
 			'rewrite'             => array(
@@ -114,7 +116,7 @@ function cb_register_post_types() {
 			'show_in_rest'        => true,
 			'menu_position'       => 23,
 			'menu_icon'           => 'dashicons-portfolio',
-			'supports'            => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt' ),
+			'supports'            => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt', 'revisions' ),
 			'capability_type'     => 'post',
 			'map_meta_cap'        => true,
 			'rewrite'             => array(
@@ -148,7 +150,7 @@ function cb_register_post_types() {
 			'show_in_rest'        => true,
 			'menu_position'       => 24,
 			'menu_icon'           => 'dashicons-groups',
-			'supports'            => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt' ),
+			'supports'            => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt', 'revisions' ),
 			'capability_type'     => 'post',
 			'map_meta_cap'        => true,
 			'rewrite'             => array(
@@ -232,8 +234,17 @@ function cb_get_cpt_cards( $source, $limit = 0, $selected = array() ) {
 			$card_icon = array( 'ID' => get_post_thumbnail_id( $item->ID ) );
 		}
 
+		// The photograph for layouts that show one: the Photo field, then the
+		// featured image.
+		$card_photo = get_field( 'card_photo', $item->ID );
+
+		if ( empty( $card_photo['ID'] ) && has_post_thumbnail( $item->ID ) ) {
+			$card_photo = array( 'ID' => get_post_thumbnail_id( $item->ID ) );
+		}
+
 		$cards[] = array(
 			'icon'        => $card_icon,
+			'photo'       => $card_photo,
 			'title'       => get_the_title( $item ),
 			'description' => get_field( 'card_summary', $item->ID ),
 			'link'        => array(

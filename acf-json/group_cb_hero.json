@@ -21,6 +21,29 @@
             "esc_html": 0
         },
         {
+            "key": "field_cb_hero_style",
+            "label": "Style",
+            "name": "style",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "Light is a pale band with dark text and no photo.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "photo": "Photo",
+                "light": "Light, no photo"
+            },
+            "default_value": "photo",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_cb_hero_background_image",
             "label": "Background Image",
             "name": "background_image",
@@ -67,11 +90,11 @@
         },
         {
             "key": "field_cb_hero_subline",
-            "label": "Subline",
+            "label": "Kicker",
             "name": "subline",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Optional small line above the heading.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -127,11 +150,11 @@
         },
         {
             "key": "field_cb_hero_cta_button",
-            "label": "CTA Button",
+            "label": "Button",
             "name": "cta_button",
             "aria-label": "",
             "type": "link",
-            "instructions": "",
+            "instructions": "The main button, drawn mint.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -140,6 +163,87 @@
                 "id": ""
             },
             "return_format": "array"
+        },
+        {
+            "key": "field_cb_hero_cta_secondary",
+            "label": "Second button",
+            "name": "cta_secondary",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Optional. Drawn as an outline.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_cb_hero_stats",
+            "label": "Stats",
+            "name": "stats",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Optional. Adds a band of figures along the bottom of the hero, in place of the white curve.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "button_label": "Add stat",
+            "min": 0,
+            "max": 4,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_cb_hero_stat_value",
+                    "label": "Value",
+                    "name": "value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "For example 300+ or Top 5.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_hero_stats"
+                },
+                {
+                    "key": "field_cb_hero_stat_description",
+                    "label": "Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "70",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_hero_stats"
+                }
+            ]
         }
     ],
     "location": [
@@ -147,7 +251,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-hero"
+                "value": "acf/cb-hero"
             }
         ]
     ],
@@ -163,5 +267,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1782988371
+    "modified": 1794324123
 }

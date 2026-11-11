@@ -1,10 +1,83 @@
+// CB News Index: the news hub's listing, or a short row of the latest. The
+// card itself is shared with case studies (_cb_case_study_index.scss).
 .cb-news-index {
-  padding-block: var(--cb-section-y);
+  padding-block: clamp(40px, 4vw, 70px) clamp(56px, 5.5vw, 100px);
 
-  &__more {
-    margin-top: 2rem;
+  // The chips sit close under the intro, as drawn.
+  .cb-intro + & {
+    padding-top: 0;
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 12px;
+    margin-bottom: clamp(36px, 3.7vw, 70px);
+  }
+
+  // Outlined, and filled once chosen.
+  &__chip {
+    min-height: 34px;
+    padding: 4px 20px;
+    border: 1px solid var(--cb-forest);
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--cb-forest);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: var(--fw-semibold);
+    line-height: 1.3;
+    cursor: pointer;
+    transition: background-color 200ms ease, border-color 200ms ease;
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(140, 226, 208, 0.4);
+    }
+
+    &.is-active {
+      border-color: var(--cb-marine);
+      background: var(--cb-marine);
+    }
+  }
+
+  &__col[hidden] {
+    display: none;
+  }
+
+  &__empty {
+    color: var(--cb-ink-soft);
     text-align: center;
   }
+
+  &__more {
+    margin: clamp(28px, 3vw, 48px) 0 0;
+    text-align: center;
+  }
+
+  &__footnote {
+    margin: clamp(32px, 3.4vw, 60px) 0 0;
+    color: var(--cb-forest);
+    font-size: clamp(16px, 1.4vw, 20px);
+    line-height: 1.5;
+    text-align: center;
+
+    a {
+      color: var(--cb-emerald);
+      font-weight: var(--fw-semibold);
+      text-decoration: none;
+
+      &:hover,
+      &:focus-visible {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.cb-intro:has(+ .cb-news-index) {
+  padding-bottom: clamp(28px, 2.6vw, 44px);
 }
 
 .cb-case-study-index__more {

@@ -184,7 +184,10 @@
                 "icon": "Icon",
                 "top": "Top",
                 "side": "Beside",
-                "hover": "Rollover"
+                "hover": "Rollover",
+                "photo": "Photo, no card",
+                "plain": "Centred mark, no card",
+                "tile": "Photo, name and button only"
             },
             "default_value": "icon",
             "return_format": "value",
@@ -306,6 +309,62 @@
                     "parent_repeater": "field_cb_service_cards"
                 }
             ]
+        },
+        {
+            "key": "field_cb_service_cards_promo_heading",
+            "label": "Promo card heading",
+            "name": "promo_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Adds a pale green card after the last card, for example \"Planning a project?\".",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_service_cards_promo_text",
+            "label": "Promo card text",
+            "name": "promo_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 2,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_cb_service_cards_promo_cta",
+            "label": "Promo card button",
+            "name": "promo_cta",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
         }
     ],
     "location": [
@@ -326,5 +385,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1786924800
+    "modified": 1794320358
 }

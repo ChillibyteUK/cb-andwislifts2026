@@ -1,0 +1,225 @@
+// CB Text Media: copy and a button beside an unframed image.
+.cb-text-media {
+  padding-block: clamp(64px, 6.5vw, 120px);
+
+  &__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px clamp(32px, 5vw, 96px);
+    align-items: center;
+  }
+
+  &--image-left &__media {
+    order: -1;
+  }
+
+  h2 {
+    margin: 0;
+    color: var(--cb-forest);
+  }
+
+  &__kicker {
+    margin: 0 0 6px;
+    color: var(--cb-emerald);
+    font-size: clamp(16px, 13px + 0.76vw, 24px);
+    line-height: 1.4;
+  }
+
+  &__body {
+    max-width: 560px;
+    margin-top: 24px;
+    color: var(--cb-ink);
+    font-size: clamp(16px, 13px + 0.76vw, 24px);
+    line-height: 1.65;
+
+    p,
+    ul,
+    ol {
+      margin: 0 0 1em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ul,
+    ol {
+      padding-left: 1.2em;
+    }
+
+    li + li {
+      margin-top: 0.3em;
+    }
+
+    // A sub-heading within the copy ("If you're already experienced:").
+    h3 {
+      margin: 1.3em 0 0.1em;
+      color: var(--cb-forest);
+      font-size: clamp(22px, 2.3vw, 32px);
+      font-weight: var(--fw-semibold);
+      line-height: 1.2;
+    }
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 300px;
+    min-height: 64px;
+    margin-top: 40px;
+    font-size: 16px;
+  }
+
+  &__media {
+    text-align: center;
+
+    img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 760px;
+    }
+  }
+
+  &--tint {
+    background: #f6f6f8;
+  }
+
+  &__sub {
+    margin: 8px 0 0;
+    color: var(--cb-forest);
+    font-size: clamp(18px, 1.5vw, 22px);
+    font-weight: var(--fw-semibold);
+    line-height: 1.3;
+  }
+
+  // Photo: the copy takes the wider column and the picture is cropped and
+  // rounded like the other phase two photos.
+  &--photo &__inner {
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  &--photo#{&}--image-left &__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr);
+  }
+
+  &--photo &__body {
+    max-width: none;
+  }
+
+  &--photo &__media img {
+    width: 100%;
+    max-height: none;
+    aspect-ratio: 4 / 3;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+
+  // Large photo: the picture takes the wider column and is cropped to stand
+  // as tall as the copy beside it.
+  &--large &__inner {
+    grid-template-columns: minmax(0, 516fr) minmax(0, 651fr);
+    gap: 40px clamp(28px, 3.6vw, 45px);
+    align-items: stretch;
+  }
+
+  &--large#{&}--image-left &__inner {
+    grid-template-columns: minmax(0, 651fr) minmax(0, 516fr);
+  }
+
+  &--large &__body {
+    max-width: none;
+  }
+
+  &--large &__media {
+    position: relative;
+    min-height: clamp(320px, 34vw, 520px);
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      max-width: none;
+      height: 100%;
+      max-height: none;
+      border-radius: 25px;
+      object-fit: cover;
+    }
+  }
+
+  // No image: two columns of text, both starting at the top.
+  &--no-image &__inner {
+    align-items: start;
+  }
+
+  // Text alone: one column at a reading width.
+  &--solo &__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  &--solo &__body {
+    max-width: 900px;
+  }
+
+  &__side &__body {
+    max-width: none;
+    margin-top: 0;
+  }
+
+  &__aside {
+    padding: 28px 32px;
+    border-radius: 16px;
+    background: #d6efd9;
+
+    h3 {
+      margin: 0 0 8px;
+      color: var(--cb-forest);
+      font-size: 18px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.3;
+    }
+
+    p {
+      margin: 0;
+      color: var(--cb-ink);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+  }
+
+  &__copy &__aside {
+    margin-top: 28px;
+  }
+
+  @media (max-width: 991.98px) {
+    &__inner,
+    &--photo &__inner,
+    &--photo#{&}--image-left &__inner,
+    &--large &__inner,
+    &--large#{&}--image-left &__inner {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    &--large &__media {
+      min-height: 0;
+      aspect-ratio: 4 / 3;
+    }
+
+    &--image-left &__media {
+      order: 0;
+    }
+
+    &__media img {
+      max-height: 480px;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    &__button {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+}

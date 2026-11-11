@@ -18,7 +18,12 @@ require_once CB_THEME_DIR . '/inc/cb-posttypes.php';
 require_once CB_THEME_DIR . '/inc/cb-blocks.php';
 require_once CB_THEME_DIR . '/inc/cb-faq-schema.php';
 require_once CB_THEME_DIR . '/inc/cb-case-studies.php';
+require_once CB_THEME_DIR . '/inc/cb-story.php';
+require_once CB_THEME_DIR . '/inc/cb-news.php';
 require_once CB_THEME_DIR . '/inc/cb-nav.php';
+require_once CB_THEME_DIR . '/inc/cb-footer.php';
+require_once CB_THEME_DIR . '/inc/cb-cross-sell.php';
+require_once CB_THEME_DIR . '/inc/cb-office-finder.php';
 
 /**
  * House style: plain hyphens, never em or en dashes.
@@ -148,9 +153,11 @@ function widgets_init() {
 
     register_nav_menus(
 		array(
-			'primary_nav' => 'Primary Nav',
-			'footer_menu' => 'Footer Nav',
-			'footer_menu_2' => 'Footer Nav 2',
+			'primary_nav'   => 'Primary Nav',
+			// One menu per footer column. The menu's name is the column heading.
+			'footer_menu'   => 'Footer column 1',
+			'footer_menu_2' => 'Footer column 2',
+			'footer_menu_3' => 'Footer column 3',
 		)
 	);
 

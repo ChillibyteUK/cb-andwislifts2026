@@ -1,0 +1,92 @@
+// CB Statement: a short statement inside a ring, with the lift motif on its
+// edge and a paragraph beside it.
+.cb-statement {
+  padding-block: clamp(56px, 5vw, 90px) clamp(72px, 7vw, 130px);
+  overflow-x: clip;
+
+  &--tint {
+    background: #f6f6f8;
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 510px) minmax(0, 1fr);
+    gap: 40px clamp(32px, 4vw, 72px);
+    align-items: center;
+    max-width: 1130px;
+    margin-inline: auto;
+  }
+
+  &__ring {
+    position: relative;
+    display: flex;
+    align-items: center;
+    aspect-ratio: 1;
+    padding: 0 12% 0 20%;
+    border: 1px solid var(--cb-emerald);
+    border-radius: 50%;
+
+    h2 {
+      margin: 0;
+      color: var(--cb-forest);
+      font-size: clamp(24px, 2.3vw, 34px);
+      line-height: 1.2;
+      text-wrap: balance;
+    }
+  }
+
+  // Sits on the ring's lower left edge.
+  &__motif {
+    position: absolute;
+    bottom: -9%;
+    left: -9%;
+    width: 44%;
+    height: auto;
+  }
+
+  &__dots {
+    fill: var(--cb-mint);
+    transform-origin: 100px 100px;
+    animation: cb-statement-turn 40s linear infinite;
+  }
+
+  &__hub {
+    fill: var(--cb-forest);
+  }
+
+  &__arrows {
+    fill: var(--cb-emerald);
+  }
+
+  &__body {
+    max-width: 560px;
+    margin: 0;
+    color: var(--cb-ink);
+    font-size: clamp(16px, 13px + 0.76vw, 24px);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 991.98px) {
+    &__inner {
+      grid-template-columns: minmax(0, 1fr);
+      justify-items: center;
+    }
+
+    &__ring {
+      width: min(420px, 86%);
+      margin-left: 8%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__dots {
+      animation: none;
+    }
+  }
+}
+
+@keyframes cb-statement-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,173 @@
+// CB Reasons: four reasons in a fixed arrangement on the pale green.
+.cb-reasons {
+  position: relative;
+  padding-block: clamp(64px, 6vw, 110px) clamp(72px, 7vw, 130px);
+  overflow: hidden;
+  background: #d6efd9;
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__shapes {
+    position: absolute;
+    z-index: 0;
+    height: auto;
+    fill: var(--cb-sage);
+    pointer-events: none;
+
+    &--left {
+      bottom: 0;
+      left: 1%;
+      width: clamp(120px, 12vw, 220px);
+    }
+
+    &--right {
+      top: 0;
+      right: -1%;
+      width: clamp(120px, 13vw, 250px);
+    }
+  }
+
+  &__head {
+    margin-bottom: clamp(28px, 3vw, 44px);
+    text-align: center;
+
+    h2 {
+      margin: 0;
+      color: var(--cb-forest);
+    }
+
+    p {
+      margin: 14px 0 0;
+      color: var(--cb-ink);
+      font-size: clamp(16px, 13px + 0.76vw, 24px);
+      line-height: 1.5;
+    }
+  }
+
+  // 1 fills the left column over both rows; 2 and 3 share the top right; 4
+  // runs under them.
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2.07fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: 330px minmax(225px, auto);
+    gap: 26px;
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    border-radius: 20px;
+    background: var(--cb-forest);
+    color: var(--cb-paper);
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h3 {
+      margin: 0;
+      color: inherit;
+      font-size: clamp(20px, 1.6vw, 24px);
+      font-weight: var(--fw-semibold);
+      line-height: 1.25;
+    }
+
+    p {
+      margin: 10px 0 0;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+  }
+
+  &__body {
+    position: relative;
+    z-index: 1;
+    padding: 26px 28px;
+  }
+
+  // Photo cards carry their words over a dark fade at the bottom.
+  &__card--photo::after {
+    content: "";
+    position: absolute;
+    inset: 35% 0 0;
+    background: linear-gradient(180deg, rgba(13, 36, 20, 0) 0%, rgba(13, 36, 20, 0.94) 80%);
+  }
+
+  &__card--1 {
+    grid-row: 1 / span 2;
+
+    h3 {
+      max-width: 440px;
+      font-size: clamp(22px, 2vw, 28px);
+    }
+
+    p {
+      max-width: 400px;
+      font-size: 18px;
+    }
+
+    .cb-reasons__body {
+      padding: 32px 36px;
+    }
+  }
+
+  &__card--2 {
+    align-items: flex-start;
+  }
+
+  &__card--4 {
+    grid-column: 2 / span 2;
+    align-items: center;
+    background: var(--cb-sage);
+    color: var(--cb-forest);
+
+    p {
+      color: var(--cb-ink);
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    &__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: none;
+      grid-auto-rows: minmax(260px, auto);
+    }
+
+    &__card--1,
+    &__card--4 {
+      grid-column: 1 / -1;
+      grid-row: auto;
+    }
+
+    &__card--1 {
+      min-height: 420px;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    &__grid {
+      grid-template-columns: minmax(0, 1fr);
+      // Text cards take their own height here; only the photos need a floor.
+      grid-auto-rows: auto;
+      gap: 18px;
+    }
+
+    &__card--photo {
+      min-height: 320px;
+    }
+
+    &__card--1 .cb-reasons__body,
+    &__body {
+      padding: 24px 22px;
+    }
+  }
+}

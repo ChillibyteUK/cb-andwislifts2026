@@ -1,190 +1,497 @@
+/* =========================
+   FOOTER
+   Markup: footer.php. Data and behaviour: inc/cb-footer.php.
+
+   Sizes are px, as in the header: the root font-size is 22px and the footer is
+   drawn to fixed pixel sizes in the design.
+   ========================= */
 .site-footer {
   position: relative;
-  padding-block-start: 4rem;
-  margin-top: clamp(4rem, 8vw, 7rem);
+  // Clear of the curve, so the wedges either side of it never sit on content.
+  margin-top: calc(var(--cb-footer-curve) + clamp(32px, 4vw, 64px));
+  padding: 80px 0 32px;
   background: var(--cb-forest);
   color: var(--cb-paper);
-  // The curve below is 120vw wide, so it overhangs each side by 10vw. Without
-  // this every page was wider than the viewport and scrolled sideways on a
-  // phone. clip rather than hidden: it leaves the vertical axis visible, which
-  // the curve needs because it sits above the footer's top edge.
-  overflow-x: clip;
 
+  // The curved top edge. The footer does not rise into the page any more: the
+  // section above it dips into the footer. This is the footer's own colour
+  // drawn in the two corners under that curve, sitting on the last
+  // --cb-footer-curve of whatever the page ends with.
   &::before {
     content: "";
     position: absolute;
-    top: calc(-10vw + 1px);
-    left: 50%;
-    display: inline-block;
-    width: 120vw;
-    height: 10vw;
-    min-height: 65px;
-    background-color: var(--cb-forest);
-    vertical-align: middle;
-    transform: translateX(-50%);
-    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 66' xml:space='preserve'><path d='M1440 66C1283.48 26.17 1019.4 0 720 0S156.52 26.17 0 66h1440z'/></svg>");
-    mask-position: center bottom;
-    mask-repeat: no-repeat;
-    mask-size: 100% auto;
-    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 66' xml:space='preserve'><path d='M1440 66C1283.48 26.17 1019.4 0 720 0S156.52 26.17 0 66h1440z'/></svg>");
-    -webkit-mask-position: center bottom;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: 100% auto;
+    right: 0;
+    // 1px of overlap hides the hairline some browsers leave between the two.
+    bottom: calc(100% - 1px);
+    left: 0;
+    height: var(--cb-footer-curve);
+    background: var(--cb-forest);
+    pointer-events: none;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0 0C160 48 424 80 720 80S1280 48 1440 0V80H0z'/></svg>") center / 100% 100% no-repeat;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0 0C160 48 424 80 720 80S1280 48 1440 0V80H0z'/></svg>") center / 100% 100% no-repeat;
   }
 
-  &__spacer {
-    height: 2rem;
+  &__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    grid-template-areas:
+      "brand  cols"
+      "social bar"
+      "top    top"
+      "small  small";
+    column-gap: clamp(48px, 7.8vw, 112px);
   }
 
-  &__main {
-    position: relative;
-    z-index: 1;
-  }
-
+  /* Brand */
   &__brand {
-    margin-bottom: 2rem;
-
-    @media (min-width: 992px) {
-      margin-bottom: 0;
-    }
+    grid-area: brand;
   }
 
   &__logo {
     display: inline-block;
-    color: var(--cb-paper);
-    text-decoration: none;
-  }
+    line-height: 0;
 
-  &__logo-text {
-    display: inline-block;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: var(--fw-bold);
-    letter-spacing: -0.06em;
-    line-height: 1;
+    svg {
+      display: block;
+      width: 280px;
+      max-width: 100%;
+      height: auto;
+    }
 
-    span {
-      color: var(--cb-emerald);
+    .andwis {
+      fill: var(--cb-paper);
+    }
+
+    .dot {
+      fill: var(--cb-emerald);
     }
   }
 
-  h2 {
-    margin: 0.45rem 0 0;
+  &__strapline {
+    margin: 84px 0 0;
     color: var(--cb-paper);
-    font-size: 1rem;
+    font-size: 21px;
     font-weight: var(--fw-semibold);
+    line-height: 1.3;
   }
 
-  &__nav {
-    margin-bottom: 2rem;
-
-    @media (min-width: 992px) {
-      margin-bottom: 0;
-    }
+  &__text {
+    max-width: 310px;
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 14px;
+    line-height: 1.4;
   }
 
-  &__menu {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  &__group-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 20px;
+    color: var(--cb-mint);
+    font-size: 12px;
+    font-weight: var(--fw-semibold);
+    line-height: 1.3;
+    text-decoration: none;
 
-    li {
-      padding: 0.2rem 0;
+    svg {
+      flex: none;
+      transition: transform 200ms ease;
     }
 
-    a {
-      color: var(--cb-paper);
-      font-size: 0.727272rem;
-      text-decoration: none;
-      transition: color 0.5s ease-out;
+    &:hover,
+    &:focus-visible {
+      color: var(--cb-mint);
+      text-decoration: underline;
+      text-underline-offset: 4px;
 
-      &:hover,
-      &:focus-visible {
-        color: var(--cb-emerald);
+      svg {
+        transform: translateX(3px);
       }
     }
   }
 
-  &__social {
+  /* Link columns */
+  &__cols {
+    grid-area: cols;
     display: flex;
-    gap: 0.5rem;
+    gap: clamp(32px, 4.4vw, 64px);
+    // The column headings sit a little below the top of the logo.
+    padding-top: 26px;
+  }
 
-    @media (min-width: 992px) {
-      justify-content: flex-end;
+  &__col-title {
+    margin: 0 0 26px;
+    color: var(--cb-mint);
+    font-size: 15px;
+    font-weight: var(--fw-semibold);
+    line-height: 1.35;
+    letter-spacing: normal;
+  }
+
+  // Small screens only - see the media query below.
+  &__col-toggle {
+    display: none;
+  }
+
+  &__menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    // Flex, so each row is exactly as tall as its link. As a plain block the
+    // row takes the inherited line-height and the list drifts off its 30px
+    // rhythm.
+    li {
+      display: flex;
     }
 
-    // The anchor stays larger than the glyph so it keeps a comfortable tap
-    // target (1.75rem = 38.5px at the 22px root, well over the 24px WCAG 2.5.8
-    // minimum) while the icon itself sits in proportion to the 16px nav text
-    // beside it. Previously both were 2rem, so the glyph filled the anchor and
-    // rendered at 44px - nearly three times the body text.
     a {
-      display: inline-flex;
+      display: inline-block;
+      padding: 4px 0;
+      color: var(--cb-paper);
+      font-size: 15px;
+      line-height: 22px;
+      text-decoration: none;
+      transition: color 200ms ease;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--cb-mint);
+      }
+    }
+  }
+
+  // The first column is the site's own pages and is set heavier than the
+  // service and sector lists beside it.
+  &__col:first-child &__menu a {
+    font-weight: var(--fw-semibold);
+  }
+
+  /* Social */
+  &__social {
+    grid-area: social;
+    align-self: end;
+    display: flex;
+    gap: 16px;
+    margin: 24px 0 8px;
+    padding: 0;
+    list-style: none;
+
+    a {
+      display: flex;
       align-items: center;
       justify-content: center;
-      width: 1.75rem;
-      height: 1.75rem;
-      color: var(--cb-paper);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--cb-paper);
+      color: var(--cb-forest);
+      transition: background-color 200ms ease, transform 200ms ease;
+
+      &:hover,
+      &:focus-visible {
+        background: var(--cb-mint);
+        transform: translateY(-2px);
+      }
     }
 
     svg {
-      width: 1rem;
-      height: 1rem;
+      width: 26px;
+      height: 26px;
       fill: currentColor;
     }
+  }
 
-    a:hover,
-    a:focus-visible {
-      color: var(--cb-emerald);
+  /* Contact and legal links */
+  &__bar {
+    grid-area: bar;
+    align-self: end;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px 32px;
+    margin-top: 44px;
+  }
+
+  &__contact {
+    color: var(--cb-mint);
+    font-size: 22px;
+    font-weight: var(--fw-semibold);
+    line-height: 1.3;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--cb-mint);
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 6px;
     }
-  }
-
-  &__legal {
-    position: relative;
-    z-index: 1;
-    padding-block: 2.5rem 1rem;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.636363rem;
-  }
-
-  // Statutory disclosure. Quieter than the copyright line - it has to be
-  // present and legible, not prominent.
-  &__legal-details {
-    margin: 0.75rem 0 0;
-    max-width: 62rem;
-    color: rgba(255, 255, 255, 0.6);
-    line-height: 1.6;
   }
 
   &__legal-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: flex-end;
+    gap: 8px 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 
     a {
-      color: inherit;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 15px;
+      line-height: 1.4;
       text-decoration: none;
-      transition: color 0.5s ease-out;
+      transition: color 200ms ease;
 
       &:hover,
       &:focus-visible {
-        color: var(--cb-emerald);
+        color: var(--cb-mint);
       }
+    }
+  }
+
+  /* Back to top */
+  &__top {
+    grid-area: top;
+    justify-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    width: 320px;
+    max-width: 100%;
+    min-height: 64px;
+    margin-top: 64px;
+    padding: 10px 10px 10px 32px;
+    border-radius: 9999px;
+    background: var(--cb-mint);
+    color: var(--cb-forest);
+    text-decoration: none;
+    transition: background-color 200ms ease;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--cb-paper);
+      color: var(--cb-forest);
+    }
+  }
+
+  &__top-text {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    text-align: center;
+    line-height: 1.25;
+
+    span {
+      font-size: 12px;
+    }
+
+    strong {
+      font-size: 16px;
+      font-weight: var(--fw-semibold);
+    }
+  }
+
+  &__top-icon {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--cb-forest);
+    color: var(--cb-mint);
+    transition: transform 200ms ease;
+
+    svg {
+      // The triangle's visual centre sits below its box centre.
+      margin-top: -2px;
+    }
+  }
+
+  &__top:hover &__top-icon,
+  &__top:focus-visible &__top-icon {
+    transform: translateY(-3px);
+  }
+
+  /* Copyright and statutory disclosure. Present and legible, not prominent. */
+  &__small {
+    grid-area: small;
+    margin-top: 48px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    line-height: 1.6;
+    text-align: center;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__legal-details {
+    padding-top: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__top,
+    &__top-icon,
+    &__social a,
+    &__group-link svg {
+      transition: none;
     }
   }
 }
 
+// A section with a colour of its own as the last thing on the page (the mint
+// call to action, the group cross-sell) runs straight into the footer, which
+// then draws its curve across the bottom of it. Otherwise the curve would sit
+// on a strip of white between the two. Each such section adds the curve's
+// height to its own bottom padding; add new ones to this list.
+main:has(> .cb-cta--mint:last-child, > .cb-cross-sell:last-child) + .site-footer {
+  margin-top: 0;
+}
+
+/* Below 992px: one centred column, with the link columns as an accordion */
 @media (max-width: 991.98px) {
   .site-footer {
-    &__legal {
-      .row {
-        flex-direction: column;
-        gap: 0.5rem;
+    padding-top: 56px;
+
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    &__brand {
+      order: 1;
+    }
+
+    &__logo svg {
+      width: 240px;
+    }
+
+    &__strapline {
+      margin-top: 28px;
+    }
+
+    &__text {
+      margin-top: 12px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    &__group-link {
+      font-size: 16px;
+    }
+
+    &__cols {
+      order: 2;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+      padding-top: 36px;
+    }
+
+    // The design lists Services and Sectors before the site's own pages here.
+    &__col:first-child {
+      order: 3;
+    }
+
+    &__col-title {
+      display: none;
+    }
+
+    &__col-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--cb-paper);
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.3;
+      cursor: pointer;
+
+      svg {
+        flex: none;
+        transition: transform 200ms ease;
+      }
+
+      &[aria-expanded="true"] svg {
+        transform: rotate(180deg);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--cb-mint);
+        outline-offset: 2px;
+        border-radius: 6px;
       }
     }
 
+    &__menu {
+      padding-bottom: 12px;
+
+      li {
+        justify-content: center;
+      }
+    }
+
+    // Only collapse once the script has confirmed the toggles work.
+    &--js &__col:not(.is-open) &__menu {
+      display: none;
+    }
+
+    // Unwrap the bar so Contact, the social icons and the legal links can be
+    // ordered individually.
+    &__bar {
+      display: contents;
+    }
+
+    &__contact {
+      order: 3;
+      padding: 10px 12px;
+      font-size: 16px;
+    }
+
+    &__social {
+      order: 4;
+      // Undo the desktop grid's bottom alignment, which here would push the
+      // icons to the right-hand edge.
+      align-self: center;
+      margin: 32px 0 0;
+    }
+
     &__legal-links {
-      justify-content: flex-start;
+      order: 5;
+      justify-content: center;
+      gap: 6px 20px;
+      margin-top: 36px;
+
+      a {
+        font-size: 14px;
+      }
+    }
+
+    &__top {
+      order: 6;
+      align-self: center;
+      width: 356px;
+      min-height: 72px;
+      margin-top: 40px;
+    }
+
+    &__small {
+      order: 7;
+      margin-top: 36px;
     }
   }
 }

@@ -1,0 +1,677 @@
+{
+    "key": "group_cb_contact",
+    "title": "CB Contact",
+    "fields": [
+        {
+            "key": "field_cb_contact_message",
+            "label": "CB Contact",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "The body of the Contact page: two action cards, other ways to reach us, the enquiry form and the offices. The offices themselves are kept in Site-wide Settings.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_cb_contact_tab_actions",
+            "label": "Action cards",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_cb_contact_actions",
+            "label": "Cards",
+            "name": "actions",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_cb_contact_action_heading",
+            "button_label": "Add card",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_cb_contact_action_heading",
+                    "label": "Heading",
+                    "name": "heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "35",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_contact_actions"
+                },
+                {
+                    "key": "field_cb_contact_action_text",
+                    "label": "Text",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "35",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 2,
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_cb_contact_actions"
+                },
+                {
+                    "key": "field_cb_contact_action_style",
+                    "label": "Style",
+                    "name": "style",
+                    "aria-label": "",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "dark": "Dark green",
+                        "bright": "Bright green"
+                    },
+                    "default_value": "dark",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "layout": "horizontal",
+                    "parent_repeater": "field_cb_contact_actions"
+                },
+                {
+                    "key": "field_cb_contact_action_link",
+                    "label": "Button",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "parent_repeater": "field_cb_contact_actions"
+                },
+                {
+                    "key": "field_cb_contact_action_form_id",
+                    "label": "Form to swap in",
+                    "name": "form_id",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Optional. Pressing the button then shows this form in place of the general one, without leaving the page. The button's link is used only if JavaScript is off.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "34",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {},
+                    "default_value": false,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 1,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_cb_contact_actions"
+                },
+                {
+                    "key": "field_cb_contact_action_form_heading",
+                    "label": "Heading over that form",
+                    "name": "form_heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "The card's heading if left empty.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_contact_actions"
+                },
+                {
+                    "key": "field_cb_contact_action_form_intro",
+                    "label": "Line under that heading",
+                    "name": "form_intro",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "The card's text if left empty.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_contact_actions"
+                }
+            ]
+        },
+        {
+            "key": "field_cb_contact_tab_ways",
+            "label": "Other ways",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_cb_contact_ways_heading",
+            "label": "Heading",
+            "name": "ways_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Other ways to reach us",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_contact_ways",
+            "label": "Ways to reach us",
+            "name": "ways",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "A pill is only shown once it has a link, an email address, or at least one question with an answer.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_cb_contact_way_label",
+            "button_label": "Add a way",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_cb_contact_way_label",
+                    "label": "Chip",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "The words on the chip.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_contact_ways"
+                },
+                {
+                    "key": "field_cb_contact_way_link",
+                    "label": "Link",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "Optional. Makes the pill a link out, and the email and questions are then ignored. A link to a page that is still a draft is hidden until it is published.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "parent_repeater": "field_cb_contact_ways"
+                },
+                {
+                    "key": "field_cb_contact_way_email",
+                    "label": "Email address",
+                    "name": "email",
+                    "aria-label": "",
+                    "type": "email",
+                    "instructions": "Shown inside the pill when it is pressed.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_contact_ways"
+                },
+                {
+                    "key": "field_cb_contact_way_faq_heading",
+                    "label": "Heading over the answers",
+                    "name": "faq_heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "For example \"Answers to general questions about multi-site enquiries\".",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_contact_ways"
+                },
+                {
+                    "key": "field_cb_contact_way_questions",
+                    "label": "Questions",
+                    "name": "questions",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "pagination": 0,
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "field_cb_contact_way_question",
+                    "button_label": "Add question",
+                    "rows_per_page": 20,
+                    "sub_fields": [
+                        {
+                            "key": "field_cb_contact_way_question",
+                            "label": "Question",
+                            "name": "question",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_cb_contact_way_questions"
+                        },
+                        {
+                            "key": "field_cb_contact_way_answer",
+                            "label": "Answer",
+                            "name": "answer",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "rows": 3,
+                            "placeholder": "",
+                            "new_lines": "",
+                            "parent_repeater": "field_cb_contact_way_questions"
+                        }
+                    ],
+                    "parent_repeater": "field_cb_contact_ways"
+                }
+            ]
+        },
+        {
+            "key": "field_cb_contact_tab_form",
+            "label": "Enquiry form",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_cb_contact_form_heading",
+            "label": "Heading",
+            "name": "form_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "General enquiry",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_contact_form_intro",
+            "label": "Intro",
+            "name": "form_intro",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 2,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_cb_contact_form_id",
+            "label": "Form",
+            "name": "form_id",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_cb_contact_form_note",
+            "label": "Line under the form",
+            "name": "form_note",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. An email address in it becomes a link.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_contact_tab_offices",
+            "label": "Offices",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_cb_contact_offices_heading",
+            "label": "Heading",
+            "name": "offices_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The head office address, phone and email under it come from Site-wide Settings > General.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Our offices",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_contact_offices_text",
+            "label": "Text",
+            "name": "offices_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 2,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_cb_contact_finder_link",
+            "label": "Find your nearest team link",
+            "name": "finder_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_cb_contact_hours_heading",
+            "label": "Highlighted box heading",
+            "name": "hours_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Opening hours",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_contact_hours_text",
+            "label": "Highlighted box text",
+            "name": "hours_text",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "default_value": "",
+            "delay": 0
+        },
+        {
+            "key": "field_cb_contact_list_heading",
+            "label": "Heading over the office list",
+            "name": "list_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The offices listed are the ones in Site-wide Settings > Offices.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "All regional offices",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/cb-contact"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1794328137
+}

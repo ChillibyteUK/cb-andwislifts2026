@@ -1,0 +1,132 @@
+// CB Intro: the centred opening statement. Sizes in px to match the design.
+.cb-intro {
+  padding-block: clamp(64px, 6.5vw, 125px) clamp(64px, 5.8vw, 110px);
+  text-align: center;
+
+  &--tint {
+    background: #f6f6f8;
+  }
+
+  &--green {
+    background: #d6efd9;
+  }
+
+  // Dark green, with everything on it in white. Doubled up so it outranks
+  // the heading's own colour further down.
+  &.cb-intro--forest {
+    background: var(--cb-forest);
+
+    h2,
+    .cb-intro__body {
+      color: var(--cb-paper);
+    }
+  }
+
+  // Left: the heading and a narrower column of text, as on Careers.
+  &--left {
+    text-align: left;
+
+    .cb-intro__body {
+      max-width: 790px;
+      margin-inline: 0;
+    }
+  }
+
+  // The trail under the hero: small, quiet and on the left, while the rest of
+  // the section is centred.
+  &__crumbs {
+    margin: clamp(-40px, -3vw, -16px) 0 clamp(28px, 3.4vw, 64px);
+    color: var(--cb-ink-soft);
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-align: left;
+    text-transform: uppercase;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--cb-forest);
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 24px clamp(32px, 5vw, 72px);
+    margin: clamp(32px, 3.4vw, 56px) 0 0;
+    padding: 0;
+    list-style: none;
+
+    // 58px tall at full size, as the manufacturer logos are drawn.
+    img {
+      width: auto;
+      height: clamp(34px, 3.1vw, 58px);
+    }
+  }
+
+  // A logo that has a name but no image yet. Dashed, so it reads as a gap to
+  // fill and not as finished design.
+  &__logo--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    height: clamp(44px, 3.6vw, 56px);
+    padding: 0 24px;
+    border: 1px dashed rgba(28, 66, 32, 0.5);
+    border-radius: 10px;
+    color: var(--cb-forest);
+    font-size: 15px;
+    font-weight: var(--fw-semibold);
+    line-height: 1.2;
+  }
+
+  h2 {
+    margin: 0;
+    color: var(--cb-forest);
+  }
+
+  &__body {
+    max-width: 1100px;
+    margin: 22px auto 0;
+    color: var(--cb-ink);
+    font-size: clamp(16px, 13px + 0.76vw, 24px);
+    line-height: 1.65;
+
+    p {
+      margin: 0 0 0.8em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 227px;
+    min-height: 64px;
+    margin-top: 36px;
+    font-size: 16px;
+  }
+}
+
+// The green phrase inside a heading, or in body copy. See cb_highlight() and
+// cb_highlight_body().
+.cb-highlight {
+  color: var(--cb-emerald);
+}
+
+strong.cb-highlight {
+  font-weight: var(--fw-semibold);
+}

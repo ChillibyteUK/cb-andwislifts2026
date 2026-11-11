@@ -2,9 +2,13 @@
 /**
  * Single Case Study template.
  *
- * Renders the brief's fixed case study shape - challenge, what we did, result -
- * from ACF fields, falling back to the post body for studies imported as prose
- * that have not yet been split into those sections.
+ * The page's frame is fixed here: a green hero with the tags, kicker, title
+ * and intro, the pictures across its bottom edge, then the story, an optional
+ * quote, three more case studies and the closing band.
+ *
+ * The story itself is the post's own blocks - CB Text Media sections in the
+ * main - so a case study can have as many sections as it needs. The hero and
+ * the story's layout are shared with news articles: inc/cb-story.php.
  *
  * @package cb-andwislifts2026
  */
@@ -15,137 +19,87 @@ get_header();
 
 the_post();
 
-$case_id = get_the_ID();
+$case_id  = get_the_ID();
+$quote    = trim( (string) get_field( 'quote', $case_id ) );
+$quote_by = trim( (string) get_field( 'quote_by', $case_id ) );
 
-$client    = get_field( 'client_name', $case_id );
-$challenge = get_field( 'challenge', $case_id );
-$did       = get_field( 'what_we_did', $case_id );
-$result    = get_field( 'result', $case_id );
-$services  = (array) get_field( 'related_services', $case_id );
-$sectors   = (array) get_field( 'related_sectors', $case_id );
-
-$hero_id  = get_post_thumbnail_id( $case_id ) ? get_post_thumbnail_id( $case_id ) : 22;
-$hero_url = wp_get_attachment_image_url( $hero_id, 'full' );
-
-$meta = array();
-
-foreach ( $sectors as $sector_id ) {
-	$meta[] = get_the_title( $sector_id );
-}
-foreach ( $services as $service_id ) {
-	$meta[] = get_the_title( $service_id );
-}
-
-$sections = array(
-	'The challenge' => $challenge,
-	'What we did'   => $did,
-	'The result'    => $result,
-);
-
-$has_sections = $challenge || $did || $result;
+ob_start();
+cb_case_study_tags_list( cb_case_study_tags( $case_id ), 'cb-case-tags--light' );
+$case_tags = (string) ob_get_clean();
 ?>
 <main id="main" class="cb-case-study">
-	<section class="cb-hero cb-hero--bottom-curve">
-		<?php
-		if ( $hero_url ) {
-			?>
-		<div class="cb-hero__bg" style="background-image:url('<?= esc_url( $hero_url ); ?>');"></div>
-			<?php
-		}
-		?>
-		<div class="cb-hero__scrim"></div>
-		<div class="container">
-			<h1><?= esc_html( get_the_title() ); ?></h1>
-			<?php
-			if ( $client ) {
-				?>
-			<p class="cb-hero__subline"><?= esc_html( $client ); ?></p>
-				<?php
-			}
-			if ( $meta ) {
-				?>
-			<p class="cb-hero__intro"><?= esc_html( implode( ' · ', $meta ) ); ?></p>
-				<?php
-			}
-			?>
-		</div>
-	</section>
-
 	<?php
-	// Structured sections are plain prose, so they get a reading measure inside a
-	// col-lg-8. The narrative is rendered ACF blocks - each is a full-width section
-	// with its own .container and column layout, so it must NOT be nested in a
-	// column or it gets squeezed to 66% and split again inside that.
-	if ( $has_sections ) {
-		?>
-	<section class="cb-case-study__body">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8">
-					<?php
-					foreach ( $sections as $title => $body ) {
-						if ( ! $body ) {
-							continue;
-						}
-						?>
-				<h2><?= esc_html( $title ); ?></h2>
-				<?= wp_kses_post( $body ); ?>
-						<?php
-					}
-					?>
-				</div>
-			</div>
-		</div>
-	</section>
-		<?php
-	}
-
-	$content = get_the_content();
-
-	if ( $content ) {
-		?>
-	<div class="cb-case-study__narrative">
-		<?php
-		// Rendered block output, already filtered by WordPress. Do NOT pass this
-		// through wp_kses_post(): it strips <script> tags but keeps the script body,
-		// dumping block JS onto the page as visible text.
-		echo apply_filters( 'the_content', $content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		?>
-	</div>
-		<?php
-	}
-	?>
-
-	<?php
-	// "More case studies" nav, matching the casenav on Turnpower's project pages.
-	$more = new WP_Query(
+	cb_story_hero(
 		array(
-			'post_type'      => 'case_study',
-			'post_status'    => 'publish',
-			'posts_per_page' => 3,
-			'post__not_in'   => array( $case_id ),
-			'orderby'        => 'rand',
-			'no_found_rows'  => true,
+			'tags'   => $case_tags,
+			'kicker' => trim( (string) get_field( 'client_name', $case_id ) ),
+			'title'  => get_the_title(),
+			'intro'  => trim( (string) get_field( 'hero_intro', $case_id ) ),
+			'images' => cb_story_images( $case_id ),
 		)
 	);
 
-	if ( $more->have_posts() ) {
+	cb_story_content();
+
+	if ( $quote ) {
+		?>
+	<section class="cb-case-quote">
+		<div class="container">
+			<blockquote>
+				<span class="cb-case-quote__mark" aria-hidden="true">&ldquo;</span>
+				<p><?= nl2br( esc_html( $quote ) ); ?></p>
+				<?php if ( $quote_by ) { ?>
+				<footer><?= esc_html( $quote_by ); ?></footer>
+				<?php } ?>
+			</blockquote>
+		</div>
+	</section>
+		<?php
+	}
+
+	// Three more: from the same sector first, then the rest in their usual order.
+	$more = array();
+
+	foreach ( (array) get_field( 'related_sectors', $case_id, false ) as $sector_id ) {
+		foreach ( cb_get_sector_case_studies( $sector_id, 4 ) as $item ) {
+			$more[ $item->ID ] = $item;
+		}
+	}
+
+	unset( $more[ $case_id ] );
+
+	if ( count( $more ) < 3 ) {
+		$others = get_posts(
+			array(
+				'post_type'      => 'case_study',
+				'post_status'    => 'publish',
+				'posts_per_page' => 6,
+				'post__not_in'   => array( $case_id ),
+				'orderby'        => array(
+					'menu_order' => 'ASC',
+					'date'       => 'DESC',
+				),
+				'no_found_rows'  => true,
+			)
+		);
+
+		foreach ( $others as $item ) {
+			$more[ $item->ID ] = $more[ $item->ID ] ?? $item;
+		}
+	}
+
+	$more = array_slice( $more, 0, 3 );
+
+	if ( $more ) {
 		?>
 	<section class="cb-case-study__more">
 		<div class="container">
-			<div class="cb-section-head pb-5">
-				<h2>More case studies</h2>
-			</div>
-			<div class="row g-3">
+			<h2><?php esc_html_e( 'More case studies', 'cb-andwislifts2026' ); ?></h2>
+			<div class="cb-case-study-grid">
 				<?php
-				foreach ( $more->posts as $item ) {
-					?>
-				<div class="col-lg-4 col-md-6">
-					<?php cb_case_study_card( $item, 20 ); ?>
-				</div>
-					<?php
+				foreach ( $more as $item ) {
+					cb_case_study_card( $item, 20 );
 				}
-				wp_reset_postdata();
 				?>
 			</div>
 		</div>
@@ -153,23 +107,12 @@ $has_sections = $challenge || $did || $result;
 		<?php
 	}
 
-	// Closing CTA from the brief.
-	echo do_blocks(
-		'<!-- wp:acf/cb-form ' . wp_json_encode(
-			array(
-				'name' => 'acf/cb-form',
-				'data' => array(
-					'heading'  => 'Talk to us about a similar project',
-					'_heading' => 'field_cb_form_heading',
-					'intro'    => 'Tell us about your building and we will come back to you.',
-					'_intro'   => 'field_cb_form_intro',
-					'form_id'  => '2',
-					'_form_id' => 'field_cb_form_form_id',
-				),
-				'mode' => 'edit',
-			),
-			JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
-		) . ' /-->'
+	// The closing band, the same on every case study.
+	cb_story_closing_band(
+		'Talk to us about a similar project',
+		"Tell us about your building, we'll recommend the right solution and give you an honest view on cost and feasibility.",
+		'Ask the experts',
+		get_page_by_path( 'contact/ask-the-expert' ) ? '/contact/ask-the-expert/' : '/contact/'
 	);
 	?>
 </main>

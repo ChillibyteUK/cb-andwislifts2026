@@ -8,10 +8,96 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * The sectors and services a case study is tagged with.
+ *
+ * Service names lose their leading "Lift", so a tag reads "Maintenance", as
+ * the design has it, not "Lift maintenance".
+ *
+ * @param integer $post_id The case study ID.
+ * @return array<int, array{type: string, label: string, slug: string}>
+ */
+function cb_case_study_tags( $post_id ) {
+	$tags = array();
+
+	foreach ( array(
+		'sector'  => 'related_sectors',
+		'service' => 'related_services',
+	) as $type => $field ) {
+		foreach ( (array) get_field( $field, $post_id ) as $related ) {
+			// An empty field comes back as an empty string, and get_the_title( 0 )
+			// would answer with the title of whatever page this is.
+			$related_id = is_object( $related ) ? (int) $related->ID : (int) $related;
+			$label      = $related_id ? get_the_title( $related_id ) : '';
+
+			if ( ! $label ) {
+				continue;
+			}
+
+			if ( 'service' === $type ) {
+				$label = ucfirst( preg_replace( '/^lift\s+/i', '', $label ) );
+			}
+
+			$tags[] = array(
+				'type'  => $type,
+				'label' => $label,
+				'slug'  => sanitize_title( $label ),
+			);
+		}
+	}
+
+	return $tags;
+}
+
+/**
+ * Print a case study's tags: sectors filled, services outlined.
+ *
+ * @param array  $tags  From cb_case_study_tags().
+ * @param string $extra Extra class for the list, e.g. the light-on-dark one.
+ * @return void
+ */
+function cb_case_study_tags_list( $tags, $extra = '' ) {
+	if ( ! $tags ) {
+		return;
+	}
+
+	echo '<ul class="cb-case-tags ' . esc_attr( $extra ) . '">';
+
+	foreach ( $tags as $tag ) {
+		printf( '<li class="is-%s">%s</li>', esc_attr( $tag['type'] ), esc_html( $tag['label'] ) );
+	}
+
+	echo '</ul>';
+}
+
+/**
+ * A case study's teaser: its Card summary, or failing that the start of its
+ * first section.
+ *
+ * @param integer $post_id The case study ID.
+ * @param integer $words   Words to trim it to.
+ * @return string
+ */
+function cb_case_study_summary( $post_id, $words = 26 ) {
+	$summary = trim( (string) get_field( 'card_summary', $post_id ) );
+
+	if ( '' === $summary ) {
+		foreach ( parse_blocks( (string) get_post_field( 'post_content', $post_id ) ) as $block ) {
+			if ( ! empty( $block['attrs']['data']['body'] ) ) {
+				$summary = wp_strip_all_tags( (string) $block['attrs']['data']['body'] );
+				break;
+			}
+		}
+	}
+
+	return wp_trim_words( $summary, (int) $words );
+}
+
+/**
  * Output a single case study card.
  *
- * Shared by the CB Case Study Index block and the related section injected into
- * sector pages, so the two cannot drift apart.
+ * Shared by the CB Case Study Index block, the related section injected into
+ * sector pages and "More case studies" on a case study, so they cannot drift
+ * apart. The whole card is one link, carried by the title.
  *
  * @param WP_Post|integer $item  The case study post or its ID.
  * @param integer         $words Words to trim the card summary to.
@@ -24,29 +110,29 @@ function cb_case_study_card( $item, $words = 26 ) {
 		return;
 	}
 
-	$summary = get_field( 'card_summary', $item->ID );
+	$summary = cb_case_study_summary( $item->ID, $words );
+	$kicker  = trim( (string) get_field( 'client_name', $item->ID ) );
 	$image   = get_post_thumbnail_id( $item->ID );
 	?>
-	<a class="cb-case-study-card h-100" href="<?= esc_url( get_permalink( $item ) ); ?>">
-		<?php
-		if ( $image ) {
-			?>
-		<div class="cb-case-study-card__media"><?= wp_get_attachment_image( $image, 'medium_large' ); ?></div>
+	<article class="cb-case-study-card">
+		<div class="cb-case-study-card__media">
 			<?php
-		}
-		?>
-		<div class="cb-case-study-card__body">
-			<h3><?= esc_html( get_the_title( $item ) ); ?></h3>
-			<?php
-			if ( $summary ) {
-				?>
-			<p><?= esc_html( wp_trim_words( $summary, (int) $words ) ); ?></p>
-				<?php
+			if ( $image ) {
+				echo wp_get_attachment_image( $image, 'medium_large', false, array( 'loading' => 'lazy' ) );
 			}
 			?>
-			<span class="cb-case-study-card__cta">Read the case study</span>
 		</div>
-	</a>
+		<div class="cb-case-study-card__body">
+			<h3><a href="<?= esc_url( get_permalink( $item ) ); ?>"><?= esc_html( get_the_title( $item ) ); ?></a></h3>
+			<?php if ( $kicker ) { ?>
+			<p class="cb-case-study-card__kicker"><?= esc_html( $kicker ); ?></p>
+			<?php } ?>
+			<?php if ( $summary ) { ?>
+			<p class="cb-case-study-card__summary"><?= esc_html( $summary ); ?></p>
+			<?php } ?>
+			<?php cb_case_study_tags_list( cb_case_study_tags( $item->ID ), 'cb-case-study-card__tags' ); ?>
+		</div>
+	</article>
 	<?php
 }
 
@@ -110,35 +196,29 @@ function cb_sector_case_studies_section( $sector_id ) {
 
 	ob_start();
 	?>
-<section class="cb-case-study-index cb-case-study-index--related">
+<section class="cb-case-study__more cb-case-study__more--related">
 	<div class="container">
-		<div class="cb-section-head pb-5">
-			<h2>
-				<?php
-				printf(
-					/* translators: %s: sector name, e.g. Healthcare. */
-					esc_html__( '%s case studies', 'cb-andwislifts2026' ),
-					esc_html( get_the_title( $sector_id ) )
-				);
-				?>
-			</h2>
-		</div>
-		<div class="row g-3">
+		<h2>
+			<?php
+			printf(
+				/* translators: %s: sector name, e.g. Healthcare. */
+				esc_html__( '%s case studies', 'cb-andwislifts2026' ),
+				esc_html( get_the_title( $sector_id ) )
+			);
+			?>
+		</h2>
+		<div class="cb-case-study-grid">
 			<?php
 			foreach ( $case_studies as $item ) {
-				?>
-			<div class="col-lg-4 col-md-6">
-				<?php cb_case_study_card( $item ); ?>
-			</div>
-				<?php
+				cb_case_study_card( $item );
 			}
 			?>
 		</div>
 		<?php
 		if ( $hub ) {
 			?>
-		<p class="cb-case-study-index__more">
-			<a class="cb-case-study-card__cta" href="<?= esc_url( get_permalink( $hub ) ); ?>"><?php esc_html_e( 'View all case studies', 'cb-andwislifts2026' ); ?></a>
+		<p class="cb-case-study__more-link">
+			<a class="btn btn-ghost" href="<?= esc_url( get_permalink( $hub ) ); ?>"><?php esc_html_e( 'View all case studies', 'cb-andwislifts2026' ); ?></a>
 		</p>
 			<?php
 		}
@@ -215,7 +295,13 @@ function cb_sector_case_studies_target() {
  * @return string
  */
 function cb_inject_sector_case_studies( $block_content, $block ) {
-	if ( 'acf/cb-form' !== ( $block['blockName'] ?? '' ) ) {
+	$name = $block['blockName'] ?? '';
+
+	// The band a sector page ends on: the mint call to action in phase two,
+	// the enquiry form before it.
+	$closes = 'acf/cb-form' === $name || ( 'acf/cb-cta' === $name && 'mint' === ( $block['attrs']['data']['style'] ?? '' ) );
+
+	if ( ! $closes ) {
 		return $block_content;
 	}
 

@@ -1,0 +1,527 @@
+// CB Resources: three cards down the left, call-to-action cards on the right.
+// Drawn with 13px body type; set a little larger here so it reads comfortably
+// beside the rest of the site. Other sizes in px, as drawn.
+.cb-resources {
+  padding-block: clamp(24px, 2.4vw, 44px) clamp(56px, 6vw, 110px);
+  color: var(--cb-forest);
+
+  &__row {
+    display: grid;
+    grid-template-columns: minmax(0, 797fr) minmax(0, 383fr);
+    gap: 32px;
+    align-items: start;
+  }
+
+  &__main {
+    display: grid;
+    gap: 22px;
+  }
+
+  // ------------------------------------------------------------- the cards
+  &__card {
+    padding: clamp(22px, 2.4vw, 30px);
+    border-radius: 20px;
+    // Lands clear of the fixed header when linked to.
+    scroll-margin-top: 110px;
+
+    &--outline {
+      border: 1.5px solid var(--cb-emerald);
+      background: var(--cb-paper);
+    }
+
+    &--tint {
+      border: 1px solid #f4f7f6;
+      background: #f8f8f8;
+    }
+  }
+
+  &__card-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 16px;
+
+    h2 {
+      margin: 0;
+      color: inherit;
+      font-size: clamp(20px, 1.7vw, 24px);
+      font-weight: var(--fw-semibold);
+      line-height: 1.3;
+    }
+  }
+
+  &__badge {
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background: var(--cb-emerald);
+    color: var(--cb-paper);
+    font-size: 12px;
+    font-weight: var(--fw-semibold);
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  // The phone's "Click to expand" is a button wearing the badge's clothes.
+  &__expand {
+    border: 0;
+    font-family: inherit;
+    cursor: pointer;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &__topics[hidden],
+  &__card-body[hidden] {
+    display: none;
+  }
+
+  &__card-intro {
+    margin: 16px 0 0;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  // ------------------------------------------------- technical information
+  &__topics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px 28px;
+    margin-top: 22px;
+  }
+
+  &__topic-group {
+    h3 {
+      margin: 0 0 10px;
+      color: inherit;
+      font-size: 15px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.4;
+    }
+
+    ul {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    a,
+    summary {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--cb-emerald);
+        text-decoration: underline;
+      }
+    }
+
+    // A topic with only a description opens in place.
+    summary {
+      list-style: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::after {
+        content: "+";
+        display: inline-block;
+        margin-left: 6px;
+        color: var(--cb-emerald);
+        font-weight: var(--fw-semibold);
+      }
+    }
+
+    details[open] summary::after {
+      content: "-";
+    }
+
+    details p {
+      margin: 6px 0 4px;
+      padding-left: 12px;
+      border-left: 2px solid var(--cb-emerald);
+      color: var(--cb-ink);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  }
+
+  // --------------------------------------------------- product technical data
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 12px;
+    margin-top: 18px;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &__chip {
+    min-height: 34px;
+    padding: 4px 16px;
+    border: 1px solid var(--cb-marine);
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--cb-forest);
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.3;
+    cursor: pointer;
+    transition: background-color 200ms ease;
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(140, 226, 208, 0.4);
+    }
+
+    &.is-active {
+      background: var(--cb-marine);
+    }
+  }
+
+  &__product {
+    margin-top: 22px;
+
+    &[hidden] {
+      display: none;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      color: inherit;
+      font-size: 15px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.4;
+    }
+  }
+
+  // With the chips in place the chip says which product this is.
+  .is-enhanced &__product h3 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  &__tiles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-height: 62px;
+    padding: 10px 12px;
+    border: 1px dashed var(--cb-forest);
+    border-radius: 12px;
+    background: #f4f7f6;
+    color: inherit;
+    font-size: 15px;
+    line-height: 1.3;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 200ms ease, border-color 200ms ease;
+
+    small {
+      color: var(--cb-ink-soft);
+      font-size: 11px;
+      font-weight: var(--fw-semibold);
+      letter-spacing: 0.04em;
+    }
+
+    &--pending {
+      color: var(--cb-ink-soft);
+    }
+  }
+
+  a.cb-resources__tile:hover,
+  a.cb-resources__tile:focus-visible {
+    border-style: solid;
+    border-color: var(--cb-emerald);
+    background: var(--cb-paper);
+    color: var(--cb-forest);
+  }
+
+  // ------------------------------------------------ downloads and certificates
+  &__doc-group {
+    margin-top: 22px;
+
+    h3 {
+      margin: 0;
+      color: inherit;
+      font-size: 15px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.4;
+    }
+  }
+
+  &__docs {
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__doc {
+    border-bottom: 1px solid #d0d0d0;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  // The whole row is the download.
+  &__doc-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 65px;
+    padding: 10px 0;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a.cb-resources__doc-row:hover,
+  a.cb-resources__doc-row:focus-visible {
+    color: inherit;
+
+    .cb-resources__doc-title {
+      text-decoration: underline;
+    }
+
+    .cb-resources__doc-link {
+      background: var(--cb-forest);
+    }
+  }
+
+  &__doc-icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+    background: var(--cb-paper);
+    color: #666;
+    font-size: 8px;
+    font-weight: var(--fw-semibold);
+    line-height: 1;
+  }
+
+  &__doc-text {
+    display: grid;
+    flex: 1 1 auto;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  &__doc-title {
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  &__doc-meta {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  &__doc-link {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--cb-emerald);
+    color: var(--cb-paper);
+    transition: background-color 200ms ease;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+
+  }
+
+  &__doc-pending {
+    flex: none;
+    color: var(--cb-ink-soft);
+    font-size: 13px;
+  }
+
+  &__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: var(--fw-semibold);
+    line-height: 1.4;
+    cursor: pointer;
+
+    &[hidden] {
+      display: none;
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 200ms ease;
+    }
+
+    // The arrow points down while there is more to show.
+    &[aria-expanded="false"] svg {
+      transform: rotate(180deg);
+    }
+
+    &:hover span,
+    &:focus-visible span {
+      text-decoration: underline;
+    }
+  }
+
+  &__doc-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 28px;
+  }
+
+  &__note {
+    margin: 6px 0 0;
+    font-size: 16px;
+    line-height: 1.5;
+
+    a {
+      color: var(--cb-emerald);
+      font-weight: var(--fw-semibold);
+      text-decoration: none;
+
+      &:hover,
+      &:focus-visible {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // ----------------------------------------------------------- the side cards
+  &__side {
+    position: sticky;
+    top: 112px;
+    display: grid;
+    gap: 16px;
+  }
+
+  &__side-card {
+    padding: 22px;
+    border-radius: 16px;
+    background: #f4f7f6;
+
+    h2 {
+      margin: 0;
+      color: inherit;
+      font-size: 17px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.35;
+    }
+
+    p {
+      margin: 2px 0 0;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      min-height: 38px;
+      margin-top: 14px;
+      padding: 4px 20px;
+      font-size: 13px;
+    }
+
+    // On the bright card the button turns dark so it still stands out.
+    &--highlight {
+      background: var(--cb-mint);
+
+      .btn.btn-primary {
+        border-color: var(--cb-forest);
+        background: var(--cb-forest);
+        color: var(--cb-paper);
+
+        &:hover,
+        &:focus-visible {
+          border-color: var(--cb-paper);
+          background: var(--cb-paper);
+          color: var(--cb-forest);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    &__row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    &__side {
+      position: static;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    &__topics,
+    &__doc-columns {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    // The expand button takes the badge's place on a phone, and sits beside
+    // the heading, which wraps if it has to.
+    &__badge--wide {
+      display: none;
+    }
+
+    &__card-head {
+      flex-wrap: nowrap;
+      align-items: flex-start;
+    }
+
+    &__tiles {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__more svg {
+      transition: none;
+    }
+  }
+}

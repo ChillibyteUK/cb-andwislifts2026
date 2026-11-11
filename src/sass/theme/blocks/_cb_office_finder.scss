@@ -1,0 +1,240 @@
+// CB Office Finder: a postcode field, the coverage map and the nearest teams.
+// Lookup and script: inc/cb-office-finder.php. Sizes in px, as drawn.
+.cb-office-finder {
+  padding-block: clamp(48px, 5vw, 90px);
+
+  &__form {
+    max-width: 440px;
+    margin: 0 auto clamp(32px, 3.4vw, 56px);
+
+    label {
+      display: block;
+      margin: 0 0 8px 22px;
+      color: var(--cb-ink-soft);
+      font-size: 13px;
+      line-height: 1.3;
+    }
+  }
+
+  // One pill holding the input and the button.
+  &__field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 6px 6px 22px;
+    border: 1px solid var(--cb-forest);
+    border-radius: 9999px;
+    background: var(--cb-paper);
+
+    &:focus-within {
+      outline: 2px solid var(--cb-emerald);
+      outline-offset: 2px;
+    }
+
+    input {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 8px 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--cb-ink);
+      font-family: inherit;
+      font-size: 16px;
+      line-height: 1.3;
+      text-transform: uppercase;
+
+      &::placeholder {
+        color: var(--cb-muted);
+        text-transform: none;
+      }
+    }
+
+    .btn {
+      flex: none;
+      min-width: 110px;
+      min-height: 44px;
+      padding: 6px 24px;
+      font-size: 14px;
+    }
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: 32px clamp(32px, 4vw, 64px);
+    align-items: start;
+  }
+
+  &__map {
+    text-align: center;
+
+    img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 640px;
+    }
+  }
+
+  &__intro {
+    margin-bottom: 28px;
+    color: var(--cb-ink);
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.6;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    color: var(--cb-forest);
+    font-size: clamp(20px, 1.7vw, 24px);
+    line-height: 1.25;
+  }
+
+  &__status {
+    margin: 12px 0 0;
+
+    &:empty {
+      display: none;
+    }
+    color: var(--cb-ink);
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  &.is-loading &__results {
+    opacity: 0.5;
+  }
+
+  &__results {
+    display: grid;
+    gap: 14px;
+    margin: 20px 0 0;
+    padding: 0;
+    list-style: none;
+    transition: opacity 200ms ease;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__result {
+    padding: 20px 24px;
+    border: 1px solid var(--cb-forest);
+    border-radius: 16px;
+    background: var(--cb-paper);
+  }
+
+  &__result-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+
+    h3 {
+      margin: 0;
+      color: var(--cb-forest);
+      font-size: 17px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.3;
+    }
+  }
+
+  &__miles {
+    flex: none;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background: var(--cb-emerald);
+    color: var(--cb-paper);
+    font-size: 12px;
+    font-weight: var(--fw-medium);
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  &__address {
+    margin: 6px 0 0;
+    color: var(--cb-ink);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 18px;
+    margin-top: 14px;
+
+    // A link, not a button, so its label needs centring by hand.
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      min-height: 40px;
+      padding: 4px 22px;
+      font-size: 13px;
+    }
+  }
+
+  &__phone {
+    color: var(--cb-forest);
+    font-size: 14px;
+    font-weight: var(--fw-semibold);
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+    }
+  }
+
+  &__aside {
+    margin-top: 20px;
+    padding: 22px 24px;
+    border-radius: 16px;
+    background: #d6efd9;
+
+    h3 {
+      margin: 0 0 6px;
+      color: var(--cb-forest);
+      font-size: 17px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.3;
+    }
+
+    p {
+      margin: 0;
+      color: var(--cb-ink);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    &__inner {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    // The teams are what the visitor asked for, so they come before the map.
+    &__map {
+      order: 2;
+
+      img {
+        max-height: 420px;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__results {
+      transition: none;
+    }
+  }
+}

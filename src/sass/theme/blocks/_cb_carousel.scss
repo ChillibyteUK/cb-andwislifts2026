@@ -1,0 +1,268 @@
+// CB Carousel: draggable cards with dots. Sectors run off both edges of the
+// page; news sits in the container, three across.
+.cb-carousel {
+  padding-block: clamp(64px, 6vw, 110px);
+  overflow: hidden;
+
+  &__head {
+    max-width: 960px;
+    margin-bottom: clamp(32px, 3vw, 48px);
+    text-align: center;
+
+    h2 {
+      margin: 0;
+      color: var(--cb-forest);
+    }
+
+    p {
+      margin: 20px 0 0;
+      color: var(--cb-ink);
+      font-size: clamp(16px, 13px + 0.76vw, 24px);
+      line-height: 1.6;
+    }
+  }
+
+  &__stage {
+    position: relative;
+  }
+
+  // Until Swiper takes over (or if it never does) the row scrolls sideways.
+  &__swiper {
+    overflow-x: auto;
+  }
+
+  &--ready &__swiper {
+    overflow: hidden;
+  }
+
+  &__track {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__slide {
+    height: auto;
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Sector cards: a tall photo with the name over a dark fade */
+  &--sector &__slide {
+    width: min(392px, 78vw);
+    margin-right: 20px;
+  }
+
+  &--sector#{&}--ready &__slide {
+    margin-right: 0;
+  }
+
+  &__card--overlay {
+    align-items: flex-end;
+    width: 100%;
+    aspect-ratio: 392 / 500;
+    border-radius: 20px;
+    background: var(--cb-forest);
+    color: var(--cb-paper);
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 600ms ease;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 45% 0 0;
+      background: linear-gradient(180deg, rgba(13, 36, 20, 0) 0%, rgba(13, 36, 20, 0.92) 78%);
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--cb-paper);
+
+      img {
+        transform: scale(1.04);
+      }
+    }
+
+    .cb-carousel__card-body {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 28px 30px;
+    }
+
+    .cb-carousel__card-title {
+      font-size: clamp(22px, 2vw, 28px);
+      font-weight: var(--fw-semibold);
+      line-height: 1.2;
+    }
+
+    .cb-carousel__card-text {
+      font-size: 16px;
+      line-height: 1.4;
+    }
+  }
+
+  // The cards fade out towards each edge of the page.
+  &--sector &__stage::before,
+  &--sector &__stage::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    width: clamp(24px, 9vw, 180px);
+    pointer-events: none;
+  }
+
+  &--sector &__stage::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--cb-paper), rgba(255, 255, 255, 0));
+  }
+
+  &--sector &__stage::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--cb-paper), rgba(255, 255, 255, 0));
+  }
+
+  /* Article cards */
+  &--post &__slide {
+    width: min(384px, 82vw);
+    margin-right: 24px;
+  }
+
+  &--post#{&}--ready &__slide {
+    margin-right: 0;
+  }
+
+  &__card--article {
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid rgba(28, 66, 32, 0.16);
+    border-radius: 16px;
+    background: var(--cb-paper);
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--cb-emerald);
+      box-shadow: var(--cb-shadow-soft);
+    }
+
+    .cb-carousel__card-image {
+      display: block;
+      aspect-ratio: 384 / 250;
+      background: var(--cb-sage);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .cb-carousel__card-body {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 24px 30px 30px;
+    }
+
+    .cb-carousel__card-title {
+      color: var(--cb-forest);
+      font-size: 18px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.3;
+    }
+
+    .cb-carousel__card-text {
+      color: var(--cb-ink);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .cb-carousel__card-pill {
+      margin-top: auto;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      background: var(--cb-marine);
+      color: var(--cb-forest);
+      font-size: 12px;
+      font-weight: var(--fw-medium);
+      line-height: 1.3;
+    }
+  }
+
+  /* Dots */
+  &__dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 28px;
+
+    // Swiper positions its pagination absolutely; this one sits in the flow.
+    &.swiper-pagination-bullets {
+      position: static;
+      width: auto;
+    }
+
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      margin: 0 !important;
+      background: rgba(28, 66, 32, 0.22);
+      opacity: 1;
+      transition: background-color 200ms ease;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: var(--cb-emerald);
+    }
+  }
+
+  &__foot {
+    max-width: 880px;
+    margin-top: clamp(28px, 3vw, 44px);
+    text-align: center;
+
+    p {
+      margin: 0 0 36px;
+      color: var(--cb-ink);
+      font-size: clamp(16px, 13px + 0.76vw, 24px);
+      line-height: 1.6;
+    }
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 227px;
+    min-height: 64px;
+    font-size: 16px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__card--overlay img {
+      transition: none;
+    }
+  }
+}

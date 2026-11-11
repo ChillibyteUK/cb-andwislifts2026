@@ -552,6 +552,635 @@
             "rows": 4,
             "placeholder": "",
             "new_lines": ""
+        },
+        {
+            "key": "field_cb_swc_footer_tab",
+            "label": "Footer",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_cb_swc_footer_strapline",
+            "label": "Strapline",
+            "name": "footer_strapline",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The line under the footer logo. Leave empty for \"An andwis Group company.\"",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "An andwis Group company.",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_swc_footer_text",
+            "label": "Text",
+            "name": "footer_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "The short paragraph under the strapline. Leave empty for the standard group description.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_cb_swc_footer_link",
+            "label": "Link",
+            "name": "footer_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "The link under the paragraph. Leave empty for \"Discover the andwis group\" pointing at andwis.com.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_cb_swc_cross_tab",
+            "label": "Cross-sell",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_cb_swc_cross_current",
+            "label": "This division",
+            "name": "cross_sell_current",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Ticked and fixed at the top of the checklist, marked \"You're here\".",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "andwis Lifts",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_swc_cross_divisions",
+            "label": "Other divisions",
+            "name": "cross_sell_divisions",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "One per line, in the order they should be listed. Leave empty for the four group divisions.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 4,
+            "placeholder": "Fire & Security\nEnvironmental Services\nMaintenance & Response\nM&E",
+            "new_lines": ""
+        },
+        {
+            "key": "field_cb_swc_cross_summary_heading",
+            "label": "Summary heading",
+            "name": "cross_sell_summary_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "One contract. One account manager.",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_swc_cross_summary_text",
+            "label": "Summary text",
+            "name": "cross_sell_summary_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Write {services} where the ticked services should be named. It becomes \"A\", \"A and B\" or \"A, B and C\".",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "Bringing {services} together with andwis Lifts under one contract could mean real efficiencies and savings for you in cost and time.",
+            "new_lines": ""
+        },
+        {
+            "key": "field_cb_swc_cross_benefits",
+            "label": "Benefits",
+            "name": "cross_sell_benefits",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "One per line.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "One contract and one invoice\nOne account manager across every service\nCoordinated site visits and reporting",
+            "new_lines": ""
+        },
+        {
+            "key": "field_cb_swc_cross_quote",
+            "label": "Customer quote",
+            "name": "cross_sell_quote",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional. The quote box only appears when this is filled in.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_cb_swc_cross_quote_by",
+            "label": "Quote attribution",
+            "name": "cross_sell_quote_by",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Name, role, organisation.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_swc_cross_stat",
+            "label": "Stat line",
+            "name": "cross_sell_stat",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional, for example \"120 sites already run on multi-service contracts\".",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_swc_cross_cta",
+            "label": "Final button",
+            "name": "cross_sell_cta",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Leave empty for \"Speak to one of our service agents\" pointing at the Contact page. The ticked services are added to this address as interested_services.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_cb_swc_cross_more",
+            "label": "Text link",
+            "name": "cross_sell_more",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Optional. Only appears once it has somewhere to go.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_cb_swc_offices_tab",
+            "label": "Offices",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_cb_swc_offices",
+            "label": "Offices",
+            "name": "offices",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The one list of offices the site keeps. It feeds the Contact page, the office list on Sectors and Coverage, and the postcode finder. Each address must end with its postcode.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add office",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "field_cb_swc_offices_name",
+            "sub_fields": [
+                {
+                    "key": "field_cb_swc_offices_image",
+                    "label": "Image",
+                    "name": "image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "A landmark shot for the region works well.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "parent_repeater": "field_cb_swc_offices"
+                },
+                {
+                    "key": "field_cb_swc_offices_name",
+                    "label": "Office name",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": true,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "e.g. North West Office",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_swc_offices"
+                },
+                {
+                    "key": "field_cb_swc_offices_region",
+                    "label": "Region",
+                    "name": "region",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Used by the region filter. Leave empty to use the office name.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_swc_offices"
+                },
+                {
+                    "key": "field_cb_swc_offices_locations",
+                    "label": "Locations",
+                    "name": "locations",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "One row per physical office. Use this where a region has more than one site, so each gets its own address and phone.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "button_label": "Add location",
+                    "min": 0,
+                    "max": 0,
+                    "rows_per_page": 20,
+                    "collapsed": "field_cb_swc_offices_loc_label",
+                    "sub_fields": [
+                        {
+                            "key": "field_cb_swc_offices_loc_label",
+                            "label": "Label",
+                            "name": "label",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Optional, e.g. Service Office or Projects Office. Leave empty for a region with a single site.",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_cb_swc_offices_locations"
+                        },
+                        {
+                            "key": "field_cb_swc_offices_loc_phone",
+                            "label": "Phone",
+                            "name": "phone",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_cb_swc_offices_locations"
+                        },
+                        {
+                            "key": "field_cb_swc_offices_loc_address",
+                            "label": "Address",
+                            "name": "address",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "One line per line, as it should appear.",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "rows": 5,
+                            "placeholder": "",
+                            "new_lines": "",
+                            "parent_repeater": "field_cb_swc_offices_locations"
+                        }
+                    ],
+                    "parent_repeater": "field_cb_swc_offices"
+                },
+                {
+                    "key": "field_cb_swc_offices_address",
+                    "label": "Address (single site)",
+                    "name": "address",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Used only when Locations above is empty. For a region with more than one office, add Locations instead.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 5,
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_cb_swc_offices"
+                },
+                {
+                    "key": "field_cb_swc_offices_phone",
+                    "label": "Main phone (single site)",
+                    "name": "phone",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Used only when Locations above is empty.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_swc_offices"
+                },
+                {
+                    "key": "field_cb_swc_offices_contacts",
+                    "label": "Contacts",
+                    "name": "contacts",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "button_label": "Add contact",
+                    "min": 0,
+                    "max": 0,
+                    "rows_per_page": 20,
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_cb_swc_offices_contact_role",
+                            "label": "Role",
+                            "name": "role",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_cb_swc_offices_contacts"
+                        },
+                        {
+                            "key": "field_cb_swc_offices_contact_name",
+                            "label": "Name",
+                            "name": "name",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Optional - some contacts are a shared inbox rather than a person.",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_cb_swc_offices_contacts"
+                        },
+                        {
+                            "key": "field_cb_swc_offices_contact_email",
+                            "label": "Email",
+                            "name": "email",
+                            "aria-label": "",
+                            "type": "email",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_cb_swc_offices_contacts"
+                        },
+                        {
+                            "key": "field_cb_swc_offices_contact_phone",
+                            "label": "Phone",
+                            "name": "phone",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_cb_swc_offices_contacts"
+                        }
+                    ],
+                    "parent_repeater": "field_cb_swc_offices"
+                }
+            ]
         }
     ],
     "location": [
@@ -575,5 +1204,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1787156771
+    "modified": 1794325456
 }

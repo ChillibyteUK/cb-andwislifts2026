@@ -107,9 +107,11 @@
 
     svg {
       display: block;
-      // 280px at the 1440px design width, scaling down so the links still fit
-      // beside it at 1200px.
-      width: clamp(160px, 19.45vw, 280px);
+      // 280px wide on the 1920px page designs, and in proportion below that:
+      // 210px on a 1440px screen, which is close to the phase one size there.
+      // It first went in at 280px from 1440px up, which was far too big on a
+      // laptop.
+      width: clamp(160px, 14.58vw, 280px);
       height: auto;
     }
 

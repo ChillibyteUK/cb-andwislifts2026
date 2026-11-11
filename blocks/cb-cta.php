@@ -17,8 +17,15 @@ $heading    = get_field( 'heading' );
 $body       = get_field( 'body' );
 $cta        = get_field( 'cta' );
 $cta_alt    = get_field( 'cta_secondary' );
+$cta_third  = get_field( 'cta_tertiary' );
 $style      = get_field( 'style' ) ? get_field( 'style' ) : 'forest';
 $layout     = get_field( 'layout' ) ? get_field( 'layout' ) : 'split';
+
+// The mint band is always centred - it is the design's closing section, drawn
+// to sit above the footer, and has no split version.
+if ( 'mint' === $style ) {
+	$layout = 'centred';
+}
 
 if ( ! $heading && empty( $cta['url'] ) ) {
 	return;
@@ -52,11 +59,11 @@ if ( $extra ) {
 				?>
 			</div>
 			<?php
-			if ( ! empty( $cta['url'] ) || ! empty( $cta_alt['url'] ) ) {
+			if ( ! empty( $cta['url'] ) || ! empty( $cta_alt['url'] ) || ! empty( $cta_third['url'] ) ) {
 				?>
 			<div class="cb-cta__actions">
 				<?php
-				foreach ( array( $cta, $cta_alt ) as $index => $link ) {
+				foreach ( array( $cta, $cta_alt, $cta_third ) as $index => $link ) {
 					if ( empty( $link['url'] ) ) {
 						continue;
 					}

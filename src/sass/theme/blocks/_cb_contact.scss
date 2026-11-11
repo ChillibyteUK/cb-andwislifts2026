@@ -1,0 +1,525 @@
+// CB Contact: the body of the Contact page. It sits on pale grey under a
+// white hero, with its two action cards straddling the hero's curve.
+// Drawn with 13px body type; set a little larger here. Other sizes in px.
+.cb-contact {
+  padding-bottom: clamp(56px, 6vw, 110px);
+  background: #f6f6f8;
+  color: var(--cb-forest);
+
+  // ------------------------------------------------------ the action cards
+  &__actions {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, 2.4vw, 32px);
+    // Pulled up over the hero's curve.
+    margin-top: clamp(-150px, -8.4vw, -64px);
+  }
+
+  &__action {
+    display: flex;
+    flex-direction: column;
+    min-height: clamp(180px, 15vw, 217px);
+    padding: clamp(24px, 2.6vw, 40px);
+    border-radius: 27px;
+    background: var(--cb-forest);
+    color: var(--cb-paper);
+
+    h2 {
+      margin: 0;
+      color: inherit;
+      font-size: clamp(24px, 2.1vw, 30px);
+      font-weight: var(--fw-semibold);
+      line-height: 1.25;
+    }
+
+    p {
+      max-width: 380px;
+      margin: 10px 0 0;
+      font-size: 16px;
+      line-height: 1.56;
+    }
+
+    // Bottom right, as drawn.
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-end;
+      justify-content: center;
+      min-width: 159px;
+      min-height: 38px;
+      margin-top: auto;
+      padding: 4px 20px;
+      font-size: 13px;
+    }
+
+    &--bright {
+      background: var(--cb-mint);
+      color: var(--cb-forest);
+
+      .btn.btn-primary {
+        border-color: var(--cb-forest);
+        background: var(--cb-forest);
+        color: var(--cb-paper);
+
+        &:hover,
+        &:focus-visible {
+          border-color: var(--cb-paper);
+          background: var(--cb-paper);
+          color: var(--cb-forest);
+        }
+      }
+    }
+  }
+
+  // ------------------------------------------------- other ways to reach us
+  &__ways {
+    margin-top: clamp(40px, 4vw, 60px);
+
+    > h2,
+    .cb-contact__panel h3 {
+      margin: 0 0 16px;
+      color: inherit;
+      font-size: clamp(22px, 2.1vw, 30px);
+      font-weight: var(--fw-semibold);
+      line-height: 1.3;
+    }
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+  }
+
+  // A pill holds its label and, once pressed, its email address.
+  &__pill {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 12px;
+    min-height: 37px;
+    padding: 4px 18px;
+    border: 1px solid var(--cb-marine);
+    border-radius: 19px;
+    background: var(--cb-marine);
+    color: var(--cb-forest);
+    font-size: 14px;
+    line-height: 1.3;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+
+    &:hover,
+    &:focus-within {
+      border-color: var(--cb-forest);
+    }
+
+    // The one that is open.
+    &.is-active {
+      border-color: var(--cb-forest);
+      background: var(--cb-forest);
+      color: var(--cb-paper);
+    }
+  }
+
+  &__chip {
+    padding: 4px 0;
+    color: inherit;
+    text-decoration: none;
+
+    &::after {
+      content: ">";
+      margin-left: 6px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: inherit;
+    }
+  }
+
+  &__chip-email {
+    color: inherit;
+    font-weight: var(--fw-semibold);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--cb-mint);
+    }
+  }
+
+  &__panel {
+    margin-top: clamp(32px, 3vw, 44px);
+    scroll-margin-top: 110px;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &__faq {
+    padding: 0 clamp(16px, 2.2vw, 30px);
+    border: 1px solid var(--cb-forest);
+    border-radius: 8px;
+    background: var(--cb-paper);
+
+    & + & {
+      margin-top: 13px;
+    }
+
+    summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 46px;
+      padding: 10px 0;
+      font-size: 16px;
+      font-weight: var(--fw-bold, 700);
+      line-height: 1.4;
+      list-style: none;
+      cursor: pointer;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::after {
+        content: "+";
+        flex: none;
+        color: var(--cb-emerald);
+        font-size: 20px;
+        font-weight: var(--fw-semibold);
+        line-height: 1;
+      }
+    }
+
+    &[open] summary::after {
+      content: "-";
+    }
+  }
+
+  &__answer {
+    padding: 14px 0 18px;
+    border-top: 1px solid #d0d0d0;
+    font-size: 16px;
+    line-height: 1.5;
+
+    p {
+      margin: 0 0 0.8em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // ------------------------------------------ the form and the offices card
+  &__card {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px clamp(28px, 3.2vw, 39px);
+    margin-top: clamp(48px, 5vw, 73px);
+    padding: clamp(24px, 3.6vw, 50px);
+    border-radius: 27px;
+    background: var(--cb-paper);
+    font-size: 15px;
+    line-height: 1.5;
+
+    h2 {
+      margin: 0;
+      color: inherit;
+      font-size: clamp(20px, 1.6vw, 22px);
+      font-weight: var(--fw-semibold);
+      line-height: 1.3;
+    }
+
+    a {
+      color: inherit;
+    }
+  }
+
+  &__form {
+    scroll-margin-top: 110px;
+  }
+
+  // One form shows at a time: the general one, or the one a card swapped in.
+  &__form-panel {
+    &[hidden] {
+      display: none;
+    }
+
+    h2:focus {
+      outline: 0;
+    }
+  }
+
+  // "Send a general enquiry instead", under a swapped-in form.
+  &__reset {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--cb-emerald);
+    font: inherit;
+    font-weight: var(--fw-semibold);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    cursor: pointer;
+  }
+
+  &__lead {
+    margin: 6px 0 0;
+  }
+
+  &__form-wrap {
+    margin-top: 22px;
+  }
+
+  &__note {
+    margin: 18px 0 0;
+
+    a {
+      color: var(--cb-emerald);
+      font-weight: var(--fw-semibold);
+      text-decoration: none;
+
+      &:hover,
+      &:focus-visible {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__head-office {
+    display: grid;
+    gap: 2px;
+    margin: 8px 0 0;
+    font-style: normal;
+  }
+
+  &__offices &__lead {
+    margin-top: 16px;
+  }
+
+  &__finder {
+    margin: 4px 0 0;
+    font-weight: var(--fw-bold, 700);
+  }
+
+  &__hours {
+    margin-top: 26px;
+    padding: 22px 28px;
+    border-radius: 27px;
+    background: #d6efd9;
+
+    h3 {
+      margin: 0 0 8px;
+      color: inherit;
+      font-size: 17px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.3;
+    }
+
+    p {
+      margin: 0 0 0.8em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__list-heading {
+    margin-top: 36px !important;
+  }
+
+  &__office-list {
+    margin-top: 12px;
+    border-top: 1px solid #d0d0d0;
+  }
+
+  &__office {
+    border-bottom: 1px solid #d0d0d0;
+
+    summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 14px;
+      list-style: none;
+      cursor: pointer;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::after {
+        content: "+";
+        flex: none;
+        color: var(--cb-emerald);
+        font-size: 18px;
+        font-weight: var(--fw-semibold);
+        line-height: 1;
+      }
+
+      &:hover,
+      &:focus-visible {
+        color: var(--cb-emerald);
+      }
+    }
+
+    &[open] summary {
+      font-size: clamp(18px, 1.5vw, 20px);
+      font-weight: var(--fw-semibold);
+
+      &::after {
+        content: "-";
+      }
+    }
+  }
+
+  &__office-body {
+    padding: 0 14px 18px;
+
+    p {
+      margin: 0 0 12px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // The form's own controls, in the pale fill the design gives them, and a
+  // dark Send button.
+  .gform_wrapper {
+    --gf-ctrl-bg-color: #f4f7f6;
+    --gf-ctrl-border-color: #cfd6d2;
+    --gf-ctrl-radius: 8px;
+    --gf-ctrl-btn-bg-color-primary: var(--cb-forest);
+    --gf-ctrl-btn-bg-color-hover-primary: var(--cb-emerald);
+    --gf-ctrl-btn-bg-color-focus-primary: var(--cb-emerald);
+    --gf-ctrl-btn-color-primary: var(--cb-paper);
+    --gf-ctrl-btn-color-hover-primary: var(--cb-paper);
+    --gf-ctrl-btn-color-focus-primary: var(--cb-paper);
+    --gf-ctrl-btn-radius: 9999px;
+  }
+
+  .gform_footer .btn {
+    width: auto !important;
+    min-width: 151px;
+  }
+
+  // One column: the form, the offices, the opening hours and the office list
+  // each become a card of their own, as the phone design has them.
+  @media (max-width: 991.98px) {
+    &__card {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+      padding: 0;
+      background: none;
+    }
+
+    &__offices {
+      display: grid;
+      gap: 16px;
+    }
+
+    &__form,
+    &__offices-intro,
+    &__offices-list {
+      padding: clamp(22px, 5vw, 36px);
+      border-radius: 27px;
+      background: var(--cb-paper);
+    }
+
+    &__hours {
+      margin-top: 0;
+    }
+
+    &__list-heading {
+      margin-top: 0 !important;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    &__actions {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    &__action {
+      min-height: 0;
+
+      // Bottom left on a phone.
+      .btn {
+        align-self: flex-start;
+        margin-top: 18px;
+      }
+    }
+
+    // Headings centred, pills stacked the full width.
+    &__ways > h2,
+    &__panel h3 {
+      text-align: center;
+    }
+
+    &__chips {
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    &__pill {
+      justify-content: center;
+      text-align: center;
+    }
+
+    // Each office: a larger name and a round button that turns when open.
+    &__office summary {
+      padding-inline: 0;
+      font-size: 20px;
+      font-weight: var(--fw-semibold);
+
+      &::after {
+        content: "";
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--cb-forest) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M7 11.5 1.5 3h11z' fill='%2300ff99'/></svg>") center / 12px no-repeat;
+        transition: transform 200ms ease;
+      }
+    }
+
+    &__office[open] summary {
+      font-size: 20px;
+
+      &::after {
+        content: "";
+        transform: rotate(180deg);
+      }
+    }
+
+    &__office-body {
+      padding-inline: 0;
+    }
+  }
+}
+
+// On the Contact page the hero is white and the grey starts at its curve.
+.cb-hero--light:has(+ .cb-contact) {
+  background: var(--cb-paper);
+
+  &::after {
+    background-color: #f6f6f8;
+  }
+
+  .cb-hero__content {
+    padding-bottom: clamp(150px, 15vw, 290px);
+  }
+}

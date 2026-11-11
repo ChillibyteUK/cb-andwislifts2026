@@ -19,50 +19,203 @@
     will-change: transform;
   }
 
+  // Phase two: the photo stays bright on the right and the copy sits on a
+  // green wash down the left, in place of the old all-over darkening.
   &__scrim {
     inset: 0;
     z-index: 1;
-    background: linear-gradient(180deg,
-        rgba(9, 26, 16, 0.72) 0%,
-        rgba(10, 30, 19, 0.55) 38%,
-        rgba(11, 35, 21, 0.88) 100%);
+    background: linear-gradient(90deg,
+        rgba(13, 36, 20, 0.9) 0%,
+        rgba(13, 36, 20, 0.66) 34%,
+        rgba(13, 36, 20, 0.16) 68%,
+        rgba(13, 36, 20, 0) 100%);
+
+    // Stacked on a phone the copy runs the full width, so wash all of it.
+    @media (max-width: 991.98px) {
+      background: linear-gradient(180deg, rgba(13, 36, 20, 0.62) 0%, rgba(13, 36, 20, 0.82) 100%);
+    }
   }
 
-  .container {
+  // The header is fixed and 90px tall (72px below 1200px), so the top padding
+  // starts from there. 238px below it is where the design sets the heading.
+  &__content {
     position: relative;
     z-index: 2;
-    padding: 250px 32px 310px;
+    padding-top: calc(90px + clamp(56px, 12.4vw, 238px));
+    padding-bottom: clamp(150px, 15vw, 290px);
+
+    @media (max-width: 1199.98px) {
+      padding-top: calc(72px + clamp(56px, 12.4vw, 238px));
+    }
+  }
+
+  &__kicker {
+    margin: 0 0 10px;
+    font-size: clamp(16px, 1.4vw, 20px);
+    font-weight: var(--fw-semibold);
+    line-height: 1.3;
   }
 
   h1 {
-    margin: 0 0 14px;
-    font-size: var(--cb-fs-hero);
-    font-weight: var(--fw-bold);
-    line-height: 1.08;
-    letter-spacing: -0.01em;
+    // Balanced, so a short heading breaks evenly ("Engineering the / Flow of
+    // People") and a long one on an inner page does not run to five lines.
+    max-width: 640px;
+    text-wrap: balance;
+    margin: 0;
+    font-size: clamp(34px, 24px + 2.2vw, 56px);
+    font-weight: var(--fw-semibold);
+    line-height: 1.2;
+    letter-spacing: normal;
 
     span {
       color: var(--cb-emerald);
     }
   }
 
-  &__subline {
-    margin: 0 0 22px;
-    color: var(--cb-emerald);
-    font-size: clamp(15px, 1.8vw, 17px);
-    font-weight: var(--fw-medium);
-    letter-spacing: 0.02em;
-  }
-
   &__intro {
-    max-width: 560px;
-    color: rgba(255, 255, 255, 0.88);
-    font-size: clamp(16px, 2vw, 19px);
-    line-height: 1.6;
+    max-width: 540px;
+    margin: 18px 0 0;
+    color: var(--cb-paper);
+    font-size: clamp(16px, 13px + 0.76vw, 24px);
+    line-height: 1.65;
   }
 
   &__cta {
-    margin-top: 56px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 32px;
+    margin-top: 36px;
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 227px;
+      min-height: 64px;
+      font-size: 16px;
+    }
+
+    .btn.btn-ghost {
+      --cb-ghost-ink: var(--cb-paper);
+      --cb-ghost-ink-hover: var(--cb-forest);
+      --cb-ghost-fill-hover: var(--cb-paper);
+    }
+
+    @media (max-width: 575.98px) {
+      flex-direction: column;
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+
+  // The band of figures along the bottom, in place of the white curve. Its
+  // top edge domes up into the photo.
+  &--has-stats &__content {
+    padding-bottom: clamp(40px, 8vw, 155px);
+  }
+
+  &__stats {
+    --cb-hero-dome: clamp(20px, 5.2vw, 100px);
+
+    position: relative;
+    z-index: 2;
+    margin-top: var(--cb-hero-dome);
+    padding: clamp(4px, 1vw, 20px) 0 clamp(40px, 4vw, 76px);
+    background: var(--cb-forest);
+
+    &::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: calc(100% - 1px);
+      left: 0;
+      height: var(--cb-hero-dome);
+      background: var(--cb-forest);
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0 80C160 32 424 0 720 0s560 32 720 80z'/></svg>") center / 100% 100% no-repeat;
+      mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0 80C160 32 424 0 720 0s560 32 720 80z'/></svg>") center / 100% 100% no-repeat;
+    }
+  }
+
+  &__stats-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 32px 40px;
+    margin: 0;
+  }
+
+  // The label is the term and the figure its value, but the figure is drawn
+  // first, as in the design.
+  &__stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__stat-value {
+    // Pulled above its label. Reordering, not column-reverse, so the figures
+    // stay level when one label wraps and another does not.
+    order: -1;
+    margin: 0;
+    color: var(--cb-sage);
+    font-size: clamp(36px, 3.3vw, 60px);
+    font-weight: var(--fw-semibold);
+    line-height: 1;
+
+    small {
+      font-size: 0.45em;
+      font-weight: var(--fw-semibold);
+    }
+  }
+
+  &__stat-label {
+    max-width: 190px;
+    margin: 12px 0 0;
+    color: var(--cb-paper);
+    font-size: 16px;
+    font-weight: var(--fw-regular);
+    line-height: 1.35;
+  }
+
+  @media (max-width: 767.98px) {
+    &__stats-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px 20px;
+    }
+  }
+
+  // Light: a pale band, dark text and no photo, for a page that gets straight
+  // to its content. The header is fixed, so the padding still starts below it.
+  &--light {
+    background: #f4f7f6;
+    color: var(--cb-forest);
+
+    .cb-hero__content {
+      padding-top: calc(90px + clamp(40px, 4.1vw, 79px));
+      padding-bottom: clamp(104px, 9.6vw, 184px);
+
+      @media (max-width: 1199.98px) {
+        padding-top: calc(72px + clamp(40px, 4.1vw, 79px));
+      }
+    }
+
+    h1 {
+      max-width: none;
+      color: inherit;
+    }
+
+    .cb-hero__intro {
+      max-width: 783px;
+      color: inherit;
+    }
+
+    .cb-hero__cta .btn.btn-ghost {
+      --cb-ghost-ink: var(--cb-forest);
+      --cb-ghost-ink-hover: var(--cb-paper);
+      --cb-ghost-fill-hover: var(--cb-forest);
+    }
   }
 
   &--bottom-curve::after {

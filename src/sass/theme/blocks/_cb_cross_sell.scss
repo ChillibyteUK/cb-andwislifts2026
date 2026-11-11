@@ -1,0 +1,480 @@
+// CB Cross Sell: copy on the left, the two-step card on the right.
+// Markup and behaviour: inc/cb-cross-sell.php.
+//
+// Sizes are px. The card is drawn to fixed pixel sizes in the phase two
+// design, and the root font-size here is 22px.
+.cb-cross-sell {
+  --cb-cross-sell-ink: var(--cb-paper);
+
+  padding-block: var(--cb-section-y);
+  background: var(--cb-forest);
+  color: var(--cb-cross-sell-ink);
+
+  // Ending a page, it runs into the footer: room for the footer's curve,
+  // which is drawn over the bottom of the band. See _footer.scss.
+  main > &:last-child {
+    padding-bottom: calc(var(--cb-section-y) + var(--cb-footer-curve));
+  }
+
+  // Half-strength sage: the pale green the Contact page design uses.
+  &--light {
+    --cb-cross-sell-ink: var(--cb-forest);
+
+    background: #d6efd9;
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 620px);
+    gap: 40px 60px;
+    align-items: start;
+  }
+
+  /* Copy */
+  &__copy {
+    // Lines the heading's cap height up with the top of the card.
+    padding-top: 6px;
+
+    h2 {
+      margin: 0;
+      color: var(--cb-cross-sell-ink);
+      font-size: clamp(34px, 24px + 2.2vw, 56px);
+      line-height: 1.22;
+      letter-spacing: normal;
+    }
+  }
+
+  &__body {
+    max-width: 530px;
+    margin: 22px 0 0;
+    color: var(--cb-cross-sell-ink);
+    font-size: clamp(16px, 13px + 0.76vw, 24px);
+    line-height: 1.6;
+  }
+
+  &__note {
+    margin: 28px 0 0;
+    color: var(--cb-cross-sell-ink);
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  &__group-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    margin-top: 30px;
+    padding: 6px 28px;
+    border-radius: 9999px;
+    background: var(--cb-lime);
+    color: var(--cb-forest);
+    font-size: 15px;
+    font-weight: var(--fw-semibold);
+    line-height: 1.2;
+    text-decoration: none;
+    transition: background-color 200ms ease, color 200ms ease;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--cb-paper);
+      color: var(--cb-forest);
+    }
+  }
+
+  &__note + &__group-link {
+    margin-top: 14px;
+  }
+
+  // On the pale background a white hover would barely register.
+  &--light &__group-link:hover,
+  &--light &__group-link:focus-visible {
+    background: var(--cb-forest);
+    color: var(--cb-paper);
+  }
+
+  /* Card */
+  &__card {
+    padding: 40px 40px 52px;
+    border-radius: 20px;
+    background: var(--cb-paper);
+    color: var(--cb-forest);
+  }
+
+  &__step {
+    &[hidden] {
+      display: none;
+    }
+
+    // Focus lands here when the summary appears, to announce it. It is not a
+    // control, so it does not need a ring.
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__fieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  &__card-heading {
+    // A <legend> ignores width and float rules unless told otherwise.
+    float: none;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    color: var(--cb-forest);
+    font-size: clamp(22px, 1.95vw, 28px);
+    font-weight: var(--fw-semibold);
+    line-height: 1.25;
+    letter-spacing: normal;
+  }
+
+  &__hint {
+    margin: 6px 0 0;
+    color: var(--cb-ink);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  &__options {
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  // The whole row is the label, so the whole row ticks the box.
+  &__option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 59px;
+    margin: 0;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(28, 66, 32, 0.16);
+    color: var(--cb-ink);
+    font-size: 16px;
+    font-weight: var(--fw-medium);
+    line-height: 1.3;
+    cursor: pointer;
+
+    &--current {
+      cursor: default;
+    }
+
+    // The real checkbox stays in place, invisible, over the drawn one: it
+    // keeps keyboard focus and the native behaviour.
+    input {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 24px;
+      height: 24px;
+      margin: -12px 0 0;
+      opacity: 0;
+      cursor: inherit;
+    }
+  }
+
+  &__box {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--cb-forest);
+    border-radius: 5px;
+    background: var(--cb-paper);
+    color: var(--cb-paper);
+    transition: background-color 150ms ease;
+  }
+
+  &__tick {
+    opacity: 0;
+    transition: opacity 150ms ease;
+  }
+
+  input:checked + &__box {
+    background: var(--cb-forest);
+
+    .cb-cross-sell__tick {
+      opacity: 1;
+    }
+  }
+
+  input:focus-visible + &__box {
+    outline: 2px solid var(--cb-emerald);
+    outline-offset: 3px;
+  }
+
+  &__option:hover input:not(:disabled):not(:checked) + &__box {
+    background: var(--cb-sage);
+  }
+
+  &__here {
+    flex: none;
+    margin-left: auto;
+    padding: 5px 13px;
+    border-radius: 9999px;
+    background: var(--cb-emerald);
+    color: var(--cb-paper);
+    font-size: 12px;
+    font-weight: var(--fw-medium);
+    line-height: 1.3;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 16px;
+    margin-top: 44px;
+  }
+
+  // Shared by the step one button and the summary's final link. Mint, with
+  // the same sweep to forest as the other mint pills.
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+    padding: 6px 28px;
+    border: 0;
+    border-radius: 9999px;
+    background-color: var(--cb-mint);
+    background-image: linear-gradient(
+      90deg,
+      var(--cb-forest) 50%,
+      transparent 75%,
+      transparent 100%
+    );
+    background-size: 400%;
+    background-position: 100%;
+    color: var(--cb-forest);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: var(--fw-semibold);
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-position 0.5s ease-in-out,
+      color 0.5s ease-in-out,
+      opacity 200ms ease;
+
+    &:hover,
+    &:focus-visible {
+      background-position: 0%;
+      color: var(--cb-paper);
+    }
+
+    &:disabled {
+      background-position: 100%;
+      color: var(--cb-forest);
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  }
+
+  &__helper {
+    color: var(--cb-ink);
+    font-size: 14px;
+    line-height: 1.4;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  /* Summary */
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: -6px 0 18px;
+    padding: 4px 0;
+    border: 0;
+    background: transparent;
+    color: var(--cb-forest);
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.3;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+
+    svg {
+      flex: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      text-decoration-thickness: 2px;
+    }
+  }
+
+  &__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      padding: 8px 14px;
+      border-radius: 9999px;
+      background: var(--cb-marine);
+      color: var(--cb-forest);
+      font-size: 12px;
+      font-weight: var(--fw-medium);
+      line-height: 1.3;
+    }
+  }
+
+  &__summary-heading {
+    margin: 24px 0 0;
+    color: var(--cb-forest);
+    font-size: 18px;
+    font-weight: var(--fw-semibold);
+    line-height: 1.35;
+  }
+
+  &__summary-text {
+    margin: 14px 0 0;
+    color: var(--cb-ink);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  &__benefits {
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      position: relative;
+      padding: 6px 0 6px 24px;
+      color: var(--cb-ink);
+      font-size: 14px;
+      line-height: 1.5;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 12px;
+        left: 0;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--cb-emerald);
+      }
+    }
+  }
+
+  &__quote {
+    margin: 20px 0 0;
+    padding: 22px 26px 22px 50px;
+    border-radius: 14px;
+    // The lime rule down the left edge of the quote.
+    background:
+      linear-gradient(var(--cb-lime), var(--cb-lime)) 26px 22px / 4px calc(100% - 44px) no-repeat,
+      var(--cb-sage);
+
+    blockquote {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      color: var(--cb-ink);
+      font-size: 15px;
+      font-weight: var(--fw-medium);
+      line-height: 1.5;
+    }
+
+    figcaption {
+      margin-top: 10px;
+      color: var(--cb-ink);
+      font-size: 12px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.4;
+    }
+  }
+
+  &__stat {
+    margin: 18px 0 0;
+    color: var(--cb-ink);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  &__summary-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    margin-top: 26px;
+  }
+
+  &__more {
+    color: var(--cb-forest);
+    font-size: 14px;
+    font-weight: var(--fw-semibold);
+    line-height: 1.4;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--cb-forest);
+      text-decoration-thickness: 2px;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    &__inner {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    &__copy {
+      padding-top: 0;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    &__card {
+      padding: 28px 22px 32px;
+      border-radius: 16px;
+    }
+
+    &__option {
+      gap: 12px;
+    }
+
+    // Stack the button over its hint, both full width.
+    &__actions {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+    }
+
+    &__summary-actions {
+      align-items: stretch;
+      text-align: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__button,
+    &__box,
+    &__tick,
+    &__group-link {
+      transition: none;
+    }
+  }
+}

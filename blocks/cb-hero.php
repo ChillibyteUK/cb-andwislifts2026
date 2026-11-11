@@ -11,35 +11,71 @@ $section_id       = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-hero-'
 $extra            = $block['className'] ?? '';
 $background_image = get_field( 'background_image' );
 $heading          = get_field( 'heading' );
-$subline          = get_field( 'subline' );
+$kicker           = get_field( 'subline' );
 $intro            = get_field( 'intro' );
 $show_wave        = get_field( 'show_wave' );
-$cta              = get_field( 'cta_button' );
+// Light: a pale band with dark text and no photo, for a page such as
+// Resources that gets straight to its content.
+$is_light         = 'light' === get_field( 'style' );
+$buttons          = array_filter(
+	array(
+		'btn btn-primary' => get_field( 'cta_button' ),
+		'btn btn-ghost'   => get_field( 'cta_secondary' ),
+	),
+	static function ( $link ) {
+		return ! empty( $link['url'] );
+	}
+);
+$stats            = array_filter(
+	(array) get_field( 'stats' ),
+	static function ( $stat ) {
+		return is_array( $stat ) && '' !== trim( (string) ( $stat['value'] ?? '' ) );
+	}
+);
 
 if ( null === $show_wave ) {
 	$show_wave = true;
 }
 
+// The stats band takes the place of the white curve along the bottom.
+$classes = array( 'cb-hero' );
+
+if ( $stats ) {
+	$classes[] = 'cb-hero--has-stats';
+} elseif ( $show_wave ) {
+	$classes[] = 'cb-hero--bottom-curve';
+}
+
+if ( $is_light ) {
+	$classes[] = 'cb-hero--light';
+}
+
+if ( $extra ) {
+	$classes[] = $extra;
+}
 ?>
-<section class="cb-hero<?= $show_wave ? ' cb-hero--bottom-curve' : ''; ?> <?= esc_attr( $extra ); ?>" id="<?= esc_attr( $section_id ); ?>">
+<section class="<?= esc_attr( implode( ' ', $classes ) ); ?>" id="<?= esc_attr( $section_id ); ?>">
 	<?php
-	if ( ! empty( $background_image['ID'] ) ) {
+	if ( ! $is_light && ! empty( $background_image['ID'] ) ) {
 		?>
 	<div class="cb-hero__bg" style="background-image:url('<?= esc_url( wp_get_attachment_image_url( $background_image['ID'], 'full' ) ); ?>');"></div>
 		<?php
 	}
 	?>
+	<?php if ( ! $is_light ) { ?>
 	<div class="cb-hero__scrim"></div>
-	<div class="container">
+	<?php } ?>
+	<div class="container cb-hero__content">
 		<?php
+		// The kicker reads before the heading but is not part of it.
+		if ( $kicker ) {
+			?>
+		<p class="cb-hero__kicker"><?= esc_html( $kicker ); ?></p>
+			<?php
+		}
 		if ( $heading ) {
 			?>
 		<h1><?= wp_kses_post( $heading ); ?></h1>
-			<?php
-		}
-		if ( $subline ) {
-			?>
-		<p class="cb-hero__subline"><?= esc_html( $subline ); ?></p>
 			<?php
 		}
 		if ( $intro ) {
@@ -47,19 +83,51 @@ if ( null === $show_wave ) {
 		<p class="cb-hero__intro"><?= esc_html( $intro ); ?></p>
 			<?php
 		}
-		if ( $cta ) {
+		if ( $buttons ) {
 			?>
 		<div class="cb-hero__cta">
-			<a href="<?= esc_url( $cta['url'] ); ?>" class="btn-outline"<?= ! empty( $cta['target'] ) ? ' target="' . esc_attr( $cta['target'] ) . '"' : ''; ?>><?= esc_html( $cta['title'] ); ?></a>
+			<?php foreach ( $buttons as $button_class => $button ) { ?>
+			<a href="<?= esc_url( $button['url'] ); ?>" class="<?= esc_attr( $button_class ); ?>"<?= cb_link_target( $button ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?= esc_html( $button['title'] ); ?></a>
+			<?php } ?>
 		</div>
 			<?php
 		}
 		?>
 	</div>
+	<?php
+	if ( $stats ) {
+		?>
+	<div class="cb-hero__stats">
+		<div class="container">
+			<dl class="cb-hero__stats-list">
+				<?php
+				foreach ( $stats as $stat ) {
+					// "Top 5" is drawn as a small word and a large figure.
+					$value = trim( (string) $stat['value'] );
+					$small = '';
+
+					if ( preg_match( '/^([^\d]+?)\s+(\d.*)$/u', $value, $parts ) ) {
+						$small = $parts[1];
+						$value = $parts[2];
+					}
+					?>
+				<div class="cb-hero__stat">
+					<dt class="cb-hero__stat-label"><?= esc_html( $stat['description'] ?? '' ); ?></dt>
+					<dd class="cb-hero__stat-value"><?= $small ? '<small>' . esc_html( $small ) . '</small> ' : ''; ?><?= esc_html( $value ); ?></dd>
+				</div>
+					<?php
+				}
+				?>
+			</dl>
+		</div>
+	</div>
+		<?php
+	}
+	?>
 </section>
 
 <?php
-if ( ! empty( $background_image['ID'] ) ) {
+if ( ! $is_light && ! empty( $background_image['ID'] ) ) {
 	add_action(
 		'wp_footer',
 		function () use ( $section_id ) {

@@ -93,6 +93,75 @@
       color: var(--cb-ink-soft);
     }
   }
+
+  // The phase two closing band: mint, centred, large type, dark buttons. Made
+  // to be the last block on a page, where it runs into the footer.
+  // Sizes are px to match the footer it joins.
+  &--mint {
+    padding-block: clamp(56px, 6vw, 88px);
+    background: var(--cb-mint);
+
+    .cb-cta__inner {
+      gap: 44px;
+    }
+
+    h2 {
+      color: var(--cb-forest);
+      font-size: clamp(34px, 24px + 2.2vw, 56px);
+      line-height: 1.15;
+    }
+
+    p {
+      max-width: 700px;
+      margin-top: 20px;
+      color: var(--cb-forest);
+      font-size: clamp(18px, 1.55vw, 22px);
+      line-height: 1.45;
+    }
+
+    .cb-cta__actions {
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 220px;
+      min-height: 64px;
+      padding: 8px 40px;
+      font-size: 16px;
+
+      // A lone button is drawn wide.
+      &:only-child {
+        min-width: 320px;
+      }
+    }
+
+    // The usual primary is mint, which would vanish here: dark fill, and the
+    // hover sweep runs to white instead of to forest.
+    .btn.btn-primary {
+      background-color: var(--cb-forest);
+      background-image: linear-gradient(
+        90deg,
+        var(--cb-paper) 50%,
+        transparent 75%,
+        transparent 100%
+      );
+      color: var(--cb-paper);
+
+      &:hover,
+      &:focus-visible {
+        color: var(--cb-forest);
+      }
+    }
+
+    // Room for the footer's curve, which is drawn over the bottom of the band.
+    &:last-child {
+      padding-bottom: calc(var(--cb-footer-curve) + 44px);
+    }
+  }
 }
 
 @media (max-width: 767px) {
@@ -111,6 +180,11 @@
         justify-content: center;
         text-align: center;
       }
+    }
+
+    &--mint .btn,
+    &--mint .btn:only-child {
+      min-width: 0;
     }
 
     &--centred .cb-cta__inner {

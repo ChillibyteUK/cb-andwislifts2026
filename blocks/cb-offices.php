@@ -2,11 +2,16 @@
 /**
  * Block template for CB Offices.
  *
- * Regional offices, each an image beside a panel carrying the address, the main
- * number and the named contacts for that region.
+ * Regional offices in one of two layouts: cards, each an image beside a panel
+ * carrying the address, the main number and the named contacts for that
+ * region; or a plain list in three columns, with an optional call to action as
+ * its last cell.
  *
  * Offices are a repeater and contacts a repeater within it, so a row can be
  * duplicated in the editor to add a region without touching the structure.
+ *
+ * On a phone the plain list is long, so each office folds down to its name
+ * and opens when pressed (cb_offices_list_script() in inc/cb-office-finder.php).
  *
  * With filters on, a search box and a region select sit above the list.
  * Filtering is client-side - every office is already in the DOM - so it is
@@ -19,12 +24,102 @@ defined( 'ABSPATH' ) || exit;
 
 $section_id  = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-offices-' );
 $extra       = $block['className'] ?? '';
+$layout      = 'list' === get_field( 'layout' ) ? 'list' : 'cards';
 $heading     = get_field( 'heading' );
 $intro       = get_field( 'intro' );
-$offices     = get_field( 'offices' );
 $has_filters = null === get_field( 'show_filters' ) ? true : (bool) get_field( 'show_filters' );
 
+// One list of offices, kept on the Contact page. A block set to share shows
+// that list instead of holding a second copy that would drift out of date.
+// The heading, intro and layout stay this block's own.
+$offices = get_field( 'use_shared' ) ? cb_offices_shared() : get_field( 'offices' );
+
 if ( empty( $offices ) ) {
+	return;
+}
+
+if ( 'list' === $layout ) {
+	$aside_heading = get_field( 'aside_heading' );
+	$aside_text    = get_field( 'aside_text' );
+	$aside_cta     = get_field( 'aside_cta' );
+	?>
+<section class="cb-offices cb-offices--list <?= esc_attr( $extra ); ?>" id="<?= esc_attr( $section_id ); ?>">
+	<div class="container">
+		<?php if ( $heading ) { ?>
+		<h2 class="cb-offices__list-heading"><?= esc_html( $heading ); ?></h2>
+		<?php } ?>
+		<?php if ( $intro ) { ?>
+		<p class="cb-offices__lead"><?= esc_html( $intro ); ?></p>
+		<?php } ?>
+		<div class="cb-offices__grid">
+			<?php
+			foreach ( $offices as $office ) {
+				$name      = trim( (string) ( $office['name'] ?? '' ) );
+				$locations = cb_offices_locations( $office );
+
+				if ( '' === $name ) {
+					continue;
+				}
+
+				// A label only helps where it tells two addresses apart.
+				$labelled = count( array_unique( wp_list_pluck( $locations, 'label' ) ) ) > 1;
+				$email    = '';
+
+				foreach ( (array) ( $office['contacts'] ?? array() ) as $contact ) {
+					if ( ! empty( $contact['email'] ) ) {
+						$email = trim( (string) $contact['email'] );
+						break;
+					}
+				}
+				?>
+			<article class="cb-offices__entry">
+				<h3><?= esc_html( $name ); ?></h3>
+				<div class="cb-offices__entry-body">
+				<?php foreach ( $locations as $location ) { ?>
+				<div class="cb-offices__entry-location">
+					<?php if ( $labelled && $location['label'] ) { ?>
+					<p class="cb-offices__entry-label">(<?= esc_html( $location['label'] ); ?>)</p>
+					<?php } ?>
+					<p class="cb-offices__entry-lines">
+						<?php if ( $location['address'] ) { ?>
+						<?= nl2br( esc_html( $location['address'] ) ); ?><br>
+						<?php } ?>
+						<?php if ( $location['phone'] ) { ?>
+						<?= esc_html__( 'Tel:', 'cb-andwislifts2026' ); ?> <a href="tel:<?= esc_attr( preg_replace( '/[^0-9+]/', '', $location['phone'] ) ); ?>"><?= esc_html( $location['phone'] ); ?></a>
+						<?php } ?>
+					</p>
+				</div>
+				<?php } ?>
+				<?php if ( $email ) { ?>
+				<p class="cb-offices__entry-lines"><?= esc_html__( 'Email:', 'cb-andwislifts2026' ); ?> <a href="mailto:<?= esc_attr( $email ); ?>"><?= esc_html( $email ); ?></a></p>
+				<?php } ?>
+				</div>
+			</article>
+				<?php
+			}
+
+			if ( $aside_heading || $aside_text || $aside_cta ) {
+				?>
+			<div class="cb-offices__aside">
+				<?php if ( $aside_heading ) { ?>
+				<h3><?= esc_html( $aside_heading ); ?></h3>
+				<?php } ?>
+				<?php if ( $aside_text ) { ?>
+				<p><?= esc_html( $aside_text ); ?></p>
+				<?php } ?>
+				<?php if ( ! empty( $aside_cta['url'] ) ) { ?>
+				<a class="btn btn-primary" href="<?= esc_url( $aside_cta['url'] ); ?>"<?= cb_link_target( $aside_cta ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?= esc_html( $aside_cta['title'] ); ?></a>
+				<?php } ?>
+			</div>
+				<?php
+			}
+			?>
+		</div>
+	</div>
+</section>
+	<?php
+	add_action( 'wp_footer', 'cb_offices_list_script', 30 );
+
 	return;
 }
 
@@ -92,38 +187,9 @@ $total = count( $offices );
 		foreach ( $offices as $office ) {
 			$name     = trim( (string) ( $office['name'] ?? '' ) );
 			$region   = trim( (string) ( $office['region'] ?? '' ) );
-			$address  = trim( (string) ( $office['address'] ?? '' ) );
-			$phone    = trim( (string) ( $office['phone'] ?? '' ) );
-
-			// A region can hold several offices - a service site and a projects
-			// site, say - each with its own address and number. Where Locations is
-			// empty the older single address and phone are used instead, so rows
-			// entered before this field existed keep working.
-			$locations = array();
-
-			foreach ( (array) ( $office['locations'] ?? array() ) as $location ) {
-				$loc_address = trim( (string) ( $location['address'] ?? '' ) );
-				$loc_phone   = trim( (string) ( $location['phone'] ?? '' ) );
-
-				if ( '' === $loc_address && '' === $loc_phone ) {
-					continue;
-				}
-
-				$locations[] = array(
-					'label'   => trim( (string) ( $location['label'] ?? '' ) ),
-					'address' => $loc_address,
-					'phone'   => $loc_phone,
-				);
-			}
-
-			if ( ! $locations && ( $address || $phone ) ) {
-				$locations[] = array(
-					'label'   => '',
-					'address' => $address,
-					'phone'   => $phone,
-				);
-			}
-			$image    = $office['image'] ?? null;
+			$locations = cb_offices_locations( $office );
+			$image     = $office['image'] ?? null;
+			$image_id  = is_array( $image ) ? (int) ( $image['ID'] ?? 0 ) : (int) $image;
 			$contacts = $office['contacts'] ?? array();
 
 			if ( '' === $name ) {
@@ -135,8 +201,8 @@ $total = count( $offices );
 			}
 			?>
 		<article class="cb-offices__office" data-cb-offices-item data-region="<?= esc_attr( $region ); ?>">
-			<?php if ( ! empty( $image['ID'] ) ) { ?>
-			<div class="cb-offices__media"><?= wp_get_attachment_image( $image['ID'], 'large', false, array( 'loading' => 'lazy' ) ); ?></div>
+			<?php if ( $image_id ) { ?>
+			<div class="cb-offices__media"><?= wp_get_attachment_image( $image_id, 'large', false, array( 'loading' => 'lazy' ) ); ?></div>
 			<?php } ?>
 			<div class="cb-offices__panel">
 				<h3><?= esc_html( $name ); ?></h3>

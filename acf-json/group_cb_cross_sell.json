@@ -1,0 +1,185 @@
+{
+    "key": "group_cb_cross_sell",
+    "title": "CB Cross Sell",
+    "fields": [
+        {
+            "key": "field_cb_cross_sell_message",
+            "label": "CB Cross Sell",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "The checklist, the summary and where the final button goes are shared by every cross-sell on the site. Edit them on Site-Wide Settings > Cross-sell.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_cb_cross_sell_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Beside the card.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Looking after more than the lifts?",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_cross_sell_body",
+            "label": "Text",
+            "name": "body",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "One short paragraph under the heading.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "We also cover fire and security, M&E, maintenance and response, and environmental services. Tick what's relevant and we'll show how one provider could simplify things.",
+            "new_lines": ""
+        },
+        {
+            "key": "field_cb_cross_sell_note",
+            "label": "Small line",
+            "name": "note",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Sits above the group link, for example \"An andwis Group company.\"",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_cross_sell_group_link",
+            "label": "Group link",
+            "name": "group_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "The lime button. Leave empty for \"Learn more about andwis Group\" pointing at andwis.com.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_cb_cross_sell_card_heading",
+            "label": "Card question",
+            "name": "card_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The question at the top of the card.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Which other services do you need?",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_cross_sell_button_label",
+            "label": "Card button",
+            "name": "button_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Show me the benefits",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_cross_sell_style",
+            "label": "Background",
+            "name": "style",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "dark": "Dark green",
+                "light": "Light green"
+            },
+            "default_value": "dark",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/cb-cross-sell"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1794312693
+}
